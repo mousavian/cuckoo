@@ -8,4 +8,5 @@ class KVM(LibVirtMachinery):
     """Virtualization layer for KVM based on python-libvirt."""
 
     # Set KVM connection string.
-    dsn = "qemu:///system"
+    #dsn = "qemu:///system"
+    #dsn = "qemu+ssh://root@172.18.72.139/system"

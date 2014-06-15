@@ -176,6 +176,7 @@ def submit():
     timeout  = request.forms.get("timeout", 0)
     machine  = request.forms.get("machine", "")
     memory  = request.forms.get("memory", "")
+    is_honeypot  = request.forms.get("is_honeypot", 0)
     data = request.files.file
 
     try:
@@ -190,6 +191,7 @@ def submit():
         context["error_file"] = "Mandatory"
         errors = True
 
+
     if errors:
         template = env.get_template("submit.html")
         return template.render({"timeout" : timeout,
@@ -199,6 +201,9 @@ def submit():
                                 "context" : context,
                                 "machine" : machine,
                                 "memory" : memory})
+    
+    if is_honeypot:
+        data.filename = data.filename[::-1].replace('_','.',1)[::-1]
 
     temp_file_path = store_temp_file(data.file.read(), data.filename)
 

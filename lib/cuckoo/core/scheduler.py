@@ -7,6 +7,7 @@ import time
 import shutil
 import logging
 import Queue
+import mysql.connector
 from threading import Thread, Lock
 
 from lib.cuckoo.common.config import Config
@@ -16,7 +17,7 @@ from lib.cuckoo.common.exceptions import CuckooOperationalError
 from lib.cuckoo.common.exceptions import CuckooCriticalError
 from lib.cuckoo.common.objects import File
 from lib.cuckoo.common.utils import create_folder
-from lib.cuckoo.core.database import Database, TASK_COMPLETED, TASK_REPORTED
+from lib.cuckoo.core.database import Database, TASK_COMPLETED, TASK_REPORTED, TASK_EXISTED
 from lib.cuckoo.core.guest import GuestManager
 from lib.cuckoo.core.plugins import list_plugins, RunAuxiliary, RunProcessing
 from lib.cuckoo.core.plugins import RunSignatures, RunReporting
@@ -29,7 +30,8 @@ machine_lock = Lock()
 
 total_analysis_count = 0
 active_analysis_count = 0
-
+mysql_cnx = mysql.connector.connect(user='workbench', password='k4hvd', host='controller', database='malwares_history')
+mysql_cur = mysql_cnx.cursor(buffered=True)
 
 class CuckooDeadMachine(Exception):
     """Exception thrown when a machine turns dead.
@@ -94,6 +96,12 @@ class AnalysisManager(Thread):
             log.error("Target file has been modified after submission: \"%s\"", self.task.target)
             return False
 
+        md5sum = File(self.task.target).get_md5()
+        mysql_cur.execute("SELECT * FROM `hash` WHERE `md5`='%s'" % md5sum)
+        if mysql_cur.rowcount > 0:
+            log.error("Target file has been analaysed before (already exist in db): \"%s\"", self.task.target)
+            return False
+        
         return True
 
     def store_file(self):
@@ -246,7 +254,7 @@ class AnalysisManager(Thread):
             # Start the machine.
             machinery.start(self.machine.label)
         except CuckooMachineError as e:
-            log.error(str(e), extra={"task_id": self.task.id})
+            log.error("****GUEST IS DEAD!!****"+str(e), extra={"task_id": self.task.id})
             dead_machine = True
         else:
             try:
@@ -272,13 +280,13 @@ class AnalysisManager(Thread):
             # Take a memory dump of the machine before shutting it off.
             if self.cfg.cuckoo.memory_dump or self.task.memory:
                 try:
-                    machinery.dump_memory(self.machine.label,
+                    machinery.dump_memory(self.machine.label, self.machine.label,
                                           os.path.join(self.storage, "memory.dmp"))
                 except NotImplementedError:
                     log.error("The memory dump functionality is not available "
                               "for the current machine manager")
                 except CuckooMachineError as e:
-                    log.error(e)
+                    log.error("****"+e)
 
             try:
                 # Stop the analysis machine.
@@ -286,11 +294,11 @@ class AnalysisManager(Thread):
             except CuckooMachineError as e:
                 log.warning("Unable to stop machine %s: %s",
                             self.machine.label, e)
-
-            # Mark the machine in the database as stopped. Unless this machine
-            # has been marked as dead, we just keep it as "started" in the
-            # database so it'll not be used later on in this session.
-            Database().guest_stop(guest_log)
+            finally:
+                # Mark the machine in the database as stopped. Unless this machine
+                # has been marked as dead, we just keep it as "started" in the
+                # database so it'll not be used later on in this session.
+                Database().guest_stop(guest_log)
 
             # After all this, we can make the Resultserver forget about the
             # internal state for this analysis task.
@@ -300,7 +308,9 @@ class AnalysisManager(Thread):
                 # Remove the guest from the database, so that we can assign a
                 # new guest when the task is being analyzed with another
                 # machine.
+                #RAHMAN
                 Database().guest_remove(guest_log)
+                #RAHMAN
 
                 # Remove the analysis directory that has been created so
                 # far, as launch_analysis() is going to be doing that again.
@@ -366,6 +376,7 @@ class AnalysisManager(Thread):
                 try:
                     success = self.launch_analysis()
                 except CuckooDeadMachine:
+                    log.error('_____________________________WHAT ARE YOU DOING EXACTLY?')
                     continue
 
                 break

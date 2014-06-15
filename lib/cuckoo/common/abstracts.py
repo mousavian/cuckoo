@@ -8,6 +8,8 @@ import logging
 import time
 
 import xml.etree.ElementTree as ET
+import mysql.connector
+import paramiko
 
 from lib.cuckoo.common.config import Config
 from lib.cuckoo.common.constants import CUCKOO_ROOT
@@ -54,6 +56,9 @@ class Auxiliary(object):
 
 class Machinery(object):
     """Base abstract class for machinery modules."""
+    conn2 = dict()
+    mmanager_opts = dict()
+    openstack_nova_cnx = None
 
     def __init__(self):
         self.module_name = ""
@@ -87,11 +92,15 @@ class Machinery(object):
         @param module_name: module name.
         """
         self.module_name = module_name
-        mmanager_opts = self.options.get(module_name)
-
-        for machine_id in mmanager_opts["machines"].strip().split(","):
+        self._openstack_init()
+        for machine_id in self.mmanager_opts:
             try:
-                machine_opts = self.options.get(machine_id.strip())
+                machine_opts = self.mmanager_opts.get(machine_id.strip())
+
+        # mmanager_opts = self.options.get(module_name)
+        # for machine_id in mmanager_opts["machines"].strip().split(","):
+        #     try:
+        #         machine_opts = self.options.get(machine_id.strip())
                 machine = Dictionary()
                 machine.id = machine_id.strip()
                 machine.label = machine_opts["label"]
@@ -136,7 +145,7 @@ class Machinery(object):
                 log.warning("Configuration details about machine %s "
                             "are missing: %s", machine_id, e)
                 continue
-
+                
     def _initialize_check(self):
         """Runs checks against virtualization software when a machine manager
         is initialized.
@@ -145,12 +154,13 @@ class Machinery(object):
         @raise CuckooMachineError: if a misconfiguration or a unkown vm state
                                    is found.
         """
-        try:
-            configured_vms = self._list()
-        except NotImplementedError:
-            return
+        
 
         for machine in self.machines():
+            try:
+                configured_vms = self._list(machine.label)
+            except NotImplementedError:
+                return
             # If this machine is already in the "correct" state, then we
             # go on to the next machine.
             if machine.label in configured_vms and \
@@ -171,17 +181,63 @@ class Machinery(object):
             raise CuckooCriticalError("Virtual machine state change timeout "
                                       "setting not found, please add it to "
                                       "the config file")
+    
+    def _openstack_init(self):
+        try:
+            self.openstack_nova_cnx = mysql.connector.connect(
+                                            user=self.options_globals.openstack.db_username,
+                                            password=self.options_globals.openstack.db_password,
+                                            host=self.options_globals.openstack.db_host,
+                                            database='nova')
+            log.debug("===> OPENSTACK DB CONNECTED")
+        except:
+            raise CuckooMachineError("===> Unable to connect openstack DB ({0}:{1}@{2}/{3})".format(self.options_globals.openstack.db_username,self.options_globals.openstack.db_password,self.options_globals.openstack.db_host,'nova'))
+
+        cursor = self.openstack_nova_cnx.cursor()
+        cursor.execute("SELECT ins.id, fip.address, ins.launched_on, ins.vm_state, ins.display_name, ins.hostname, ins.host, ins.uuid "
+                        " FROM `instances` ins LEFT JOIN `fixed_ips` fip ON ( fip.`instance_uuid` = ins.`uuid` ) "
+                        " WHERE ins.`cleaned`=0 AND fip.`deleted`=0 AND ins.`display_name` like '{0}%'".format(self.options_globals.openstack.vm_prefix))
+
+        for row in cursor.fetchall():
+            _machine_id = "instance-%08x"%int(row[0])
+            self.mmanager_opts[_machine_id] = dict()
+            self.mmanager_opts[_machine_id]["id"] = row[0]
+            self.mmanager_opts[_machine_id]["ip"] = row[1] 
+            self.mmanager_opts[_machine_id]["hypervisor"] = row[2] 
+            self.mmanager_opts[_machine_id]["label"] = _machine_id
+            self.mmanager_opts[_machine_id]["platform"] = self.options_globals.openstack.platform
+            self.mmanager_opts[_machine_id]["tags"] = self.options_globals.openstack.tags
+            self.mmanager_opts[_machine_id]["dsn"] = "qemu+ssh://root@{0}/system".format(row[2])
+            self.mmanager_opts[_machine_id]["connection"] = None
+
+        return self.mmanager_opts
+
+    def _openstack_set_status(self, label):
+        if self.openstack_nova_cnx is None:
+            self._openstack_init()
+        cursor = self.openstack_nova_cnx.cursor()
+        # ids = []
+        # for machine in self.mmanager_opts:
+        #     ids.append(self.mmanager_opts[machine]["id"])
+
+        # cursor.execute("UPDATE instances SET vm_state = 'active' WHERE id IN ({0})".format(', '.join([str(x) for x in ids])))
+        cursor.execute("UPDATE instances SET vm_state = 'active', power_state=1 WHERE id IN ({0})".format(self.mmanager_opts[label]["id"]))
+        self.openstack_nova_cnx.commit()
+        log.debug("===>OPENSTACK - rows affected: %s", cursor.rowcount)
+        cursor.close()
 
     def machines(self):
         """List virtual machines.
         @return: virtual machines list
         """
+        #log.debug("===>Machines: %s", self.db.list_machines())
         return self.db.list_machines()
 
     def availables(self):
         """How many machines are free.
         @return: free machines count.
         """
+        
         return self.db.count_machines_available()
 
     def acquire(self, machine_id=None, platform=None, tags=None):
@@ -273,15 +329,19 @@ class Machinery(object):
         if isinstance(state, str):
             state = [state]
         while current not in state:
+            self._openstack_set_status(label)
             log.debug("Waiting %i cuckooseconds for machine %s to switch "
-                      "to status %s", waitme, label, state)
+                      "to status %s (current: %s)", waitme, label, state,current)
             if waitme > int(self.options_globals.timeouts.vm_state):
                 raise CuckooMachineError("Timeout hit while for machine {0} "
                                          "to change status".format(label))
             time.sleep(1)
             waitme += 1
             current = self._status(label)
-
+        if current == self.RUNNING:
+            self.db.set_guest_running_time(label)
+        elif current == self.POWEROFF:
+            self.restore_qcow2(label)
 
 class LibVirtMachinery(Machinery):
     """Libvirt based machine manager.
@@ -338,20 +398,25 @@ class LibVirtMachinery(Machinery):
                   "been turned off {0}".format(label)
             raise CuckooMachineError(msg)
 
-        conn = self._connect()
+
+        
+        conn = self._connect(label)
+        log.debug("===>%s connected", label)
 
         vm_info = self.db.view_machine_by_label(label)
 
         snapshot_list = self.vms[label].snapshotListNames(flags=0)
+        log.debug("===>snapshot list for %s is ready",label)
 
         # If a snapshot is configured try to use it.
         if vm_info.snapshot and vm_info.snapshot in snapshot_list:
             # Revert to desired snapshot, if it exists.
-            log.debug("Using snapshot {0} for virtual machine "
+            log.debug("1.Using snapshot {0} for virtual machine "
                       "{1}".format(vm_info.snapshot, label))
             try:
                 vm = self.vms[label]
                 snapshot = vm.snapshotLookupByName(vm_info.snapshot, flags=0)
+                self._openstack_set_status(label);
                 self.vms[label].revertToSnapshot(snapshot, flags=0)
             except libvirt.libvirtError:
                 msg = "Unable to restore snapshot {0} on " \
@@ -361,9 +426,10 @@ class LibVirtMachinery(Machinery):
                 self._disconnect(conn)
         elif self._get_snapshot(label):
             snapshot = self._get_snapshot(label)
-            log.debug("Using snapshot {0} for virtual machine "
+            log.debug("2.Using snapshot {0} for virtual machine "
                       "{1}".format(snapshot.getName(), label))
             try:
+                self._openstack_set_status(label);
                 self.vms[label].revertToSnapshot(snapshot, flags=0)
             except libvirt.libvirtError:
                 raise CuckooMachineError("Unable to restore snapshot on "
@@ -378,6 +444,22 @@ class LibVirtMachinery(Machinery):
         # Check state.
         self._wait_status(label, self.RUNNING)
 
+    #RAHMAN
+    def restore_qcow2(self, label):
+        try:
+            ssh_client = paramiko.SSHClient()
+            ssh_client.set_missing_host_key_policy( paramiko.AutoAddPolicy() )
+            ssh_client.connect(self.mmanager_opts[label]['hypervisor'], username='root', password='k4hvd')
+            qcow2_file_path = "/qcow2/" + label + ".qcow2"
+            (stdin, stdout, sterr) = ssh_client.exec_command('yes | cp -rf {0} {1}'.format(qcow2_file_path+".org",qcow2_file_path))
+            #now we will wait to finish copying file... 
+            stdout.channel.settimeout(10800)
+            stdout.channel.recv_exit_status()
+            ssh_client.close()
+        except NotImplementedError:
+            CuckooMachineError("ssh error")
+    #RAHMAN
+
     def stop(self, label):
         """Stops a virtual machine. Kill them all.
         @param label: virtual machine name.
@@ -386,14 +468,17 @@ class LibVirtMachinery(Machinery):
         log.debug("Stopping machine %s", label)
 
         if self._status(label) == self.POWEROFF:
-            raise CuckooMachineError("Trying to stop an already stopped "
+            self.restore_qcow2(label)
+            raise CuckooMachineError("1.Trying to stop an already stopped "
                                      "machine {0}".format(label))
-
+        else:
+            log.debug("====>Stop->status->%s", self._status(label))
+            
         # Force virtual machine shutdown.
-        conn = self._connect()
+        conn = self._connect(label)
         try:
             if not self.vms[label].isActive():
-                log.debug("Trying to stop an already stopped machine %s. "
+                log.debug("2.Trying to stop an already stopped machine %s. "
                           "Skip", label)
             else:
                 self.vms[label].destroy()  # Machete's way!
@@ -418,7 +503,7 @@ class LibVirtMachinery(Machinery):
         """
         log.debug("Dumping memory for machine %s", label)
 
-        conn = self._connect()
+        conn = self._connect(label)
         try:
             self.vms[label].coreDump(path, flags=libvirt.VIR_DUMP_MEMORY_ONLY)
         except libvirt.libvirtError as e:
@@ -445,7 +530,7 @@ class LibVirtMachinery(Machinery):
         # VIR_DOMAIN_CRASHED = 6
         # VIR_DOMAIN_PMSUSPENDED = 7
 
-        conn = self._connect()
+        conn = self._connect(label)
         try:
             state = self.vms[label].state(flags=0)
         except libvirt.libvirtError as e:
@@ -472,28 +557,44 @@ class LibVirtMachinery(Machinery):
             raise CuckooMachineError("Unable to get status for "
                                      "{0}".format(label))
 
-    def _connect(self):
+    def _connect(self, label):
         """Connects to libvirt subsystem.
         @raise CuckooMachineError: when unable to connect to libvirt.
         """
         # Check if a connection string is available.
-        if not self.dsn:
-            raise CuckooMachineError("You must provide a proper "
-                                     "connection string")
+        #RAHMAN
+        #if not self.dsn:
+        #    raise CuckooMachineError("You must provide a proper "
+        #                             "connection string")
+
+        if self.mmanager_opts[label]["connection"] is not None:
+            return self.mmanager_opts[label]["connection"]
 
         try:
-            return libvirt.open(self.dsn)
+            log.debug("===>Trying to connect: %s",label)
+            self.mmanager_opts[label]["connection"] = libvirt.open(self.mmanager_opts[label]["dsn"])
+            return self.mmanager_opts[label]["connection"]
         except libvirt.libvirtError:
-            raise CuckooMachineError("Cannot connect to libvirt")
+            raise CuckooMachineError("Cannot connect to libvirt for %s",label)
 
     def _disconnect(self, conn):
         """Disconnects to libvirt subsystem.
         @raise CuckooMachineError: if cannot disconnect from libvirt.
         """
-        try:
-            conn.close()
-        except libvirt.libvirtError:
-            raise CuckooMachineError("Cannot disconnect from libvirt")
+
+        # try:
+        #     conn.close()
+        # except libvirt.libvirtError:
+        #    raise CuckooMachineError("Cannot disconnect from libvirt")
+
+    def __exit__(self, type, value, traceback):
+        if self.conn2 is not None:
+            try:
+                self.conn2.close()
+            except libvirt.libvirtError:
+               raise CuckooMachineError("Cannot disconnect from libvirt")            
+
+
 
     def _fetch_machines(self):
         """Fetch machines handlers.
@@ -510,7 +611,7 @@ class LibVirtMachinery(Machinery):
         @param label: virtual machine name.
         @raise CuckooMachineError: if virtual machine is not found.
         """
-        conn = self._connect()
+        conn = self._connect(label)
         try:
             vm = conn.lookupByName(label)
         except libvirt.libvirtError:
@@ -520,11 +621,11 @@ class LibVirtMachinery(Machinery):
             self._disconnect(conn)
         return vm
 
-    def _list(self):
+    def _list(self, label):
         """List available virtual machines.
         @raise CuckooMachineError: if unable to list virtual machines.
         """
-        conn = self._connect()
+        conn = self._connect(label)
         try:
             names = conn.listDefinedDomains()
         except libvirt.libvirtError:
@@ -550,7 +651,7 @@ class LibVirtMachinery(Machinery):
                                    when there are too many snapshots available
         """
         # Checks for current snapshots.
-        conn = self._connect()
+        conn = self._connect(label)
         try:
             vm = self.vms[label]
             snap = vm.hasCurrentSnapshot(flags=0)
@@ -565,16 +666,18 @@ class LibVirtMachinery(Machinery):
             return vm.snapshotCurrent(flags=0)
 
         # If no current snapshot, get the last one.
-        conn = self._connect()
+        conn = self._connect(label)
         try:
-            snaps = vm[label].snapshotListNames(flags=0)
+            #log.debug("===>Trying to fetch snampshot for machine: %s from (%s)", label, ', '.join(vm))
+            snaps = vm.snapshotListNames(flags=0)
+            return vm.snapshotLookupByName(snaps[0], flags=0)
+            # def get_create(sn):
+            #     xml_desc = sn.getXMLDesc(flags=0)
+            #     return ET.fromstring(xml_desc).findtext("./creationTime")
 
-            def get_create(sn):
-                xml_desc = sn.getXMLDesc(flags=0)
-                return ET.fromstring(xml_desc).findtext("./creationTime")
-
-            return max(get_create(vm.snapshotLookupByName(name, flags=0))
-                       for name in snaps)
+            # return max(get_create(vm.snapshotLookupByName(name, flags=0))
+            #            for name in snaps)
+            #EOF RAHMAN
         except libvirt.libvirtError:
             return None
         except ValueError:

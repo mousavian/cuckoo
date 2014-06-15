@@ -35,6 +35,7 @@ TASK_RUNNING = "running"
 TASK_COMPLETED = "completed"
 TASK_RECOVERED = "recovered"
 TASK_REPORTED = "reported"
+TASK_EXISTED = "existed"
 TASK_FAILED_ANALYSIS = "failed_analysis"
 TASK_FAILED_PROCESSING = "failed_processing"
 
@@ -51,7 +52,6 @@ tasks_tags = Table("tasks_tags", Base.metadata,
 )
 
 class Machine(Base):
-    """Configured virtual machines to be used as guests."""
     __tablename__ = "machines"
 
     id = Column(Integer(), primary_key=True)
@@ -113,6 +113,7 @@ class Machine(Base):
         self.snapshot = snapshot
         self.resultserver_ip = resultserver_ip
         self.resultserver_port = resultserver_port
+        
 
 class Tag(Base):
     """Tag describing anything you want."""
@@ -139,6 +140,8 @@ class Guest(Base):
     started_on = Column(DateTime(timezone=False),
                         default=datetime.now,
                         nullable=False)
+    ready_on = Column(DateTime(timezone=False),
+                        nullable=True)
     shutdown_on = Column(DateTime(timezone=False), nullable=True)
     task_id = Column(Integer,
                      ForeignKey("tasks.id"),
@@ -294,6 +297,7 @@ class Task(Base):
                          TASK_RUNNING,
                          TASK_COMPLETED,
                          TASK_REPORTED,
+                         TASK_EXISTED,
                          TASK_RECOVERED,
                          name="status_type"),
                          server_default=TASK_PENDING,
@@ -1135,6 +1139,19 @@ class Database(object):
         finally:
             session.close()
         return machine
+
+    #BOF RAHMAN
+    def set_guest_running_time(self, label):
+        session = self.Session()
+        try:
+            row = session.query(Guest).filter(Guest.label == label).order_by("id desc").limit(1).first()
+            session.query(Guest).get(row.id).ready_on = datetime.now()
+            session.commit()
+        except SQLAlchemyError as e:
+            log.debug("===>Database error setting guest ready time: {0}".format(e))
+        finally:
+            session.close()
+    #EOF RAHMAN
 
     def view_errors(self, task_id):
         """Get all errors related to a task.
