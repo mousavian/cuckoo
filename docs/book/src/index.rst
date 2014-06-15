@@ -15,7 +15,7 @@ Having troubles?
 ================
 
 If you're having troubles you might want to check out the :doc:`FAQ <faq/index>`
-as it may already have the answers to your questions.
+it might already have the answers to your questions.
 
 .. toctree::
 

@@ -1,4 +1,4 @@
-# Copyright (C) 2010-2014 Cuckoo Foundation.
+# Copyright (C) 2010-2014 Cuckoo Sandbox Developers.
 # This file is part of Cuckoo Sandbox - http://www.cuckoosandbox.org
 # See the file 'docs/LICENSE' for copying permission.
 
@@ -9,7 +9,7 @@ from lib.core.config import Config
 
 log = logging.getLogger(__name__)
 
-BUFSIZE = 1024*1024
+BUFSIZE = 16 * 1024
 
 def upload_to_host(file_path, dump_path):
     nc = infd = None
@@ -17,10 +17,10 @@ def upload_to_host(file_path, dump_path):
         nc = NetlogFile(dump_path)
 
         infd = open(file_path, "rb")
-        buf = infd.read(BUFSIZE)
-        while buf:
-            nc.send(buf)
-            buf = infd.read(BUFSIZE)
+        tmp = infd.read(BUFSIZE)
+        while tmp:
+            nc.send(tmp)
+            tmp = infd.read(BUFSIZE)
     except Exception as e:
         log.error("Exception uploading file to host: %s", e)
     finally:
@@ -64,7 +64,7 @@ class NetlogConnection(object):
         try:
             self.file.close()
             self.sock.close()
-        except Exception:
+        except socket.error:
             pass
 
 class NetlogFile(NetlogConnection):

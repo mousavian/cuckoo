@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# Copyright (C) 2010-2014 Cuckoo Foundation.
+# Copyright (C) 2010-2014 Cuckoo Sandbox Developers.
 # This file is part of Cuckoo Sandbox - http://www.cuckoosandbox.org
 # See the file 'docs/LICENSE' for copying permission.
 
@@ -9,12 +9,6 @@ import logging
 import os
 import random
 import sys
-
-try:
-    import requests
-    HAVE_REQUESTS = True
-except ImportError:
-    HAVE_REQUESTS = False
 
 logging.basicConfig()
 
@@ -28,7 +22,6 @@ from lib.cuckoo.core.database import Database
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("target", type=str, help="URL, path to the file or folder to analyze")
-    parser.add_argument("--remote", type=str, action="store", default=None, help="Specify IP:port to a Cuckoo API server to submit remotely", required=False)
     parser.add_argument("--url", action="store_true", default=False, help="Specify whether the target is an URL", required=False)
     parser.add_argument("--package", type=str, action="store", default="", help="Specify an analysis package", required=False)
     parser.add_argument("--custom", type=str, action="store", default="", help="Specify any custom value", required=False)
@@ -65,54 +58,24 @@ def main():
     target = to_unicode(args.target)
 
     if args.url:
-        if args.remote:
-            if not HAVE_REQUESTS:
-                print(bold(red("Error")) + ": you need to install python-requests (`pip install requests`)")
-                return False
-
-            url = "http://{0}/tasks/create/url".format(args.remote)
-
-            data = dict(
-                url=target,
-                package=args.package,
-                timeout=args.timeout,
-                options=args.options,
-                priority=args.priority,
-                machine=args.machine,
-                platform=args.platform,
-                memory=args.memory,
-                enforce_timeout=args.enforce_timeout,
-                custom=args.custom,
-                tags=args.tags
-            )
-
-            try:
-                response = requests.post(url, data=data)
-            except Exception as e:
-                print(bold(red("Error")) + ": unable to send URL: {0}".format(e))
-                return False
-
-            json = response.json()
-            task_id = json["task_id"]
-        else:
-            task_id = db.add_url(target,
-                                 package=args.package,
-                                 timeout=args.timeout,
-                                 options=args.options,
-                                 priority=args.priority,
-                                 machine=args.machine,
-                                 platform=args.platform,
-                                 custom=args.custom,
-                                 memory=args.memory,
-                                 enforce_timeout=args.enforce_timeout,
-                                 clock=args.clock,
-                                 tags=args.tags)
+        task_id = db.add_url(target,
+                             package=args.package,
+                             timeout=args.timeout,
+                             options=args.options,
+                             priority=args.priority,
+                             machine=args.machine,
+                             platform=args.platform,
+                             custom=args.custom,
+                             memory=args.memory,
+                             enforce_timeout=args.enforce_timeout,
+                             clock=args.clock,
+                             tags=args.tags)
 
         if task_id:
             if not args.quiet:
                 print(bold(green("Success")) + u": URL \"{0}\" added as task with ID {1}".format(target, task_id))
         else:
-            print(bold(red("Error")) + ": adding task to database")
+            print(bold(red("Error")) + ": adding task to database")	
     else:
         # Get absolute path to deal with relative.
         path = to_unicode(os.path.abspath(target))
@@ -138,15 +101,21 @@ def main():
 
         if args.shuffle:
             random.shuffle(files)
-        else:
-            files = sorted(files)
 
         for file_path in files:
             if not File(file_path).get_size():
+                msg = ": Sample {0} (skipping file)".format(file_path)
                 if not args.quiet:
-                    print(bold(yellow("Empty") + ": sample {0} (skipping file)".format(file_path)))
-
+                    print(bold(yellow("Empty") + msg))
                 continue
+
+            if args.unique:
+                sha256 = File(file_path).get_sha256()
+                if not db.find_sample(sha256=sha256) is None:
+                    msg = ": Sample {0} (skipping file)".format(file_path)
+                    if not args.quiet:
+                        print(bold(yellow("Duplicate")) + msg)
+                    continue
 
             if not args.max is None:
                 # Break if the maximum number of samples has been reached.
@@ -155,60 +124,18 @@ def main():
 
                 args.max -= 1
 
-            if args.remote:
-                if not HAVE_REQUESTS:
-                    print(bold(red("Error")) + ": you need to install python-requests (`pip install requests`)")
-                    return False
-
-                url = "http://{0}/tasks/create/file".format(args.remote)
-
-                files = dict(
-                    file=open(file_path, "rb"),
-                    filename=os.path.basename(file_path)
-                )
-
-                data = dict(
-                    package=args.package,
-                    timeout=args.timeout,
-                    options=args.options,
-                    priority=args.priority,
-                    machine=args.machine,
-                    platform=args.platform,
-                    memory=args.memory,
-                    enforce_timeout=args.enforce_timeout,
-                    custom=args.custom,
-                    tags=args.tags
-                )
-
-                try:
-                    response = requests.post(url, files=files, data=data)
-                except Exception as e:
-                    print(bold(red("Error")) + ": unable to send file: {0}".format(e))
-                    return False
-
-                json = response.json()
-                task_id = json["task_id"]
-            else:
-                if args.unique:
-                    sha256 = File(file_path).get_sha256()
-                    if not db.find_sample(sha256=sha256) is None:
-                        msg = ": Sample {0} (skipping file)".format(file_path)
-                        if not args.quiet:
-                            print(bold(yellow("Duplicate")) + msg)
-                        continue
-
-                task_id = db.add_path(file_path=file_path,
-                                      package=args.package,
-                                      timeout=args.timeout,
-                                      options=args.options,
-                                      priority=args.priority,
-                                      machine=args.machine,
-                                      platform=args.platform,
-                                      custom=args.custom,
-                                      memory=args.memory,
-                                      enforce_timeout=args.enforce_timeout,
-                                      clock=args.clock,
-                                      tags=args.tags)
+            task_id = db.add_path(file_path=file_path,
+                                  package=args.package,
+                                  timeout=args.timeout,
+                                  options=args.options,
+                                  priority=args.priority,
+                                  machine=args.machine,
+                                  platform=args.platform,
+                                  custom=args.custom,
+                                  memory=args.memory,
+                                  enforce_timeout=args.enforce_timeout,
+                                  clock=args.clock,
+                                  tags=args.tags)
 
             if task_id:
                 if not args.quiet:

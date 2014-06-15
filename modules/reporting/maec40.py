@@ -264,11 +264,7 @@ class MAEC40Report(Report):
                     action_dict["name"] = {"value": mapping_dict["action_name"]}
                 # Handle any Parameters.
                 if "parameter_associated_arguments" in mapping_dict:
-                    actions_args = self.processActionArguments(mapping_dict["parameter_associated_arguments"], parameter_list)
-                    if actions_args:
-                        action_dict["action_arguments"] = actions_args
-                    else:
-                        action_dict["action_arguments"] = []
+                    action_dict["action_arguments"] = self.processActionArguments(mapping_dict["parameter_associated_arguments"], parameter_list)
                 # Handle any Associated Objects.
                 if "parameter_associated_objects" in mapping_dict:
                     action_dict["associated_objects"] = self.processActionAssociatedObjects(mapping_dict["parameter_associated_objects"], parameter_list)
@@ -322,8 +318,10 @@ class MAEC40Report(Report):
             elif parameter_name in parameter_mappings_dict and "associated_argument_vocab" not in parameter_mappings_dict[parameter_name]:
                 arguments_list.append({"argument_value": argument_value,
                                        "argument_name": {"value": parameter_mappings_dict[parameter_name]["associated_argument_name"]}})
-        return arguments_list
-        
+        if arguments_list:
+            return arguments_list
+        else:
+            return None
 
     def processActionAssociatedObjects(self, associated_objects_dict, parameter_list):
         """Processes a dictionary of parameters that should be mapped to Associated Objects in the Action
@@ -703,7 +701,7 @@ class MAEC40Report(Report):
             resources = None
 
             # PE exports.
-            if "pe_exports" in self.results["static"] and len(self.results["static"]["pe_exports"]) > 0:
+            if len(self.results["static"]["pe_exports"]) > 0:
                 exports = {}
                 exported_function_list = []
                 for x in self.results["static"]["pe_exports"]:
@@ -715,7 +713,7 @@ class MAEC40Report(Report):
                     exported_function_list.append(exported_function_dict)
                 exports["exported_functions"] = exported_function_list
             # PE Imports.
-            if "pe_imports" in self.results["static"] and len(self.results["static"]["pe_imports"]) > 0:
+            if len(self.results["static"]["pe_imports"]) > 0:
                 imports = []
                 for x in self.results["static"]["pe_imports"]:
                     imported_functions = []
@@ -729,14 +727,14 @@ class MAEC40Report(Report):
                         imported_functions.append(imported_function_dict)
                     imports.append(import_dict)
             # Resources.
-            if "pe_resources" in self.results["static"] and len(self.results["static"]["pe_resources"]) > 0:
+            if len(self.results["static"]["pe_resources"]) > 0:
                 resources = []
                 for r in self.results["static"]["pe_resources"]:
                     if r["name"] in resource_type_mappings:
                         resource_dict = {"type": resource_type_mappings[r["name"]]}
                         resources.append(resource_dict)
             # Sections.
-            if "pe_sections" in self.results["static"] and len(self.results["static"]["pe_sections"]) > 0:
+            if len(self.results["static"]["pe_sections"]) > 0:
                 sections = []
                 for s in self.results["static"]["pe_sections"]:
                     section_dict = {"section_header":
@@ -749,7 +747,7 @@ class MAEC40Report(Report):
                                     }
                     sections.append(section_dict)
             # Version info.
-            if "pe_versioninfo" in self.results["static"] and len(self.results["static"]["pe_versioninfo"]) > 0:
+            if len(self.results["static"]["pe_versioninfo"]) > 0:
                 if not resources:
                     resources = []
                 version_info = {}
@@ -890,7 +888,7 @@ class MAEC40Report(Report):
             self.strings_bundle.add_object(self.createFileStringsObj())
         # Add the VirusTotal analysis.
         if self.options["virustotal"] and "virustotal" in self.results and self.results["virustotal"]:
-            virustotal_analysis = Analysis(self.id_generator.generate_analysis_id(), "static", "triage", BundleReference.from_dict({"bundle_idref": self.virustotal_bundle.id}))
+            virustotal_analysis = Analysis(self.id_generator.generate_analysis_id(), "static", "triage", BundleReference.from_dict({"bundle_idref": self.strings_bundle.id}))
             virustotal_analysis.start_datetime = datetime_to_iso(self.results["info"]["started"])
             virustotal_analysis.complete_datetime = datetime_to_iso(self.results["info"]["ended"])
             virustotal_analysis.summary = StructuredText("Virustotal results for the malware instance object.")
@@ -899,13 +897,12 @@ class MAEC40Report(Report):
                                                                     "vendor": "https://www.virustotal.com/"}))
             self.subject.add_analysis(virustotal_analysis)
             # Add the VirusTotal results.
-            if "scans" in self.results["virustotal"]:
-                for engine, signature in self.results["virustotal"]["scans"].items():
-                    if signature["detected"]:
-                        self.virustotal_bundle.add_av_classification(AVClassification.from_dict({"vendor": engine,
-                                                                                                    "engine_version": signature["version"],
-                                                                                                    "definition_version": signature["update"],
-                                                                                                    "classification_name": signature["result"]}))
+            for engine, signature in self.results["virustotal"]["scans"].items():
+                if signature["detected"]:
+                    self.virustotal_bundle.add_av_classification(AVClassification.from_dict({"vendor": engine,
+                                                                                                "engine_version": signature["version"],
+                                                                                                "definition_version": signature["update"],
+                                                                                                "classification_name": signature["result"]}))
 
     def addDroppedFiles(self):
         """Adds Dropped files as Objects."""

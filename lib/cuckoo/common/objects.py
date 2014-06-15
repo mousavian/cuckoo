@@ -1,4 +1,4 @@
-# Copyright (C) 2010-2014 Cuckoo Foundation.
+# Copyright (C) 2010-2014 Cuckoo Sandbox Developers.
 # This file is part of Cuckoo Sandbox - http://www.cuckoosandbox.org
 # See the file 'docs/LICENSE' for copying permission.
 
@@ -218,7 +218,7 @@ class File:
         if HAVE_YARA:
             if os.path.getsize(self.file_path) > 0:
                 try:
-                    rules = yara.compile(rulepath, error_on_warning=True)
+                    rules = yara.compile(rulepath)
 
                     for match in rules.match(self.file_path):
                         strings = []
@@ -237,7 +237,7 @@ class File:
                         matches.append({"name": match.rule,
                                         "meta": match.meta,
                                         "strings": strings})
-                except Exception as e:
+                except yara.Error as e:
                     log.warning("Unable to match Yara signatures: %s", e)
         else:
             if not File.notified_yara:

@@ -1,4 +1,4 @@
-# Copyright (C) 2010-2014 Cuckoo Foundation.
+# Copyright (C) 2010-2014 Cuckoo Sandbox Developers.
 # This file is part of Cuckoo Sandbox - http://www.cuckoosandbox.org
 # See the file 'docs/LICENSE' for copying permission.
 
@@ -29,6 +29,8 @@ def fix_key(key):
     elif key.lower().startswith("\\registry\\user\\"):
         res = "HKEY_USERS\\" + key[15:]
 
+    if not res.endswith("\\\\"):
+        res = res + "\\"
     return res
 
 class ParseProcessLog(list):
@@ -62,8 +64,8 @@ class ParseProcessLog(list):
             self.fd = None
             return
 
-        # Get the process information from file to determine
-        # process id (file names.)
+        # get the process information from file to determine
+        # process id (file names)
         while not self.process_id:
             self.parser.read_next_message()
 
@@ -107,12 +109,14 @@ class ParseProcessLog(list):
 
     def wait_for_lastcall(self):
         while not self.lastcall:
+            r = None
             try:
-                if not self.parser.read_next_message():
-                    return False
+                r = self.parser.read_next_message()
             except EOFError:
                 return False
 
+            if not r:
+                return False
         return True
 
     def next(self):
@@ -140,11 +144,6 @@ class ParseProcessLog(list):
     def log_thread(self, context, pid):
         pass
 
-    def log_anomaly(self, subcategory, tid, funcname, msg):
-        self.lastcall = dict(thread_id=tid, category="anomaly", api="",
-                             subcategory=subcategory, funcname=funcname,
-                             msg=msg)
-
     def log_call(self, context, apiname, category, arguments):
         apiindex, status, returnval, tid, timediff = context
 
@@ -154,7 +153,7 @@ class ParseProcessLog(list):
         self.lastcall = self._parse([timestring,
                                      tid,
                                      category,
-                                     apiname,
+                                     apiname, 
                                      status,
                                      returnval] + arguments)
 
@@ -228,11 +227,12 @@ class Processes:
         results = []
 
         if not os.path.exists(self._logs_path):
-            log.warning("Analysis results folder does not exist at path \"%s\".", self._logs_path)
+            log.error("Analysis results folder does not exist at path \"%s\".",
+                      self._logs_path)
             return results
 
         if len(os.listdir(self._logs_path)) == 0:
-            log.warning("Analysis results folder does not contain any file.")
+            log.error("Analysis results folder does not contain any file.")
             return results
 
         for file_name in os.listdir(self._logs_path):
@@ -843,38 +843,6 @@ class Enhanced(object):
         """
         return self.events
 
-
-class Anomaly(object):
-    key = "anomaly"
-
-    def __init__(self):
-        self.anomalies = []
-
-    def event_apicall(self, call, process):
-        if call["category"] != "anomaly":
-            return
-
-        category, funcname, message = None, None, None
-        for row in call["arguments"]:
-            if row["name"] == "Subcategory":
-                category = row["value"]
-            if row["name"] == "FunctionName":
-                funcname = row["value"]
-            if row["name"] == "Message":
-                message = row["value"]
-
-        self.anomalies.append(dict(
-            name=process["process_name"],
-            pid=process["process_id"],
-            category=category,
-            funcname=funcname,
-            message=message,
-        ))
-
-    def run(self):
-        return self.anomalies
-
-
 class ProcessTree:
     """Generates process tree."""
 
@@ -951,7 +919,6 @@ class BehaviorAnalysis(Processing):
         behavior["processes"] = Processes(self.logs_path).run()
 
         instances = [
-            Anomaly(),
             ProcessTree(),
             Summary(),
             Enhanced(),

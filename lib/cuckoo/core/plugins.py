@@ -1,9 +1,8 @@
-# Copyright (C) 2010-2014 Cuckoo Foundation.
+# Copyright (C) 2010-2014 Cuckoo Sandbox Developers.
 # This file is part of Cuckoo Sandbox - http://www.cuckoosandbox.org
 # See the file 'docs/LICENSE' for copying permission.
 
 import os
-import json
 import pkgutil
 import inspect
 import logging
@@ -109,11 +108,11 @@ class RunAuxiliary(object):
                     current.start()
                 except NotImplementedError:
                     pass
-                except Exception as e:
-                    log.warning("Unable to start auxiliary module %s: %s",
-                                module_name, e)
+                #except Exception as e:
+                #    log.warning("Unable to start auxiliary module %s: %s",
+                #                module_name, e)
                 else:
-                    log.debug("Started auxiliary module: %s", module_name)
+                    log.debug("Stopped auxiliary module: %s", module_name)
                     self.enabled.append(current)
 
     def stop(self):
@@ -240,28 +239,6 @@ class RunSignatures(object):
     def __init__(self, results):
         self.results = results
 
-    def _load_overlay(self):
-        """Loads overlay data from a json file.
-        See example in data/signature_overlay.json
-        """
-        filename = os.path.join(CUCKOO_ROOT, "data", "signature_overlay.json")
-
-        try:
-            with open(filename) as fh:
-                odata = json.load(fh)
-                return odata
-        except IOError:
-            pass
-        
-        return {}
-
-    def _apply_overlay(self, signature, overlay):
-        """Applies the overlay attributes to the signature object."""
-        if signature.name in overlay:
-            attrs = overlay[signature.name]
-            for attr, value in attrs.items():
-                setattr(signature, attr, value)
-
     def _check_signature_version(self, current):
         """Check signature version.
         @param current: signature class/instance to check.
@@ -336,6 +313,7 @@ class RunSignatures(object):
             # from it and append it to the results container.
             if current.run():
                 log.debug("Analysis matched signature \"%s\"", current.name)
+
                 # Return information on the matched signature.
                 return current.as_result()
         except NotImplementedError:
@@ -354,11 +332,6 @@ class RunSignatures(object):
                         for sig in complete_list
                         if sig.enabled and sig.evented and
                         self._check_signature_version(sig)]
-
-        overlay = self._load_overlay()
-        log.debug("Applying signature overlays for signatures: %s", ", ".join(overlay.keys()))
-        for signature in complete_list + evented_list:
-            self._apply_overlay(signature, overlay)
 
         if evented_list:
             log.debug("Running %u evented signatures", len(evented_list))
@@ -422,12 +395,8 @@ class RunSignatures(object):
                         if sig in complete_list:
                             complete_list.remove(sig)
 
-        # Link this into the results already at this point, so non-evented signatures can use it
-        self.results["signatures"] = matched
-
         # Compat loop for old-style (non evented) signatures.
         if complete_list:
-            complete_list.sort(key=lambda sig: sig.order)
             log.debug("Running non-evented signatures")
 
             for signature in complete_list:
@@ -441,8 +410,11 @@ class RunSignatures(object):
                     for process in self.results["behavior"]["processes"]:
                         process["calls"].reset()
 
-        # Sort the matched signatures by their severity level.
-        matched.sort(key=lambda key: key["severity"])
+        if matched:
+            # Sort the matched signatures by their severity level.
+            matched.sort(key=lambda key: key["severity"])
+
+        self.results["signatures"] = matched
 
 class RunReporting:
     """Reporting Engine.

@@ -1,4 +1,4 @@
-# Copyright (C) 2010-2014 Cuckoo Foundation.
+# Copyright (C) 2010-2014 Cuckoo Sandbox Developers.
 # This file is part of Cuckoo Sandbox - http://www.cuckoosandbox.org
 # See the file 'docs/LICENSE' for copying permission.
 
@@ -77,9 +77,6 @@ class NetlogParser(object):
             "r": self.read_registry,
             "R": self.read_registry,
         }
-
-    def close(self):
-        pass
 
     def read_next_message(self):
         apiindex, status = struct.unpack("BB", self.handler.read(2))
@@ -260,9 +257,6 @@ class BsonParser(object):
         if not HAVE_BSON:
             log.critical("Starting BsonParser, but bson is not available! (install with `pip install bson`)")
 
-    def close(self):
-        pass
-
     def read_next_message(self):
         data = self.handler.read(4)
         blen = struct.unpack("I", data)[0]
@@ -362,13 +356,6 @@ class BsonParser(object):
                 pid = argdict["ProcessIdentifier"]
                 self.handler.log_thread(context, pid)
                 return True
-
-            # elif apiname == "__anomaly__":
-                # tid = argdict["ThreadIdentifier"]
-                # subcategory = argdict["Subcategory"]
-                # msg = argdict["Message"]
-                # self.handler.log_anomaly(subcategory, tid, msg)
-                # return True
 
             context[1] = argdict.pop("is_success", 1)
             context[2] = argdict.pop("retval", 0)

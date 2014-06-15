@@ -1,16 +1,15 @@
 #!/usr/bin/env python
-# Copyright (C) 2010-2014 Cuckoo Foundation.
+# Copyright (C) 2010-2014 Cuckoo Sandbox Developers.
 # This file is part of Cuckoo Sandbox - http://www.cuckoosandbox.org
 # See the file 'docs/LICENSE' for copying permission.
 
-import os
 import sys
 import logging
 import argparse
 
 try:
     from lib.cuckoo.common.logo import logo
-    from lib.cuckoo.common.constants import CUCKOO_VERSION, CUCKOO_ROOT
+    from lib.cuckoo.common.constants import CUCKOO_VERSION
     from lib.cuckoo.common.exceptions import CuckooCriticalError
     from lib.cuckoo.common.exceptions import CuckooDependencyError
     from lib.cuckoo.core.startup import check_working_directory, check_configs
@@ -23,17 +22,21 @@ except (CuckooDependencyError, ImportError) as e:
 
 log = logging.getLogger()
 
-def cuckoo_init(quiet=False, debug=False, artwork=False, test=False):
-    cur_path = os.getcwd()
-    os.chdir(CUCKOO_ROOT)
-
+def main():
     logo()
     check_working_directory()
     check_configs()
     check_version()
     create_structure()
 
-    if artwork:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-q", "--quiet", help="Display only error messages", action="store_true", required=False)
+    parser.add_argument("-d", "--debug", help="Display debug messages", action="store_true", required=False)
+    parser.add_argument("-v", "--version", action="version", version="You are running Cuckoo Sandbox {0}".format(CUCKOO_VERSION))
+    parser.add_argument("-a", "--artwork", help="Show artwork", action="store_true", required=False)
+    args = parser.parse_args()
+
+    if args.artwork:
         import time
         try:
             while True:
@@ -44,52 +47,25 @@ def cuckoo_init(quiet=False, debug=False, artwork=False, test=False):
 
     init_logging()
 
-    if quiet:
+    if args.quiet:
         log.setLevel(logging.WARN)
-    elif debug:
+    elif args.debug:
         log.setLevel(logging.DEBUG)
 
     init_modules()
     init_tasks()
 
-    # This is just a temporary hack, we need an actual test suite to integrate
-    # with Travis-CI.
-    if test:
-        return
-
     Resultserver()
 
-    os.chdir(cur_path)
-
-
-def cuckoo_main(max_analysis_count=0):
-    cur_path = os.getcwd()
-    os.chdir(CUCKOO_ROOT)
-
     try:
-        sched = Scheduler(max_analysis_count)
+        sched = Scheduler()
         sched.start()
     except KeyboardInterrupt:
         sched.stop()
 
-    os.chdir(cur_path)
-
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-q", "--quiet", help="Display only error messages", action="store_true", required=False)
-    parser.add_argument("-d", "--debug", help="Display debug messages", action="store_true", required=False)
-    parser.add_argument("-v", "--version", action="version", version="You are running Cuckoo Sandbox {0}".format(CUCKOO_VERSION))
-    parser.add_argument("-a", "--artwork", help="Show artwork", action="store_true", required=False)
-    parser.add_argument("-t", "--test", help="Test startup", action="store_true", required=False)
-    parser.add_argument("-m", "--max-analysis-count", help="Maximum number of analyses", type=int, required=False)
-    args = parser.parse_args()
-
     try:
-        cuckoo_init(quiet=args.quiet, debug=args.debug, artwork=args.artwork,
-                    test=args.test)
-
-        if not args.artwork and not args.test:
-            cuckoo_main(max_analysis_count=args.max_analysis_count)
+        main()
     except CuckooCriticalError as e:
         message = "{0}: {1}".format(e.__class__.__name__, e)
         if len(log.handlers) > 0:

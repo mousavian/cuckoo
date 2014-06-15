@@ -1,4 +1,4 @@
-# Copyright (C) 2010-2014 Cuckoo Foundation.
+# Copyright (C) 2010-2014 Cuckoo Sandbox Developers.
 # This file is part of Cuckoo Sandbox - http://www.cuckoosandbox.org
 # See the file 'docs/LICENSE' for copying permission.
 
@@ -163,9 +163,10 @@ class GuestManager:
 
                 try:
                     self.server.add_malware(data, options["file_name"])
-                except Exception as e:
+                except MemoryError as e:
                     raise CuckooGuestError("{0}: unable to upload malware to "
-                                           "analysis machine: {1}".format(self.id, e))
+                                           "analysis machine, not enough "
+                                           "memory".format(self.id))
 
             # Launch the analyzer.
             pid = self.server.execute()

@@ -1,4 +1,4 @@
-# Copyright (C) 2010-2014 Cuckoo Foundation.
+# Copyright (C) 2010-2014 Cuckoo Sandbox Developers.
 # This file is part of Cuckoo Sandbox - http://www.cuckoosandbox.org
 # See the file 'docs/LICENSE' for copying permission.
 
@@ -73,7 +73,7 @@ class TestConvertToPrintable:
         assert_equal(" ", utils.convert_to_printable(" "))
 
     def test_non_printable(self):
-        assert_equal(r"\x0b", utils.convert_to_printable(chr(11)))
+        assert_equal("\x0b", utils.convert_to_printable(chr(11)))
 
 class TestDatetimeToIso:
     def test_convert_date(self):

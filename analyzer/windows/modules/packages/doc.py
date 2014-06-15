@@ -1,4 +1,4 @@
-# Copyright (C) 2010-2014 Cuckoo Foundation.
+# Copyright (C) 2010-2014 Cuckoo Sandbox Developers.
 # This file is part of Cuckoo Sandbox - http://www.cuckoosandbox.org
 # See the file 'docs/LICENSE' for copying permission.
 
@@ -12,13 +12,7 @@ class DOC(Package):
     """Word analysis package."""
 
     def get_path(self):
-        if os.getenv("ProgramFiles(x86)"):
-            ms_officex86 = os.path.join(os.getenv("ProgramFiles(x86)"), "Microsoft Office")
-        else:
-            ms_officex86= os.path.join(os.getenv("ProgramFiles"), "Microsoft Office")
-
         ms_office = os.path.join(os.getenv("ProgramFiles"), "Microsoft Office")
-
         paths = [
             os.path.join(ms_office, "WINWORD.EXE"),
             os.path.join(ms_office, "Office11", "WINWORD.EXE"),
@@ -26,13 +20,7 @@ class DOC(Package):
             os.path.join(ms_office, "Office14", "WINWORD.EXE"),
             os.path.join(ms_office, "Office15", "WINWORD.EXE"),
             os.path.join(ms_office, "WORDVIEW.EXE"),
-            os.path.join(ms_officex86, "WINWORD.EXE"),
-            os.path.join(ms_officex86, "Office11", "WINWORD.EXE"),
-            os.path.join(ms_officex86, "Office12", "WINWORD.EXE"),
-            os.path.join(ms_officex86, "Office14", "WINWORD.EXE"),
-            os.path.join(ms_officex86, "Office15", "WINWORD.EXE"),
-            os.path.join(ms_officex86, "WORDVIEW.EXE"),
-            os.path.join(ms_officex86, "Office11", "WORDVIEW.EXE")
+            os.path.join(ms_office, "Office11", "WORDVIEW.EXE")
         ]
 
         for path in paths:

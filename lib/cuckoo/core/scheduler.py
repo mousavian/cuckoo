@@ -1,4 +1,4 @@
-# Copyright (C) 2010-2014 Cuckoo Foundation.
+# Copyright (C) 2010-2014 Cuckoo Sandbox Developers.
 # This file is part of Cuckoo Sandbox - http://www.cuckoosandbox.org
 # See the file 'docs/LICENSE' for copying permission.
 
@@ -27,6 +27,7 @@ log = logging.getLogger(__name__)
 machinery = None
 machine_lock = Lock()
 
+total_analysis_count = 0
 active_analysis_count = 0
 
 
@@ -378,19 +379,6 @@ class AnalysisManager(Thread):
                 self.process_results()
                 Database().set_status(self.task.id, TASK_REPORTED)
 
-            # We make a symbolic link ("latest") which links to the latest
-            # analysis - this is useful for debugging purposes. This is only
-            # supported under systems that support symbolic links.
-            if hasattr(os, "symlink"):
-                latest = os.path.join(CUCKOO_ROOT, "storage",
-                                      "analyses", "latest")
-
-                # First we have to remove the existing symbolic link.
-                if os.path.exists(latest):
-                    os.remove(latest)
-
-                os.symlink(self.storage, latest)
-
             log.info("Task #%d: analysis procedure completed", self.task.id)
         except:
             log.exception("Failure in AnalysisManager.run")
@@ -407,12 +395,11 @@ class Scheduler:
     take care of running the full analysis process and operating with the
     assigned analysis machine.
     """
-    def __init__(self, maxcount=None):
+
+    def __init__(self):
         self.running = True
         self.cfg = Config()
         self.db = Database()
-        self.maxcount = maxcount
-        self.total_analysis_count = 0
 
     def initialize(self):
         """Initialize the machine manager."""
@@ -439,7 +426,6 @@ class Scheduler:
         # Provide a dictionary with the configuration options to the
         # machine manager instance.
         machinery.set_options(Config(conf))
-
         # Initialize the machine manager.
         try:
             machinery.initialize(machinery_name)
@@ -449,7 +435,7 @@ class Scheduler:
         # At this point all the available machines should have been identified
         # and added to the list. If none were found, Cuckoo needs to abort the
         # execution.
-        if not len(machinery.machines()):
+        if len(machinery.machines()) == 0:
             raise CuckooCriticalError("No machines available")
         else:
             log.info("Loaded %s machine/s", len(machinery.machines()))
@@ -462,6 +448,7 @@ class Scheduler:
 
     def start(self):
         """Start scheduler."""
+        global total_analysis_count
         self.initialize()
 
         log.info("Waiting for analysis tasks...")
@@ -469,43 +456,41 @@ class Scheduler:
         # Message queue with threads to transmit exceptions (used as IPC).
         errors = Queue.Queue()
 
-        # Command-line overrides the configuration file.
-        if self.maxcount is None:
-            self.maxcount = self.cfg.cuckoo.max_analysis_count
+        maxcount = self.cfg.cuckoo.max_analysis_count
 
         # This loop runs forever.
         while self.running:
             time.sleep(1)
 
-            # If not enough free disk space is available, then we print an
+            # If not enough free diskspace is available, then we print an
             # error message and wait another round (this check is ignored
-            # when the freespace configuration variable is set to zero).
+            # when freespace is set to zero).
             if self.cfg.cuckoo.freespace:
                 # Resolve the full base path to the analysis folder, just in
-                # case somebody decides to make a symbolic link out of it.
+                # case somebody decides to make a symlink out of it.
                 dir_path = os.path.join(CUCKOO_ROOT, "storage", "analyses")
 
                 # TODO: Windows support
                 if hasattr(os, "statvfs"):
                     dir_stats = os.statvfs(dir_path)
 
-                    # Calculate the free disk space in megabytes.
+                    # Free diskspace in megabytes.
                     space_available = dir_stats.f_bavail * dir_stats.f_frsize
                     space_available /= 1024 * 1024
 
                     if space_available < self.cfg.cuckoo.freespace:
-                        log.error("Not enough free disk space! (Only %d MB!)",
+                        log.error("Not enough free diskspace! (Only %d MB!)",
                                   space_available)
                         continue
 
             # If no machines are available, it's pointless to fetch for
             # pending tasks. Loop over.
-            if not machinery.availables():
+            if machinery.availables() == 0:
                 continue
 
-            # Exits if max_analysis_count is defined in the configuration
-            # file and has been reached.
-            if self.maxcount and self.total_analysis_count >= self.maxcount:
+            # Exits if max_analysis_count is defined in config file and
+            # is reached.
+            if maxcount and total_analysis_count >= maxcount:
                 if active_analysis_count <= 0:
                     self.stop()
             else:
@@ -514,10 +499,11 @@ class Scheduler:
 
                 if task:
                     log.debug("Processing task #%s", task.id)
-                    self.total_analysis_count += 1
+                    total_analysis_count += 1
 
-                    # Initialize and start the analysis manager.
+                    # Initialize the analysis manager.
                     analysis = AnalysisManager(task, errors)
+                    # Start.
                     analysis.start()
 
             # Deal with errors.

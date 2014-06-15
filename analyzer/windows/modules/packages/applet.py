@@ -1,4 +1,4 @@
-# Copyright (C) 2010-2014 Cuckoo Foundation.
+# Copyright (C) 2010-2014 Cuckoo Sandbox Developers.
 # This file is part of Cuckoo Sandbox - http://www.cuckoosandbox.org
 # See the file 'docs/LICENSE' for copying permission.
 
@@ -14,18 +14,10 @@ class Applet(Package):
     """Java Applet analysis package."""
 
     def get_path(self):
-        if os.getenv("ProgramFiles(x86"):
-            prog_filesx86 = os.getenv("ProgramFiles(x86)")
-        else:
-            prog_files = os.getenv("ProgramFiles")
-
         prog_files = os.getenv("ProgramFiles")
-
         paths = [
             os.path.join(prog_files, "Mozilla Firefox", "firefox.exe"),
             os.path.join(prog_files, "Internet Explorer", "iexplore.exe"),
-            os.path.join(prog_filesx86, "Mozilla Firefox", "firefox.exe"),
-            os.path.join(prog_filesx86, "Internet Explorer", "iexplore.exe")
         ]
 
         for path in paths:

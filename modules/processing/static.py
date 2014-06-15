@@ -1,4 +1,4 @@
-# Copyright (C) 2010-2014 Cuckoo Foundation.
+# Copyright (C) 2010-2014 Cuckoo Sandbox Developers.
 # This file is part of Cuckoo Sandbox - http://www.cuckoosandbox.org
 # See the file 'docs/LICENSE' for copying permission.
 
@@ -211,19 +211,6 @@ class PortableExecutable:
 
         return infos
 
-
-    def _get_imphash(self):
-        """Gets imphash.
-        @return: imphash string or None.
-        """
-        if not self.pe:
-            return None
-
-        try:
-            return self.pe.get_imphash()
-        except AttributeError:
-            return None
-
     def run(self):
         """Run analysis.
         @return: analysis results dict or None.
@@ -243,7 +230,6 @@ class PortableExecutable:
         results["pe_sections"] = self._get_sections()
         results["pe_resources"] = self._get_resources()
         results["pe_versioninfo"] = self._get_versioninfo()
-        results["pe_imphash"] = self._get_imphash()
         results["imported_dll_count"] = len([x for x in results["pe_imports"] if x.get("dll")])
         return results
 

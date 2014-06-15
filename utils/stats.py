@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# Copyright (C) 2010-2014 Cuckoo Foundation.
+# Copyright (C) 2010-2014 Cuckoo Sandbox Developers.
 # This file is part of Cuckoo Sandbox - http://www.cuckoosandbox.org
 # See the file 'docs/LICENSE' for copying permission.
 
@@ -47,14 +47,7 @@ def main():
         started = min(timestamp(task.started_on) for task in tasks)
 
         # Get the time when the last task completed.
-        stamps = []
-        for task in tasks:
-            try:
-                stamps.append(timestamp(task.completed_on))
-            except AttributeError:
-                pass
-
-        completed = max(stamps)
+        completed = max(timestamp(task.completed_on) for task in tasks)
 
         # Get the amount of tasks that actually completed.
         finished = len(tasks)

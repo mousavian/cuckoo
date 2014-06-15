@@ -1,4 +1,4 @@
-# Copyright (C) 2010-2014 Cuckoo Foundation.
+# Copyright (C) 2010-2014 Cuckoo Sandbox Developers.
 # This file is part of Cuckoo Sandbox - http://www.cuckoosandbox.org
 # See the file 'docs/LICENSE' for copying permission.
 
@@ -9,12 +9,7 @@ try:
     import ImageGrab
     HAVE_PIL = True
 except:
-    try:
-        from PIL import ImageChops
-        from PIL import ImageGrab
-        HAVE_PIL = True
-    except:
-        HAVE_PIL = False
+    HAVE_PIL = False
 
 class Screenshot:
     """Get screenshots."""

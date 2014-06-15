@@ -1,4 +1,4 @@
-# Copyright (C) 2010-2014 Cuckoo Foundation.
+# Copyright (C) 2010-2014 Cuckoo Sandbox Developers.
 # This file is part of Cuckoo Sandbox - http://www.cuckoosandbox.org
 # See the file 'docs/LICENSE' for copying permission.
 
@@ -154,7 +154,7 @@ class Machinery(object):
             # If this machine is already in the "correct" state, then we
             # go on to the next machine.
             if machine.label in configured_vms and \
-                    self._status(machine.label) in [self.POWEROFF, self.ABORTED]:
+                    self._status(machine.label) == self.POWEROFF:
                 continue
 
             # This machine is currently not in its correct state, we're going
@@ -251,7 +251,7 @@ class Machinery(object):
         """
         raise NotImplementedError
 
-    def dump_memory(self, label, path):
+    def dump_memory(self, path):
         """Takes a memory dump of a machine.
         @param path: path to where to store the memory dump.
         """
@@ -296,7 +296,6 @@ class LibVirtMachinery(Machinery):
     PAUSED = "paused"
     POWEROFF = "poweroff"
     ERROR = "machete"
-    ABORTED = "abort"
 
     def __init__(self):
         if not HAVE_LIBVIRT:
@@ -642,11 +641,6 @@ class Signature(object):
     minimum = None
     maximum = None
 
-    # Higher order will be processed later (only for non-evented signatures)
-    # this can be used for having meta-signatures that check on other lower-
-    # order signatures being matched
-    order = 0
-
     evented = False
     filter_processnames = set()
     filter_apinames = set()
@@ -779,7 +773,7 @@ class Signature(object):
             # Check if there's an argument name filter.
             if name:
                 if argument["name"] != name:
-                    continue
+                    return False
 
             # Check if the argument value matches.
             if self._check_value(pattern=pattern,

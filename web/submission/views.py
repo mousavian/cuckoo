@@ -1,4 +1,4 @@
-# Copyright (C) 2010-2014 Cuckoo Foundation.
+# Copyright (C) 2010-2014 Cuckoo Sandbox Developers.
 # This file is part of Cuckoo Sandbox - http://www.cuckoosandbox.org
 # See the file 'docs/LICENSE' for copying permission.
 
@@ -12,7 +12,6 @@ from django.template import RequestContext
 sys.path.append(settings.CUCKOO_PATH)
 
 from lib.cuckoo.core.database import Database
-from lib.cuckoo.common.utils import store_temp_file
 
 def force_int(value):
     try:
@@ -44,17 +43,8 @@ def index(request):
                 options += "&"
             options += "procmemdump=yes"
 
-        db = Database()
-        task_ids = []
-        task_machines = []
-
-        if machine.lower() == "all":
-            for entry in db.list_machines():
-                task_machines.append(entry.label)
-        else:
-            task_machines.append(machine)
-
         if "sample" in request.FILES:
+            # Preventive checks.
             if request.FILES["sample"].size == 0:
                 return render_to_response("error.html",
                                           {"error": "You uploaded an empty file."},
@@ -64,24 +54,29 @@ def index(request):
                                           {"error": "You uploaded a file that exceeds that maximum allowed upload size."},
                                           context_instance=RequestContext(request))
 
-            # Moving sample from django temporary file to Cuckoo temporary storage to
-            # let it persist between reboot (if user like to configure it in that way).
-            path = store_temp_file(request.FILES["sample"].read(),
-                                   request.FILES["sample"].name)
+            path = request.FILES["sample"].temporary_file_path()
 
-            for entry in task_machines:
-                task_id = db.add_path(file_path=path,
-                                      package=package,
-                                      timeout=timeout,
-                                      options=options,
-                                      priority=priority,
-                                      machine=entry,
-                                      custom=custom,
-                                      memory=memory,
-                                      enforce_timeout=enforce_timeout,
-                                      tags=tags)
-                if task_id:
-                    task_ids.append(task_id)
+            db = Database()
+
+            task_id = db.add_path(file_path=path,
+                                  package=package,
+                                  timeout=timeout,
+                                  options=options,
+                                  priority=priority,
+                                  machine=machine,
+                                  custom=custom,
+                                  memory=memory,
+                                  enforce_timeout=enforce_timeout,
+                                  tags=tags)
+
+            if task_id:
+                return render_to_response("success.html",
+                                          {"message": "The analysis task was successfully added with ID {0}.".format(task_id)},
+                                          context_instance=RequestContext(request))
+            else:
+                return render_to_response("error.html",
+                                          {"error": "Error adding task to Cuckoo's database."},
+                                          context_instance=RequestContext(request))
         elif "url" in request.POST:
             url = request.POST.get("url").strip()
             if not url:
@@ -89,34 +84,27 @@ def index(request):
                                           {"error": "You specified an invalid URL!"},
                                           context_instance=RequestContext(request))
 
-            for entry in task_machines:
-                task_id = db.add_url(url=url,
-                                     package=package,
-                                     timeout=timeout,
-                                     options=options,
-                                     priority=priority,
-                                     machine=entry,
-                                     custom=custom,
-                                     memory=memory,
-                                     enforce_timeout=enforce_timeout,
-                                     tags=tags)
-                if task_id:
-                    task_ids.append(task_id)
+            db = Database()
 
-        tasks_count = len(task_ids)
-        if tasks_count > 0:
-            if tasks_count == 1:
-                message = "The analysis task was successfully added with ID {0}.".format(task_ids[0])
+            task_id = db.add_url(url=url,
+                                 package=package,
+                                 timeout=timeout,
+                                 options=options,
+                                 priority=priority,
+                                 machine=machine,
+                                 custom=custom,
+                                 memory=memory,
+                                 enforce_timeout=enforce_timeout,
+                                 tags=tags)
+
+            if task_id:
+                return render_to_response("success.html",
+                                          {"message": "The analysis task was successfully added with ID {0}.".format(task_id)},
+                                          context_instance=RequestContext(request))
             else:
-                message = "The analysis task were successfully added with IDs {0}.".format(", ".join(str(i) for i in task_ids))
-
-            return render_to_response("success.html",
-                                      {"message": message},
-                                      context_instance=RequestContext(request))
-        else:
-            return render_to_response("error.html",
-                                      {"error": "Error adding task to Cuckoo's database."},
-                                      context_instance=RequestContext(request))
+                return render_to_response("error.html",
+                                          {"error": "Error adding task to Cuckoo's database."},
+                                          context_instance=RequestContext(request))
     else:
         files = os.listdir(os.path.join(settings.CUCKOO_PATH, "analyzer", "windows", "modules", "packages"))
 
@@ -128,25 +116,6 @@ def index(request):
 
             packages.append(name)
 
-        # Prepare a list of VM names, description label based on tags.
-        machines = []
-        for machine in Database().list_machines():
-            tags = []
-            for tag in machine.tags:
-                tags.append(tag.name)
-
-            if len(tags) > 0:
-                label = machine.name + ": " + ", ".join(tags) 
-            else:
-                label = machine.name
-
-            machines.append((machine.name, label))
-
-        # Prepend ALL/ANY options.
-        machines.insert(0, ("", "First available"))
-        machines.insert(1, ("all", "All"))
-
         return render_to_response("submission/index.html",
-                                  {"packages": sorted(packages),
-                                   "machines": machines},
+                                  {"packages": sorted(packages)},
                                   context_instance=RequestContext(request))

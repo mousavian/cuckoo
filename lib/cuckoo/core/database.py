@@ -1,4 +1,4 @@
-# Copyright (C) 2010-2014 Cuckoo Foundation.
+# Copyright (C) 2010-2014 Cuckoo Sandbox Developers.
 # This file is part of Cuckoo Sandbox - http://www.cuckoosandbox.org
 # See the file 'docs/LICENSE' for copying permission.
 
@@ -30,7 +30,6 @@ except ImportError:
 
 log = logging.getLogger(__name__)
 
-SCHEMA_VERSION = "263a45963c72"
 TASK_PENDING = "pending"
 TASK_RUNNING = "running"
 TASK_COMPLETED = "completed"
@@ -97,8 +96,15 @@ class Machine(Base):
         """
         return json.dumps(self.to_dict())
 
-    def __init__(self, name, label, ip, platform, interface, snapshot,
-                 resultserver_ip, resultserver_port):
+    def __init__(self,
+                 name,
+                 label,
+                 ip,
+                 platform,
+                 interface,
+                 snapshot,
+                 resultserver_ip,
+                 resultserver_port):
         self.name = name
         self.label = label
         self.ip = ip
@@ -118,7 +124,8 @@ class Tag(Base):
     def __repr__(self):
         return "<Tag('{0}','{1}')>".format(self.id, self.name)
 
-    def __init__(self, name):
+    def __init__(self,
+                 name):
         self.name = name
 
 class Guest(Base):
@@ -178,8 +185,13 @@ class Sample(Base):
     sha256 = Column(String(64), nullable=False)
     sha512 = Column(String(128), nullable=False)
     ssdeep = Column(String(255), nullable=True)
-    __table_args__ = Index("hash_index", "md5", "crc32", "sha1",
-                           "sha256", "sha512", unique=True),
+    __table_args__ = (Index("hash_index",
+                            "md5",
+                            "crc32",
+                            "sha1",
+                            "sha256",
+                            "sha512",
+                            unique=True), )
 
     def __repr__(self):
         return "<Sample('{0}','{1}')>".format(self.id, self.sha256)
@@ -200,8 +212,15 @@ class Sample(Base):
         """
         return json.dumps(self.to_dict())
 
-    def __init__(self, md5, crc32, sha1, sha256, sha512,
-                 file_size, file_type=None, ssdeep=None):
+    def __init__(self,
+                 md5,
+                 crc32,
+                 sha1,
+                 sha256,
+                 sha512,
+                 file_size,
+                 file_type=None,
+                 ssdeep=None):
         self.md5 = md5
         self.sha1 = sha1
         self.crc32 = crc32
@@ -271,10 +290,14 @@ class Task(Base):
                       nullable=False)
     started_on = Column(DateTime(timezone=False), nullable=True)
     completed_on = Column(DateTime(timezone=False), nullable=True)
-    status = Column(Enum(TASK_PENDING, TASK_RUNNING, TASK_COMPLETED,
-                         TASK_REPORTED, TASK_RECOVERED, name="status_type"),
-                    server_default=TASK_PENDING,
-                    nullable=False)
+    status = Column(Enum(TASK_PENDING,
+                         TASK_RUNNING,
+                         TASK_COMPLETED,
+                         TASK_REPORTED,
+                         TASK_RECOVERED,
+                         name="status_type"),
+                         server_default=TASK_PENDING,
+                         nullable=False)
     sample_id = Column(Integer, ForeignKey("samples.id"), nullable=True)
     sample = relationship("Sample", backref="tasks")
     guest = relationship("Guest", uselist=False, backref="tasks", cascade="save-update, delete")
@@ -308,12 +331,6 @@ class Task(Base):
 
     def __repr__(self):
         return "<Task('{0}','{1}')>".format(self.id, self.target)
-
-class AlembicVersion(Base):
-    """Table used to pinpoint actual database schema release."""
-    __tablename__ = "alembic_version"
-
-    version_num = Column(String(32), nullable=False, primary_key=True)
 
 class Database(object):
     """Analysis queue database.
@@ -358,21 +375,6 @@ class Database(object):
 
         # Get db session.
         self.Session = sessionmaker(bind=self.engine)
-
-        # Set database schema version.
-        # TODO: it's a little bit dirty, needs refactoring.
-        tmp_session = self.Session()
-        if not tmp_session.query(AlembicVersion).count():
-            tmp_session.add(AlembicVersion(version_num=SCHEMA_VERSION))
-            try:
-                tmp_session.commit()
-            except SQLAlchemyError as e:
-                raise CuckooDatabaseError("Unable to set schema version: {0}".format(e))
-                tmp_session.rollback()
-            finally:
-                tmp_session.close()
-        else:
-            tmp_session.close()
 
     def __del__(self):
         """Disconnects pool."""
@@ -543,9 +545,6 @@ class Database(object):
             session.commit()
         except SQLAlchemyError as e:
             log.debug("Database error logging guest stop: {0}".format(e))
-            session.rollback()
-        except TypeError:
-            log.warning("Data inconsistency in guests table detected, it might be a crash leftover. Continue")
             session.rollback()
         finally:
             session.close()

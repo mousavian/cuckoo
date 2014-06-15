@@ -1,4 +1,4 @@
-# Copyright (C) 2010-2014 Cuckoo Foundation.
+# Copyright (C) 2010-2014 Cuckoo Sandbox Developers.
 # This file is part of Cuckoo Sandbox - http://www.cuckoosandbox.org
 # See the file 'docs/LICENSE' for copying permission.
 
@@ -15,6 +15,7 @@ class Zip(Package):
     def start(self, path):
         root = os.environ["TEMP"]
         password = self.options.get("password", None)
+        default_file_name = "sample.exe"   
 
         with ZipFile(path, "r") as archive:
             zipinfos = archive.infolist()
@@ -30,15 +31,12 @@ class Zip(Package):
                     raise CuckooPackageError("Unable to extract Zip file: "
                                              "{0}".format(e))
 
-        file_name = self.options.get("file")
-        # If no file name is provided via option, take the first file.
-        if not file_name:
-            # No name provided try to find a better name.
+        file_name = self.options.get("file", default_file_name)
+        if file_name == default_file_name:   
+            #no name provided try to find a better name
             if len(zipinfos) > 0:
-                # Take the first one.
+                #take the first one
                 file_name = zipinfos[0].filename
-            else:
-                raise CuckooPackageError("Empty ZIP archive")
 
         file_path = os.path.join(root, file_name)
 
