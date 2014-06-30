@@ -340,8 +340,8 @@ class Machinery(object):
             current = self._status(label)
         if current == self.RUNNING:
             self.db.set_guest_running_time(label)
-        elif current == self.POWEROFF:
-            self.restore_qcow2(label)
+        #elif current == self.POWEROFF:
+        #    self.restore_qcow2(label)
 
 class LibVirtMachinery(Machinery):
     """Libvirt based machine manager.
@@ -356,6 +356,7 @@ class LibVirtMachinery(Machinery):
     PAUSED = "paused"
     POWEROFF = "poweroff"
     ERROR = "machete"
+    CLEANED = "cleaned"
 
     def __init__(self):
         if not HAVE_LIBVIRT:
@@ -445,19 +446,19 @@ class LibVirtMachinery(Machinery):
         self._wait_status(label, self.RUNNING)
 
     #RAHMAN
-    def restore_qcow2(self, label):
-        try:
-            ssh_client = paramiko.SSHClient()
-            ssh_client.set_missing_host_key_policy( paramiko.AutoAddPolicy() )
-            ssh_client.connect(self.mmanager_opts[label]['hypervisor'], username='root', password='k4hvd')
-            qcow2_file_path = "/qcow2/" + label + ".qcow2"
-            (stdin, stdout, sterr) = ssh_client.exec_command('yes | cp -rf {0} {1}'.format(qcow2_file_path+".org",qcow2_file_path))
-            #now we will wait to finish copying file... 
-            stdout.channel.settimeout(10800)
-            stdout.channel.recv_exit_status()
-            ssh_client.close()
-        except NotImplementedError:
-            CuckooMachineError("ssh error")
+    # def restore_qcow2(self, label):
+    #     try:
+    #         ssh_client = paramiko.SSHClient()
+    #         ssh_client.set_missing_host_key_policy( paramiko.AutoAddPolicy() )
+    #         ssh_client.connect(self.mmanager_opts[label]['hypervisor'], username='root', password='k4hvd')
+    #         qcow2_file_path = "/qcow2/" + label + ".qcow2"
+    #         (stdin, stdout, sterr) = ssh_client.exec_command('yes | cp -rf {0} {1}'.format(qcow2_file_path+".org",qcow2_file_path))
+    #         #now we will wait to finish copying file... 
+    #         stdout.channel.settimeout(10800)
+    #         stdout.channel.recv_exit_status()
+    #         ssh_client.close()
+    #     except NotImplementedError:
+    #         CuckooMachineError("ssh error")
     #RAHMAN
 
     def stop(self, label):
@@ -468,7 +469,6 @@ class LibVirtMachinery(Machinery):
         log.debug("Stopping machine %s", label)
 
         if self._status(label) == self.POWEROFF:
-            self.restore_qcow2(label)
             raise CuckooMachineError("1.Trying to stop an already stopped "
                                      "machine {0}".format(label))
         else:

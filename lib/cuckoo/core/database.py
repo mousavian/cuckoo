@@ -578,7 +578,7 @@ class Database(object):
         @return: locked machine
         """
         session = self.Session()
-
+        status = "cleaned"
         # Preventive checks.
         if name and platform:
             # Wrong usage.
@@ -604,6 +604,9 @@ class Database(object):
             if machines.count() == 0:
                 raise CuckooOperationalError("No machines match selection criteria")
 
+            #RAHMAN
+            # Get only cleand machines.
+            machines = machines.filter(Machine.status == status)
             # Get only free machines.
             machines = machines.filter(Machine.locked == False)
             # Get only one.

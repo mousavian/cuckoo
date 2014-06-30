@@ -96,11 +96,13 @@ class AnalysisManager(Thread):
             log.error("Target file has been modified after submission: \"%s\"", self.task.target)
             return False
 
-        md5sum = File(self.task.target).get_md5()
-        mysql_cur.execute("SELECT * FROM `hash` WHERE `md5`='%s'" % md5sum)
-        if mysql_cur.rowcount > 0:
-            log.error("Target file has been analaysed before (already exist in db): \"%s\"", self.task.target)
-            return False
+        # RAHMAN
+        # md5sum = File(self.task.target).get_md5()
+        # mysql_cur.execute("SELECT * FROM `hash` WHERE `md5`='%s'" % md5sum)
+        # if mysql_cur.rowcount > 0:
+        #     log.error("Target file has been analaysed before (already exist in db): \"%s\"", self.task.target)
+        #     return False
+        # RAHMAN
         
         return True
 
