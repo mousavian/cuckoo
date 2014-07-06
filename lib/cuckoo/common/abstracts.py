@@ -374,7 +374,6 @@ class LibVirtMachinery(Machinery):
 	PAUSED = "paused"
 	POWEROFF = "poweroff"
 	ERROR = "machete"
-	#CLEANED = "cleaned"
 
 	def __init__(self):
 		if not HAVE_LIBVIRT:
@@ -448,6 +447,8 @@ class LibVirtMachinery(Machinery):
 			log.debug("2.Using snapshot {0} for virtual machine "
 					  "{1}".format(snapshot.getName(), label))
 			try:
+				self._disconnect(conn)
+				conn = self._connect(label)
 				self._openstack_set_status(label);
 				self.vms[label].revertToSnapshot(snapshot, flags=0)
 			except libvirt.libvirtError:

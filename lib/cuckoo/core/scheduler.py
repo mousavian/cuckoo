@@ -30,8 +30,6 @@ machine_lock = Lock()
 
 total_analysis_count = 0
 active_analysis_count = 0
-mysql_cnx = mysql.connector.connect(user='workbench', password='k4hvd', host='controller', database='malwares_history')
-mysql_cur = mysql_cnx.cursor(buffered=True)
 
 class CuckooDeadMachine(Exception):
     """Exception thrown when a machine turns dead.
@@ -97,11 +95,16 @@ class AnalysisManager(Thread):
             return False
 
         # RAHMAN
-        # md5sum = File(self.task.target).get_md5()
-        # mysql_cur.execute("SELECT * FROM `hash` WHERE `md5`='%s'" % md5sum)
-        # if mysql_cur.rowcount > 0:
-        #     log.error("Target file has been analaysed before (already exist in db): \"%s\"", self.task.target)
-        #     return False
+        #To check if this file has been analysed before or not.
+        md5sum = File(self.task.target).get_md5()
+        mysql_cnx = mysql.connector.connect(user='workbench', password='k4hvd', host='controller', database='malwares_history')
+        mysql_cur = mysql_cnx.cursor(buffered=True)
+        mysql_cur.execute("SELECT * FROM `hash3` WHERE `md5`='%s'" % md5sum)
+        if mysql_cur.rowcount > 0:
+            log.error("Target file has been analaysed before (already exist in db): \"%s\"", self.task.target)
+            return False
+        else:
+            mysql_cur.execute("INSERT INTO `hash3` ( `md5`, `added_on` ) VALUES('%s', NOW())" % md5sum)
         # RAHMAN
         
         return True
