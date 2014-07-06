@@ -12,3 +12,6 @@ fi
 
 rm -rf $PWD/db/ $PWD/log/ $PWD/storage/
 find $PWD/ -name '*.pyc' -exec rm {} \;
+#RAHMAN
+#clean mysql tables
+mysql --user="workbench" --password="k4hvd" --database="cuckoo" -e "DROP TABLE IF EXISTS errors; DROP TABLE IF EXISTS guests; DROP TABLE IF EXISTS machines; DROP TABLE IF EXISTS machines_tags; DROP TABLE IF EXISTS samples; DROP TABLE IF EXISTS tags; DROP TABLE IF EXISTS tasks; DROP TABLE IF EXISTS tasks_tags;"

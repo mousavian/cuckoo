@@ -397,6 +397,37 @@ class Database(object):
             instance = model(**kwargs)
             return instance
 
+    def get_dirty_machines(self):
+        """Return all machines that already have done a analysis and need to go for house-cleaning process."""
+        session = self.Session()
+        status = "poweroff"
+        try:
+            machines = session.query(Machine).filter(Machine.status == status).all()
+            return machines
+        except Exception as e:
+            log.error("Unable to retrieve dirty machines from Database: {0}".format(e))
+        finally:
+            session.close()
+    
+    #BOF RAHMAN        
+    def get_engine(self):
+        return self.engine
+
+    def set_machine_cleaned(self, label):
+        session = self.Session()
+        old_status = "poweroff"
+        new_status = "cleaned"
+        try:
+            machine = session.query(Machine).filter(Machine.status == old_status).filter(Machine.label == label).first()
+            machine.status = new_status
+            session.commit()
+        except Exception as e:
+            print "Unable to set new status for cleaned machine in Database: {0}".format(e)
+            #log.error("Unable to set new status for cleaned machine in Database: {0}".format(e))
+        finally:
+            session.close()
+    #EOF RAHMAN        
+
     def clean_machines(self):
         """Clean old stored machines and related tables."""
         # Secondary table.
@@ -578,7 +609,7 @@ class Database(object):
         @return: locked machine
         """
         session = self.Session()
-        status = "cleaned"
+        #status = "cleaned"
         # Preventive checks.
         if name and platform:
             # Wrong usage.
@@ -606,7 +637,8 @@ class Database(object):
 
             #RAHMAN
             # Get only cleand machines.
-            machines = machines.filter(Machine.status == status)
+            #machines = machines.filter(Machine.status == status)
+
             # Get only free machines.
             machines = machines.filter(Machine.locked == False)
             # Get only one.

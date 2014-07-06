@@ -306,22 +306,6 @@ class AnalysisManager(Thread):
             # internal state for this analysis task.
             Resultserver().del_task(self.task, self.machine)
 
-            if dead_machine:
-                # Remove the guest from the database, so that we can assign a
-                # new guest when the task is being analyzed with another
-                # machine.
-                #RAHMAN
-                Database().guest_remove(guest_log)
-                #RAHMAN
-
-                # Remove the analysis directory that has been created so
-                # far, as launch_analysis() is going to be doing that again.
-                shutil.rmtree(self.storage)
-
-                # This machine has turned dead, so we throw an exception here
-                # which informs the AnalysisManager that it should analyze
-                # this task again with another available machine.
-                raise CuckooDeadMachine()
 
             try:
                 # Release the analysis machine. But only if the machine has
@@ -332,6 +316,20 @@ class AnalysisManager(Thread):
                           "You might need to restore it manually",
                           self.machine.label, e)
 
+            if dead_machine:
+                # Remove the guest from the database, so that we can assign a
+                # new guest when the task is being analyzed with another
+                # machine.
+                #Database().guest_remove(guest_log)
+
+                # Remove the analysis directory that has been created so
+                # far, as launch_analysis() is going to be doing that again.
+                shutil.rmtree(self.storage)
+
+                # This machine has turned dead, so we throw an exception here
+                # which informs the AnalysisManager that it should analyze
+                # this task again with another available machine.
+                raise CuckooDeadMachine()
         return succeeded
 
     def process_results(self):
@@ -378,7 +376,7 @@ class AnalysisManager(Thread):
                 try:
                     success = self.launch_analysis()
                 except CuckooDeadMachine:
-                    log.error('_____________________________WHAT ARE YOU DOING EXACTLY?')
+                    log.error('___________dead machine!______________')
                     continue
 
                 break
