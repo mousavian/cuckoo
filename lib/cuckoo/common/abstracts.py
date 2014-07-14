@@ -10,6 +10,7 @@ import time
 import xml.etree.ElementTree as ET
 import mysql.connector
 import paramiko
+import requests 
 
 from lib.cuckoo.common.config import Config
 from lib.cuckoo.common.constants import CUCKOO_ROOT
@@ -182,7 +183,8 @@ class Machinery(object):
 									  "setting not found, please add it to "
 									  "the config file")
 	
-	def _openstack_init(self):
+	def _openstack_db_connect(self):
+		log.debug("111.1111.1111")
 		try:
 			self.openstack_nova_cnx = mysql.connector.connect(
 											user=self.options_globals.openstack.db_username,
@@ -192,7 +194,15 @@ class Machinery(object):
 			log.debug("===> OPENSTACK DB CONNECTED")
 		except:
 			raise CuckooMachineError("===> Unable to connect openstack DB ({0}:{1}@{2}/{3})".format(self.options_globals.openstack.db_username,self.options_globals.openstack.db_password,self.options_globals.openstack.db_host,'nova'))
+		log.debug("111.1111.222222")
+		
+	def _openstack_db_close(self):
+		log.debug("111.1111.33333")
+		self.openstack_nova_cnx.close()
+		log.debug("111.1111.44444")
 
+	def _openstack_init(self):
+		self._openstack_db_connect()
 		cursor = self.openstack_nova_cnx.cursor()
 		cursor.execute("SELECT ins.id, fip.address, ins.launched_on, ins.vm_state, ins.display_name, ins.hostname, ins.host, ins.uuid "
 						" FROM `instances` ins LEFT JOIN `fixed_ips` fip ON ( fip.`instance_uuid` = ins.`uuid` ) "
@@ -207,24 +217,29 @@ class Machinery(object):
 			self.mmanager_opts[_machine_id]["label"] = _machine_id
 			self.mmanager_opts[_machine_id]["platform"] = self.options_globals.openstack.platform
 			self.mmanager_opts[_machine_id]["tags"] = self.options_globals.openstack.tags
-			self.mmanager_opts[_machine_id]["dsn"] = "qemu+ssh://root@{0}/system".format(row[2])
+			self.mmanager_opts[_machine_id]["dsn"] = "qemu+ssh://root@{0}/system?no_verify=1&no_tty=1".format(row[2])
 			self.mmanager_opts[_machine_id]["connection"] = None
 
+		self._openstack_db_close()
 		return self.mmanager_opts
 
 	def _openstack_set_status(self, label):
-		if self.openstack_nova_cnx is None:
-			self._openstack_init()
-		cursor = self.openstack_nova_cnx.cursor()
-		# ids = []
-		# for machine in self.mmanager_opts:
-		#	 ids.append(self.mmanager_opts[machine]["id"])
-
-		# cursor.execute("UPDATE instances SET vm_state = 'active' WHERE id IN ({0})".format(', '.join([str(x) for x in ids])))
-		cursor.execute("UPDATE instances SET vm_state = 'active', power_state=1 WHERE id IN ({0})".format(self.mmanager_opts[label]["id"]))
-		self.openstack_nova_cnx.commit()
-		log.debug("===>OPENSTACK - rows affected: %s", cursor.rowcount)
-		cursor.close()
+		log.debug("1111..1111%s", label)
+		#self._openstack_db_connect()
+		#if self.openstack_nova_cnx is None:
+		#	self._openstack_init()
+		#cursor = self.openstack_nova_cnx.cursor()
+		#cursor.execute("UPDATE instances SET vm_state = 'active', power_state=1 WHERE id IN ({0})".format(self.mmanager_opts[label]["id"]))
+		#log.debug("1111..44444%s", label)
+		#self.openstack_nova_cnx.commit()
+		#log.debug("1111..5555%s", label)
+		#log.debug("===>OPENSTACK - rows affected: %s", cursor.rowcount)
+		#cursor.close()
+		#log.debug("1111..6666%s", label)
+		#self._openstack_db_close()
+		log.debug("1111..2222%s", label)
+		requests.get("http://controller/cuckoo_openstack_update.php?id={0}".format(self.mmanager_opts[label]["id"]))
+		log.debug("1111..3333%s", label)
 
 	def machines(self):
 		"""List virtual machines.
@@ -319,7 +334,8 @@ class Machinery(object):
 		try:
 			ssh_client = paramiko.SSHClient()
 			ssh_client.set_missing_host_key_policy( paramiko.AutoAddPolicy() )
-			ssh_client.connect(self.mmanager_opts[label]['hypervisor'], username='root', password='k4hvd')
+			ssh_client.load_host_keys(os.path.expanduser(os.path.join("~", ".ssh", "known_hosts")))
+			ssh_client.connect(self.mmanager_opts[label]['hypervisor'], username='root', password='k4hvd', look_for_keys=True)
 			qcow2_file_path = "/qcow2/" + label + ".qcow2"
 			(stdin, stdout, sterr) = ssh_client.exec_command('yes | cp -rf {0} {1}'.format(qcow2_file_path+".org",qcow2_file_path))
 			#now we will wait to finish copying file... 
@@ -427,42 +443,48 @@ class LibVirtMachinery(Machinery):
 		log.debug("===>snapshot list for %s is ready",label)
 
 		# If a snapshot is configured try to use it.
-		if vm_info.snapshot and vm_info.snapshot in snapshot_list:
-			# Revert to desired snapshot, if it exists.
-			log.debug("1.Using snapshot {0} for virtual machine "
-					  "{1}".format(vm_info.snapshot, label))
-			try:
-				vm = self.vms[label]
-				snapshot = vm.snapshotLookupByName(vm_info.snapshot, flags=0)
-				self._openstack_set_status(label);
-				self.vms[label].revertToSnapshot(snapshot, flags=0)
-			except libvirt.libvirtError:
-				msg = "Unable to restore snapshot {0} on " \
-					  "virtual machine {1}".format(vm_info.snapshot, label)
-				raise CuckooMachineError(msg)
-			finally:
-				self._disconnect(conn)
-		elif self._get_snapshot(label):
-			snapshot = self._get_snapshot(label)
-			log.debug("2.Using snapshot {0} for virtual machine "
-					  "{1}".format(snapshot.getName(), label))
-			try:
-				self._disconnect(conn)
-				conn = self._connect(label)
-				self._openstack_set_status(label);
-				self.vms[label].revertToSnapshot(snapshot, flags=0)
-			except libvirt.libvirtError:
-				raise CuckooMachineError("Unable to restore snapshot on "
-										 "virtual machine {0}".format(label))
-			finally:
-				self._disconnect(conn)
-		else:
+		# if vm_info.snapshot and vm_info.snapshot in snapshot_list:
+		# 	# Revert to desired snapshot, if it exists.
+		# 	log.debug("1.Using snapshot {0} for virtual machine "
+		# 			  "{1}".format(vm_info.snapshot, label))
+		# 	try:
+		# 		vm = self.vms[label]
+		# 		snapshot = vm.snapshotLookupByName(vm_info.snapshot, flags=0)
+		# 		self._openstack_set_status(label);
+		# 		self.vms[label].revertToSnapshot(snapshot, flags=0)
+		# 	except libvirt.libvirtError:
+		# 		msg = "Unable to restore snapshot {0} on " \
+		# 			  "virtual machine {1}".format(vm_info.snapshot, label)
+		# 		raise CuckooMachineError(msg)
+		# 	finally:
+		# 		self._disconnect(conn)
+		# elif self._get_snapshot(label):
+		snapshot = self._get_snapshot(label)
+		log.debug("11111.Using snapshot {0} for virtual machine {1}".format(snapshot.getName(), label))
+		try:
+			self._openstack_set_status(label);
+			#self._disconnect(conn)
+			#conn = self._connect(label)
+			log.debug("22222.Using snapshot {0} for virtual machine {1}".format(snapshot.getName(), label))
+			conn2 = libvirt.open(self.mmanager_opts[label]["dsn"])
+			log.debug("333333.Using snapshot {0} for virtual machine {1}".format(snapshot.getName(), label))
+			conn2.lookupByName(label).revertToSnapshot(snapshot, flags=0)
+			log.debug("444444.Using snapshot {0} for virtual machine {1}".format(snapshot.getName(), label))
+		except libvirt.libvirtError:
+			raise CuckooMachineError("Unable to restore snapshot on "
+									 "virtual machine {0}".format(label))
+		finally:
+			log.debug("55555.Using snapshot {0} for virtual machine {1}".format(snapshot.getName(), label))
 			self._disconnect(conn)
-			raise CuckooMachineError("No snapshot found for virtual machine "
-									 "{0}".format(label))
+		#else:
+		#	self._disconnect(conn)
+		#	raise CuckooMachineError("No snapshot found for virtual machine "
+		#							 "{0}".format(label))
 
 		# Check state.
+		log.debug("6666666.Using snapshot {0} for virtual machine {1}".format(snapshot.getName(), label))
 		self._wait_status(label, self.RUNNING)
+		log.debug("7777777.Using snapshot {0} for virtual machine {1}".format(snapshot.getName(), label))
 
 
 	def stop(self, label):
@@ -572,13 +594,14 @@ class LibVirtMachinery(Machinery):
 		#							 "connection string")
 		
 		#RAHMAN for test
-		#if self.mmanager_opts[label]["connection"] is not None:
+		#if self.mmanager_opts[label]["connection"] is not None and  self.mmanager_opts[label]["connection"].isAlive():
 		#	return self.mmanager_opts[label]["connection"]
 
 		try:
 			log.debug("===>Trying to connect: %s",label)
-			self.mmanager_opts[label]["connection"] = libvirt.open(self.mmanager_opts[label]["dsn"])
-			return self.mmanager_opts[label]["connection"]
+			#self.mmanager_opts[label]["connection"] = libvirt.open(self.mmanager_opts[label]["dsn"])
+			#return self.mmanager_opts[label]["connection"]
+			return libvirt.open(self.mmanager_opts[label]["dsn"])
 		except libvirt.libvirtError:
 			raise CuckooMachineError("Cannot connect to libvirt for %s",label)
 
@@ -587,10 +610,10 @@ class LibVirtMachinery(Machinery):
 		@raise CuckooMachineError: if cannot disconnect from libvirt.
 		"""
 
-		# try:
-		#	 conn.close()
-		# except libvirt.libvirtError:
-		#	raise CuckooMachineError("Cannot disconnect from libvirt")
+		try:
+			 conn.close()
+		except libvirt.libvirtError:
+			raise CuckooMachineError("Cannot disconnect from libvirt")
 
 	def __exit__(self, type, value, traceback):
 		if self.conn2 is not None:

@@ -102,11 +102,14 @@ class AnalysisManager(Thread):
         mysql_cur.execute("SELECT * FROM `hash3` WHERE `md5`='%s'" % md5sum)
         if mysql_cur.rowcount > 0:
             log.error("Target file has been analaysed before (already exist in db): \"%s\"", self.task.target)
+            mysql_cur.close()
+            mysql_cnx.close()
             return False
-        else:
-            mysql_cur.execute("INSERT INTO `hash3` ( `md5`, `added_on` ) VALUES('%s', NOW())" % md5sum)
+        #else:
+        #    mysql_cur.execute("INSERT INTO `hash3` ( `md5`, `added_on` ) VALUES('%s', NOW())" % md5sum)
         # RAHMAN
-        
+        mysql_cur.close()
+        mysql_cnx.close()
         return True
 
     def store_file(self):
@@ -479,47 +482,51 @@ class Scheduler:
             # If not enough free diskspace is available, then we print an
             # error message and wait another round (this check is ignored
             # when freespace is set to zero).
-            if self.cfg.cuckoo.freespace:
-                # Resolve the full base path to the analysis folder, just in
-                # case somebody decides to make a symlink out of it.
-                dir_path = os.path.join(CUCKOO_ROOT, "storage", "analyses")
+            # if self.cfg.cuckoo.freespace:
+            #     # Resolve the full base path to the analysis folder, just in
+            #     # case somebody decides to make a symlink out of it.
+            #     log.error("&&&& 1 &&&&")
+            #     dir_path = os.path.join(CUCKOO_ROOT, "storage", "analyses")
 
-                # TODO: Windows support
-                if hasattr(os, "statvfs"):
-                    dir_stats = os.statvfs(dir_path)
+            #     # TODO: Windows support
+            #     if hasattr(os, "statvfs"):
+            #         dir_stats = os.statvfs(dir_path)
 
-                    # Free diskspace in megabytes.
-                    space_available = dir_stats.f_bavail * dir_stats.f_frsize
-                    space_available /= 1024 * 1024
+            #         # Free diskspace in megabytes.
+            #         space_available = dir_stats.f_bavail * dir_stats.f_frsize
+            #         space_available /= 1024 * 1024
 
-                    if space_available < self.cfg.cuckoo.freespace:
-                        log.error("Not enough free diskspace! (Only %d MB!)",
-                                  space_available)
-                        continue
+            #         if space_available < self.cfg.cuckoo.freespace:
+            #             log.error("Not enough free diskspace! (Only %d MB!)",
+            #                       space_available)
+            #             continue
 
             # If no machines are available, it's pointless to fetch for
             # pending tasks. Loop over.
             if machinery.availables() == 0:
+                log.error("&&&& 2 &&&&")
                 continue
 
             # Exits if max_analysis_count is defined in config file and
             # is reached.
-            if maxcount and total_analysis_count >= maxcount:
-                if active_analysis_count <= 0:
-                    self.stop()
+            # if maxcount and total_analysis_count >= maxcount:
+            #     log.error("&&&& 3 &&&&")
+            #     if active_analysis_count <= 0:
+            #         self.stop()
+            # else:
+            # Fetch a pending analysis task.
+            task = self.db.fetch()
+
+            if task:
+                log.debug("Processing task #%s", task.id)
+                total_analysis_count += 1
+
+                # Initialize the analysis manager.
+                analysis = AnalysisManager(task, errors)
+                # Start.
+                analysis.start()
             else:
-                # Fetch a pending analysis task.
-                task = self.db.fetch()
-
-                if task:
-                    log.debug("Processing task #%s", task.id)
-                    total_analysis_count += 1
-
-                    # Initialize the analysis manager.
-                    analysis = AnalysisManager(task, errors)
-                    # Start.
-                    analysis.start()
-
+                log.error("&&&& 4 &&&&")
             # Deal with errors.
             try:
                 error = errors.get(block=False)
