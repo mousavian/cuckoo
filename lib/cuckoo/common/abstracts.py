@@ -184,7 +184,7 @@ class Machinery(object):
 									  "the config file")
 	
 	def _openstack_db_connect(self):
-		log.debug("111.1111.1111")
+		#log.debug("111.1111.1111")
 		try:
 			self.openstack_nova_cnx = mysql.connector.connect(
 											user=self.options_globals.openstack.db_username,
@@ -194,12 +194,12 @@ class Machinery(object):
 			log.debug("===> OPENSTACK DB CONNECTED")
 		except:
 			raise CuckooMachineError("===> Unable to connect openstack DB ({0}:{1}@{2}/{3})".format(self.options_globals.openstack.db_username,self.options_globals.openstack.db_password,self.options_globals.openstack.db_host,'nova'))
-		log.debug("111.1111.222222")
+		#log.debug("111.1111.222222")
 		
 	def _openstack_db_close(self):
-		log.debug("111.1111.33333")
+		#log.debug("111.1111.33333")
 		self.openstack_nova_cnx.close()
-		log.debug("111.1111.44444")
+		#log.debug("111.1111.44444")
 
 	def _openstack_init(self):
 		self._openstack_db_connect()
@@ -215,31 +215,25 @@ class Machinery(object):
 			self.mmanager_opts[_machine_id]["ip"] = row[1] 
 			self.mmanager_opts[_machine_id]["hypervisor"] = row[2] 
 			self.mmanager_opts[_machine_id]["label"] = _machine_id
-			self.mmanager_opts[_machine_id]["platform"] = self.options_globals.openstack.platform
+			self.mmanager_opts[_machine_id]["platform"] = row[4].split('_')[1]
 			self.mmanager_opts[_machine_id]["tags"] = self.options_globals.openstack.tags
 			self.mmanager_opts[_machine_id]["dsn"] = "qemu+ssh://root@{0}/system?no_verify=1&no_tty=1".format(row[2])
 			self.mmanager_opts[_machine_id]["connection"] = None
-
+			
 		self._openstack_db_close()
 		return self.mmanager_opts
 
 	def _openstack_set_status(self, label):
-		log.debug("1111..1111%s", label)
-		#self._openstack_db_connect()
-		#if self.openstack_nova_cnx is None:
-		#	self._openstack_init()
-		#cursor = self.openstack_nova_cnx.cursor()
-		#cursor.execute("UPDATE instances SET vm_state = 'active', power_state=1 WHERE id IN ({0})".format(self.mmanager_opts[label]["id"]))
-		#log.debug("1111..44444%s", label)
-		#self.openstack_nova_cnx.commit()
-		#log.debug("1111..5555%s", label)
-		#log.debug("===>OPENSTACK - rows affected: %s", cursor.rowcount)
-		#cursor.close()
-		#log.debug("1111..6666%s", label)
-		#self._openstack_db_close()
-		log.debug("1111..2222%s", label)
-		requests.get("http://controller/cuckoo_openstack_update.php?id={0}".format(self.mmanager_opts[label]["id"]))
-		log.debug("1111..3333%s", label)
+		self._openstack_db_connect()
+		# if self.openstack_nova_cnx is None:
+		# 	self._openstack_init()
+		cursor = self.openstack_nova_cnx.cursor()
+		cursor.execute("UPDATE instances SET vm_state = 'active', power_state=1 WHERE id IN ({0})".format(self.mmanager_opts[label]["id"]))
+		self.openstack_nova_cnx.commit()
+		log.debug("===>OPENSTACK - rows affected: %s", cursor.rowcount)
+		cursor.close()
+		self._openstack_db_close()
+		# requests.get("http://controller/cuckoo_openstack_update.php?id={0}".format(self.mmanager_opts[label]["id"]))
 
 	def machines(self):
 		"""List virtual machines.
@@ -248,12 +242,12 @@ class Machinery(object):
 		#log.debug("===>Machines: %s", self.db.list_machines())
 		return self.db.list_machines()
 
-	def availables(self):
+	def availables(self, platform='windows'):
 		"""How many machines are free.
 		@return: free machines count.
 		"""
 		
-		return self.db.count_machines_available()
+		return self.db.count_machines_available(platform)
 
 	def acquire(self, machine_id=None, platform=None, tags=None):
 		"""Acquire a machine to start analysis.
@@ -460,21 +454,23 @@ class LibVirtMachinery(Machinery):
 		# 		self._disconnect(conn)
 		# elif self._get_snapshot(label):
 		snapshot = self._get_snapshot(label)
-		log.debug("11111.Using snapshot {0} for virtual machine {1}".format(snapshot.getName(), label))
+		#log.debug("11111.Using snapshot {0} for virtual machine {1}".format(snapshot.getName(), label))
 		try:
 			self._openstack_set_status(label);
 			#self._disconnect(conn)
 			#conn = self._connect(label)
-			log.debug("22222.Using snapshot {0} for virtual machine {1}".format(snapshot.getName(), label))
+			#log.debug("222222.Using snapshot {0} for virtual machine {1}".format(snapshot.getName(), label))
 			conn2 = libvirt.open(self.mmanager_opts[label]["dsn"])
-			log.debug("333333.Using snapshot {0} for virtual machine {1}".format(snapshot.getName(), label))
+			#log.debug("333333.Using snapshot {0} for virtual machine {1}".format(snapshot.getName(), label))
+			log.debug("333333.{0}".format(self.mmanager_opts[label]["dsn"]))
+			#time.sleep(0.5)
 			conn2.lookupByName(label).revertToSnapshot(snapshot, flags=0)
 			log.debug("444444.Using snapshot {0} for virtual machine {1}".format(snapshot.getName(), label))
 		except libvirt.libvirtError:
 			raise CuckooMachineError("Unable to restore snapshot on "
 									 "virtual machine {0}".format(label))
 		finally:
-			log.debug("55555.Using snapshot {0} for virtual machine {1}".format(snapshot.getName(), label))
+			#log.debug("55555.Using snapshot {0} for virtual machine {1}".format(snapshot.getName(), label))
 			self._disconnect(conn)
 		#else:
 		#	self._disconnect(conn)
@@ -482,9 +478,9 @@ class LibVirtMachinery(Machinery):
 		#							 "{0}".format(label))
 
 		# Check state.
-		log.debug("6666666.Using snapshot {0} for virtual machine {1}".format(snapshot.getName(), label))
+		#log.debug("6666666.Using snapshot {0} for virtual machine {1}".format(snapshot.getName(), label))
 		self._wait_status(label, self.RUNNING)
-		log.debug("7777777.Using snapshot {0} for virtual machine {1}".format(snapshot.getName(), label))
+		#log.debug("7777777.Using snapshot {0} for virtual machine {1}".format(snapshot.getName(), label))
 
 
 	def stop(self, label):

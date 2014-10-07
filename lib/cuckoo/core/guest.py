@@ -17,6 +17,7 @@ from lib.cuckoo.common.constants import CUCKOO_GUEST_COMPLETED
 from lib.cuckoo.common.constants import CUCKOO_GUEST_FAILED
 from lib.cuckoo.common.exceptions import CuckooGuestError
 from lib.cuckoo.common.utils import TimeoutServer, sanitize_filename
+from lib.android.droidbox import Droidbox
 
 log = logging.getLogger(__name__)
 
@@ -34,6 +35,7 @@ class GuestManager:
         self.id = vm_id
         self.ip = ip
         self.platform = platform
+        self.droidbox = None
 
         self.cfg = Config()
         self.timeout = self.cfg.timeouts.critical
@@ -93,7 +95,7 @@ class GuestManager:
 
         # Select the proper analyzer's folder according to the operating
         # system associated with the current machine.
-        root = os.path.join("analyzer", self.platform)
+        root = os.path.join("analyzer", self.platform.lower())
         root_len = len(os.path.abspath(root))
 
         if not os.path.exists(root):
@@ -130,47 +132,51 @@ class GuestManager:
         @param options: options.
         @return: operation status.
         """
-        log.info("Starting analysis on guest (id=%s, ip=%s)", self.id, self.ip)
+        log.info("Starting analysis on guest (id=%s, ip=%s, platform:%s)", self.id, self.ip, self.platform)
 
         # TODO: deal with unicode URLs.
         if options["category"] == "file":
             options["file_name"] = sanitize_filename(options["file_name"])
 
         try:
-            # Wait for the agent to respond. This is done to check the
-            # availability of the agent and verify that it's ready to receive
-            # data.
-            self.wait(CUCKOO_GUEST_INIT)
-            # Invoke the upload of the analyzer to the guest.
-            self.upload_analyzer()
-            # Give the analysis options to the guest, so it can generate the
-            # analysis.conf inside the guest.
-            try:
-                self.server.add_config(options)
-            except:
-                raise CuckooGuestError("{0}: unable to upload config to "
-                                       "analysis machine".format(self.id))
-
-            # If the target of the analysis is a file, upload it to the guest.
-            if options["category"] == "file":
+            if self.platform.lower() == 'android':
+                log.warning("====>Analysis on android machine (%s) starting...", self.ip);
+                self.droidbox = Droidbox(options["target"], self.ip)
+            else:
+                # Wait for the agent to respond. This is done to check the
+                # availability of the agent and verify that it's ready to receive
+                # data.
+                self.wait(CUCKOO_GUEST_INIT)
+                # Invoke the upload of the analyzer to the guest.
+                self.upload_analyzer()
+                # Give the analysis options to the guest, so it can generate the
+                # analysis.conf inside the guest.
                 try:
-                    file_data = open(options["target"], "rb").read()
-                except (IOError, OSError) as e:
-                    raise CuckooGuestError("Unable to read {0}, error: "
-                                           "{1}".format(options["target"], e))
+                    self.server.add_config(options)
+                except:
+                    raise CuckooGuestError("{0}: unable to upload config to "
+                                           "analysis machine".format(self.id))
 
-                data = xmlrpclib.Binary(file_data)
+                # If the target of the analysis is a file, upload it to the guest.
+                if options["category"] == "file":
+                    try:
+                        file_data = open(options["target"], "rb").read()
+                    except (IOError, OSError) as e:
+                        raise CuckooGuestError("Unable to read {0}, error: "
+                                               "{1}".format(options["target"], e))
 
-                try:
-                    self.server.add_malware(data, options["file_name"])
-                except MemoryError as e:
-                    raise CuckooGuestError("{0}: unable to upload malware to "
-                                           "analysis machine, not enough "
-                                           "memory".format(self.id))
+                    data = xmlrpclib.Binary(file_data)
 
-            # Launch the analyzer.
-            pid = self.server.execute()
-            log.debug("%s: analyzer started with PID %d", self.id, pid)
+                    try:
+                        self.server.add_malware(data, options["file_name"])
+                    except MemoryError as e:
+                        raise CuckooGuestError("{0}: unable to upload malware to "
+                                               "analysis machine, not enough "
+                                               "memory".format(self.id))
+
+                # Launch the analyzer.
+                pid = self.server.execute()
+                log.debug("%s: analyzer started with PID %d", self.id, pid)
         # If something goes wrong when establishing the connection, raise an
         # exception and abort the analysis.
         except (socket.timeout, socket.error):
@@ -195,34 +201,41 @@ class GuestManager:
         timer.start()
         self.server._set_timeout(self.timeout)
 
-        while True:
-            time.sleep(1)
+        #we have inner (WHILE 1) loop in Droidbox, so we skip cuckoo's
+        if self.platform.lower() == 'android':
+            log.warning("===>Analysis on android machine waiting for completing");
+            self.droidbox.wait_for_completion()
 
-            # If the analysis hits the critical timeout, just return straight
-            # straight away and try to recover the analysis results from the
-            # guest.
-            if abort.is_set():
-                raise CuckooGuestError("The analysis hit the critical timeout,"
-                                       " terminating")
+        else:
+            while True:
+                time.sleep(1)
 
-            try:
-                status = self.server.get_status()
-            except Exception as e:
-                log.debug("%s: error retrieving status: %s", self.id, e)
-                continue
+                # If the analysis hits the critical timeout, just return straight
+                # straight away and try to recover the analysis results from the
+                # guest.
 
-            # React according to the returned status.
-            if status == CUCKOO_GUEST_COMPLETED:
-                log.info("%s: analysis completed successfully", self.id)
-                break
-            elif status == CUCKOO_GUEST_FAILED:
-                error = self.server.get_error()
-                if not error:
-                    error = "unknown error"
+                
+                #if abort.is_set():
+                #    raise CuckooGuestError("The analysis hit the critical timeout,"
+                #                           " terminating")
+                try:
+                    status = self.server.get_status()
+                except Exception as e:
+                    log.debug("%s: error retrieving status: %s", self.id, e)
+                    continue
 
-                raise CuckooGuestError("Analysis failed: {0}".format(error))
-            else:
-                log.debug("%s: analysis not completed yet (status=%s)",
-                          self.id, status)
+                # React according to the returned status.
+                if status == CUCKOO_GUEST_COMPLETED:
+                    log.info("%s: analysis completed successfully", self.id)
+                    break
+                elif status == CUCKOO_GUEST_FAILED:
+                    error = self.server.get_error()
+                    if not error:
+                        error = "unknown error"
+
+                    raise CuckooGuestError("Analysis failed: {0}".format(error))
+                else:
+                    log.debug("%s: analysis not completed yet (status=%s)",
+                                  self.id, status)
 
         self.server._set_timeout(None)

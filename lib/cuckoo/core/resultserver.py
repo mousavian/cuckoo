@@ -48,6 +48,7 @@ class Resultserver(SocketServer.ThreadingTCPServer, object):
 
         try:
             server_addr = self.cfg.resultserver.ip, self.cfg.resultserver.port
+            log.warning("======>__init__, server_addr: {0}".format(server_addr))
             SocketServer.ThreadingTCPServer.__init__(self,
                                                      server_addr,
                                                      Resulthandler,
@@ -65,6 +66,7 @@ class Resultserver(SocketServer.ThreadingTCPServer, object):
 
     def add_task(self, task, machine):
         """Register a task/machine with the Resultserver."""
+        log.warning("======> add_task, machine:{0}".format(machine))
         self.analysistasks[machine.ip] = (task, machine)
         self.analysishandlers[task.id] = []
 
@@ -81,6 +83,7 @@ class Resultserver(SocketServer.ThreadingTCPServer, object):
 
     def register_handler(self, handler):
         """Register a RequestHandler so that we can later wait for it."""
+        log.warning("======>register_handler, handler: {0}".format(handler))
         task, machine = self.get_ctx_for_ip(handler.client_address[0])
         if not task or not machine:
             return False
@@ -89,6 +92,7 @@ class Resultserver(SocketServer.ThreadingTCPServer, object):
     def get_ctx_for_ip(self, ip):
         """Return state for this IP's task."""
         x = self.analysistasks.get(ip, None)
+        log.warning("======>get_ctx_for_ip, ip: {0}".format(ip))
         if not x:
             log.critical("Resultserver unable to map ip to "
                          "context: {0}.".format(ip))
@@ -98,6 +102,7 @@ class Resultserver(SocketServer.ThreadingTCPServer, object):
 
     def build_storage_path(self, ip):
         """Initialize analysis storage folder."""
+        log.warning("======>build_storage_path, ip: {0}".format(ip))
         task, machine = self.get_ctx_for_ip(ip)
         if not task or not machine:
             return False
@@ -114,6 +119,7 @@ class Resulthandler(SocketServer.BaseRequestHandler):
     """
 
     def setup(self):
+        log.warning("============>setup: {0}".format(dir(self)))
         self.logfd = None
         self.rawlogfd = None
         self.protocol = None
@@ -182,6 +188,7 @@ class Resulthandler(SocketServer.BaseRequestHandler):
                                          "protocol requested.")
 
     def handle(self):
+        log.warning("====>handle, client_address:{0}".format(self.client_address))
         ip, port = self.client_address
         self.connect_time = datetime.datetime.now()
         log.debug("New connection from: {0}:{1}".format(ip, port))

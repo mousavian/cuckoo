@@ -9,6 +9,7 @@ import logging
 import Queue
 import mysql.connector
 from threading import Thread, Lock
+from lib.cuckoo.common.colors import red, green, yellow, cyan
 
 from lib.cuckoo.common.config import Config
 from lib.cuckoo.common.constants import CUCKOO_ROOT
@@ -21,6 +22,7 @@ from lib.cuckoo.core.database import Database, TASK_COMPLETED, TASK_REPORTED, TA
 from lib.cuckoo.core.guest import GuestManager
 from lib.cuckoo.core.plugins import list_plugins, RunAuxiliary, RunProcessing
 from lib.cuckoo.core.plugins import RunSignatures, RunReporting
+from modules.machinery.lxc import LXC
 from lib.cuckoo.core.resultserver import Resultserver
 
 log = logging.getLogger(__name__)
@@ -158,7 +160,7 @@ class AnalysisManager(Thread):
             # In some cases it's possible that we enter this loop without
             # having any available machines. We should make sure this is not
             # such case, or the analysis task will fail completely.
-            if not machinery.availables():
+            if not machinery.availables(self.task.platform):
                 machine_lock.release()
                 time.sleep(1)
                 continue
@@ -267,14 +269,17 @@ class AnalysisManager(Thread):
         else:
             try:
                 # Initialize the guest manager.
+                log.warning("====>GuestManager calling...")
                 guest = GuestManager(self.machine.name, self.machine.ip, self.machine.platform)
                 # Start the analysis.
+                log.warning("====>GuestManager.start_analysis calling...")
                 guest.start_analysis(options)
             except CuckooGuestError as e:
                 log.error(str(e), extra={"task_id": self.task.id})
             else:
                 # Wait for analysis completion.
                 try:
+                    log.warning("====>GuestManager.wait_for_completion calling...")
                     guest.wait_for_completion()
                     succeeded = True
                 except CuckooGuestError as e:
@@ -283,6 +288,7 @@ class AnalysisManager(Thread):
 
         finally:
             # Stop Auxiliary modules.
+            log.warning("=====> Analysis is done! Auxiliary Stopping")
             aux.stop()
 
             # Take a memory dump of the machine before shutting it off.
@@ -402,7 +408,7 @@ class AnalysisManager(Thread):
 
         active_analysis_count -= 1
 
-class Scheduler:
+class Scheduler: 
     """Tasks Scheduler.
 
     This class is responsible for the main execution loop of the tool. It
@@ -426,7 +432,7 @@ class Scheduler:
 
         log.info("Using \"%s\" machine manager", machinery_name)
 
-        # Get registered class name. Only one machine manager is imported,
+        # Get registered class name. Only one machine manager is imported, 
         # therefore there should be only one class in the list.
         plugin = list_plugins("machinery")[0]
         # Initialize the machine manager.
@@ -479,58 +485,39 @@ class Scheduler:
         while self.running:
             time.sleep(1)
 
-            # If not enough free diskspace is available, then we print an
-            # error message and wait another round (this check is ignored
-            # when freespace is set to zero).
-            # if self.cfg.cuckoo.freespace:
-            #     # Resolve the full base path to the analysis folder, just in
-            #     # case somebody decides to make a symlink out of it.
-            #     log.error("&&&& 1 &&&&")
-            #     dir_path = os.path.join(CUCKOO_ROOT, "storage", "analyses")
+            #if any machine and task available for WINDOWS
+            if machinery.availables('windows') > 0 and self.db.fetch(lock=False, platform='windows'):
+                task = self.db.fetch(lock=True, platform='windows')
+                if task:
+                    log.debug("Processing task #%s", task.id)
+                    total_analysis_count += 1
 
-            #     # TODO: Windows support
-            #     if hasattr(os, "statvfs"):
-            #         dir_stats = os.statvfs(dir_path)
+                    analysis = AnalysisManager(task, errors)
+                    analysis.start()
+                
+            #if any machine and task available for ANDROID
+            elif machinery.availables('android') > 0 and self.db.fetch(lock=False, platform='android'):
+                task = self.db.fetch(lock=True, platform='android')
+                if task:
+                    log.debug("Processing task #%s", task.id)
+                    total_analysis_count += 1
 
-            #         # Free diskspace in megabytes.
-            #         space_available = dir_stats.f_bavail * dir_stats.f_frsize
-            #         space_available /= 1024 * 1024
-
-            #         if space_available < self.cfg.cuckoo.freespace:
-            #             log.error("Not enough free diskspace! (Only %d MB!)",
-            #                       space_available)
-            #             continue
-
-            # If no machines are available, it's pointless to fetch for
-            # pending tasks. Loop over.
-            if machinery.availables() == 0:
-                log.error("&&&& 2 &&&&")
+                    analysis = AnalysisManager(task, errors)
+                    analysis.start()
+                #elif machinery_lxc.availables():
+                #    android_task = self.db.fetch('android')
+                #    if android_task:
+                #        total_analysis_count += 1
+                #        # Initialize the analysis manager.
+                #        #analysis = AnalysisManager(task, errors)
+                #        # Start.
+                #        #analysis.start()
+                try:
+                    error = errors.get(block=False)
+                except Queue.Empty:
+                    pass
+                else:
+                    raise error
+            else:
+            #    log.error("&&&& 10 &&&&")
                 continue
-
-            # Exits if max_analysis_count is defined in config file and
-            # is reached.
-            # if maxcount and total_analysis_count >= maxcount:
-            #     log.error("&&&& 3 &&&&")
-            #     if active_analysis_count <= 0:
-            #         self.stop()
-            # else:
-            # Fetch a pending analysis task.
-            task = self.db.fetch()
-
-            if task:
-                log.debug("Processing task #%s", task.id)
-                total_analysis_count += 1
-
-                # Initialize the analysis manager.
-                analysis = AnalysisManager(task, errors)
-                # Start.
-                analysis.start()
-            else:
-                log.error("&&&& 4 &&&&")
-            # Deal with errors.
-            try:
-                error = errors.get(block=False)
-            except Queue.Empty:
-                pass
-            else:
-                raise error

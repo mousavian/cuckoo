@@ -510,7 +510,7 @@ class Database(object):
         finally:
             session.close()
 
-    def fetch(self, lock=True):
+    def fetch(self, lock=True, platform=None):
         """Fetches a task waiting to be processed and locks it for running.
         @return: None or task
         """
@@ -518,7 +518,10 @@ class Database(object):
         row = None
 
         try:
-            row = session.query(Task).filter(Task.status == TASK_PENDING).order_by("priority desc, added_on").first()
+            query = session.query(Task).filter(Task.status == TASK_PENDING)
+            if platform:
+                query = query.filter(Task.platform == platform)
+            row = query.order_by("priority desc, added_on").first()
 
             if not row:
                 return None
@@ -691,13 +694,13 @@ class Database(object):
 
         return machine
 
-    def count_machines_available(self):
+    def count_machines_available(self, platform='windows'):
         """How many virtual machines are ready for analysis.
         @return: free virtual machines count
         """
         session = self.Session()
         try:
-            machines_count = session.query(Machine).filter(Machine.locked == False).count()
+            machines_count = session.query(Machine).filter(Machine.locked == False).filter(Machine.platform == platform).count()
         except SQLAlchemyError as e:
             log.debug("Database error counting machines: {0}".format(e))
             return 0

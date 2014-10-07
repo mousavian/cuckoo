@@ -1,7 +1,7 @@
 # Copyright (C) 2010-2014 Cuckoo Sandbox Developers.
 # This file was originally produced by Mike Tu.
 # This file is part of Cuckoo Sandbox - http://www.cuckoosandbox.org
-# See the file 'docs/LICENSE' for copying permission.
+# See the file 'docs/LICENSE' for copying permission. 
 
 import logging
 import subprocess

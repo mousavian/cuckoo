@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 # Copyright (C) 2010-2014 Cuckoo Sandbox Developers.
 # This file is part of Cuckoo Sandbox - http://www.cuckoosandbox.org
-# See the file 'docs/LICENSE' for copying permission.
+# See the file 'docs/LICENSE' for copying permission. 
 
 import sys
 import logging
 import argparse
+from lib.cuckoo.common.colors import red, green, yellow, cyan
 
 try:
     from lib.cuckoo.common.logo import logo
@@ -52,14 +53,21 @@ def main():
     elif args.debug:
         log.setLevel(logging.DEBUG)
 
+    #print yellow("init_modules->")
     init_modules()
+    #print yellow("<-init_modules")
+    #print yellow("init_tasks->")
     init_tasks()
-
+    #print yellow("<-init_tasks")
+    #print yellow("REsultServer->")
     Resultserver()
+    #print yellow("<-REsultServer")
 
     try:
+        #print yellow("Scheduler->")
         sched = Scheduler()
         sched.start()
+        #print yellow("<-Scheduler")
     except KeyboardInterrupt:
         sched.stop()
 
