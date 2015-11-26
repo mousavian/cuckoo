@@ -1,0 +1,731 @@
+    1  cd ~
+    2  sudo apt-get install python
+    3  sudo apt-get install python-sqlalchemy python-bson
+    4  sudo apt-get install python-dpkt python-jinja2 python-magic python-pymongo python-libvirt python-bottle python-pefile python-chardet
+    5  apt-get install python-dev
+    6  sudo apt-get install qemu-kvm libvirt-bin ubuntu-vm-builder bridge-utils
+    7  apt-get install qemu-kvm libvirt-bin ubuntu-vm-builder bridge-utils
+    8  ping mirror.nus.edu.sg
+    9  apt-get install qemu-kvm libvirt-bin ubuntu-vm-builder bridge-utils
+   10  sudo apt-get install tcpdump
+   11  sudo setcap cap_net_raw,cap_net_admin=eip /usr/sbin/tcpdump
+   12  getcap /usr/sbin/tcpdump
+   13  sudo chmod +s /usr/sbin/tcpdump
+   14  adduser cuckoo
+   15  deluser cuckoo
+   16  adduser cuckoo
+   17  usermod -G vboxusers cuckoo
+   18  ftp 172.19.71.67
+   19  pwd
+   20  echo "http://search.4shared-china.com/postDownload/3vM0BD4b/Win-XP-Sp2.html
+   21  echo "http://search.4shared-china.com/postDownload/3vM0BD4b/Win-XP-Sp2.html">link.txt
+   22  ll
+   23  ftp 172.19.71.67
+   24  ll ~/rahman/
+   25  cp ~rahman/Downloads/cuckoo-current.tar.gz ~cuckoo/
+   26  cd ~cuckoo
+   27  ll
+   28  tar xzvf cuckoo-current.tar.gz 
+   29  ll
+   30  rm cuckoo-current.tar.gz 
+   31  ftp 172.19.71.67
+   32  ping teamviewer
+   33  ping teamviewer.com
+   34  vim /etc/resolv.conf 
+   35  vi /etc/resolv.conf 
+   36  nano /etc/resolv.conf 
+   37  ping teamviewer.com
+   38  nano /etc/resolv.conf 
+   39  ping teamviewer.com
+   40  ll
+   41  cd cuckoo/
+   42  ll
+   43  cd utils/
+   44  ll
+   45  ./submit.py api.py 
+   46  exit
+   47  k4hvd
+   48  sudo apt-get install virt-manager
+   49  apt-get install qemu-kvm libvirt-bin bridge-utils virt-manager
+   50  sudo adduser rahman libvirtd
+   51  virsh -c qemu:///system list
+   52  apt-get install libvirt-bin libvirtd
+   53  apt-get install libvirt-bin
+   54  apt-get install libvirtd
+   55  service start libvirtd
+   56  service libvirtd start
+   57  egrep -c ‘(svm|vmx)’ /proc/cpuinfo
+   58  egrep -c '(svm|vmx)' /proc/cpuinfo
+   59  sudo apt-get install qemu-kvm libvirt-bin bridge-utils virt-manager
+   60  usermod -G libvirtd -a rahman
+   61  nano  /etc/libvirt/libvirtd.conf
+   62  apt-get install ubuntu-virt-server python-vm-builder kvm-ipxe virtinst libcap2-bin
+   63  adduser rahman libvirtd
+   64  adduser rahman kvm
+   65  apt-get install bridge-utils
+   66  /etc/init.d/networking restart
+   67  service firewalld status
+   68  service firewall status
+   69  service iptables status
+   70  service fsw status
+   71  service fws status
+   72  apt-get install kvm ubuntu-vm-builder libvirt-bin bridge-utils
+   73  reboot -h now
+   74  virsh edit cuckoo
+   75  virsh edit cuckoo1
+   76  virsh edit 
+   77  virsh
+   78  virsh edit cuckoo_raw
+   79  top
+   80  top -h
+   81  free -h
+   82  free -l
+   83  cd ~rahman/vms/
+   84  ll
+   85  virsh 
+   86  qemu-img convert -O qcow2 cuckoo_raw.img cuckoo.qcow2
+   87  ll
+   88  virsh
+   89  virsh snapshot-create cuckoo_raw
+   90  cd ~rahman/cuckoo/
+   91  ll
+   92  cd 1.0/
+   93  ll
+   94  cd utils/
+   95  ll
+   96  ./su
+   97  ll
+   98  chmod 777 *
+   99  ll
+  100  ./submit.py 
+  101  ./submit.py --help
+  102  ./submit.py
+  103  ./submit.py --help
+  104  ./submit.py api.py 
+  105  ll
+  106  cd .. ..
+  107  ll
+  108  chmod 777 *.*
+  109  ll
+  110  chmod 777 *.* -R
+  111  ll
+  112  chmod 777 *.* -R -D
+  113  chmod 777 *.* -RD
+  114  chmod 777 *.* -Rd
+  115  chmod 777 * -Rd
+  116  chmod 777 * -R
+  117  ll
+  118  ./cuckoo.py 
+  119  ./cuckoo.py -v
+  120  ./cuckoo.py -d
+  121  ll
+  122  cd conf/
+  123  ll
+  124  nano cuckoo.conf 
+  125  cd ..
+  126  ./cuckoo.py -d
+  127  cd conf/
+  128  ll
+  129  nano kvm.conf 
+  130  cd ..
+  131  ./cuckoo.py 
+  132  ./cuckoo.py  -d
+  133  ifconfig
+  134  ping 172.18.72.139
+  135  ssh 172.18.72.139
+  136  ssh root@172.18.72.139
+  137  exit
+  138  cd ..
+  139  ./cuckoo.py 
+  140  cd conf/cuckoo.conf 
+  141  nano conf/cuckoo.conf 
+  142  nano conf/kvm.conf 
+  143  exit
+  144  adduser vhr
+  145  su vhr
+  146  exit
+  147  chown vhr:vhr * -R
+  148  ll
+  149  exit
+  150  deluser vhr
+  151  ll
+  152  cd ..
+  153  ll
+  154  ls
+  155  cd vuk
+  156  cd cuckoo/
+  157  ll
+  158  chown rahman:rahman * -R
+  159  ll
+  160  exit
+  161  user-add
+  162  exit
+  163  vi /etc/hosts
+  164  ssh root@172.18.72.139
+  165  exit
+  166  cd nova
+  167  cd python-novaclient-master/
+  168  ll
+  169  python
+  170  python y.py 
+  171  cd ..
+  172  ll
+  173  cd python-novaclient-master/
+  174  ll
+  175  cd doc/
+  176  MAKEDEV 
+  177  ll
+  178  make Makefile
+  179  ./Makefile
+  180  chmod 777 Makefile
+  181  ./Makefile
+  182  ImportError: No module named pbr.version
+  183  cd ..
+  184  ll
+  185  python y.py 
+  186  more requirements.txt 
+  187  pip
+  188  apt-get install python-pip
+  189  pip install -r requirements.txt 
+  190  python y.py 
+  191  python 
+  192  python y.py 
+  193  python 
+  194  python y.py 
+  195  python 
+  196  python y.py 
+  197  python
+  198  python y.py 
+  199  python
+  200  python y.py 
+  201  route add -net 10.0.0.0 netmask 255.255.255.0 gw 172.18.72.139 dev eth0
+  202  ping 10.0.0.6
+  203  ping 10.0.0.5
+  204  ping 10.0.0.8
+  205  ifconfig
+  206  cd ~rahman/cuckoo/
+  207  ll
+  208  cd 1.0/
+  209  ll
+  210  ./cuckoo.py 
+  211  ssh-keygen
+  212  ssh-copy-id -i ~/.ssh/id_rsa.pub 172.18.72.139
+  213  ./cuckoo.py 
+  214  ll /home/rahman/cuckoo/1.0/storage/
+  215  ll /home/rahman/cuckoo/1.0/storage/binaries/
+  216  rm /home/rahman/cuckoo/1.0/storage/binaries/*
+  217  ll /home/rahman/cuckoo/1.0/storage/binaries/
+  218  ping 172.18.72.68
+  219  ./cuckoo.py 
+  220  ./cuckoo.py --debug
+  221  rm /home/rahman/cuckoo/1.0/storage/binaries/*
+  222  ./cuckoo.py --debug
+  223  python
+  224  exit
+  225  apt-get install python-django
+  226  ./manage.py runserver
+  227  ./manage.py
+  228  ./manage.py startapp
+  229  ll
+  230  ./manage.py startapp dashboard
+  231  ./manage.py
+  232  ./manage.py runserver
+  233  cd web/
+  234  ll
+  235  vi local_settings.py 
+  236  SetEnv DJANGO_SETTINGS_MODULE web.local_settings
+  237  DJANGO_SETTINGS_MODULE web.local_settings
+  238  export DJANGO_SETTINGS_MODULE web.local_settings
+  239  export DJANGO_SETTINGS_MODULE=web.local_settings
+  240  ./manage.py runserver
+  241  cd ..
+  242  ./manage.py runserver
+  243  export DJANGO_SETTINGS_MODULE=web.local_settings.py
+  244  ./manage.py runserver
+  245  export DJANGO_SETTINGS_MODULE=local_settings
+  246  ./manage.py runserver
+  247  export DJANGO_SETTINGS_MODULE=local_settings.py
+  248  ./manage.py runserver
+  249  c d..
+  250  cd ..
+  251  cd utils/
+  252  ./clean.sh 
+  253  rm /home/rahman/cuckoo/1.0/storage/binaries/*
+  254  ./submit.py ~rahman/Downloads/putty.exe 
+  255  rm /home/rahman/cuckoo/1.0/storage/binaries/*
+  256  ./clean.sh 
+  257  ping teamviewer.com
+  258  ping 4.2.2.4
+  259  ping teamviewer.com
+  260  vi /etc/resolv.conf 
+  261  vi /etc/host
+  262  vi /etc/hosts
+  263  vim /etc/hosts
+  264  nano /etc/hosts
+  265  ping controller
+  266  ./clean.sh 
+  267  vi /etc/hosts
+  268  nano /etc/hosts
+  269  chown nobody:nobody *
+  270  chown -R nobody:nobody *
+  271  chmod 777 agent.py 
+  272  ll
+  273  chown nobody:vhr agent.py 
+  274  chown nobody:nobody agent.py 
+  275  exit
+  276  service vsftpd start
+  277  service vsftpd stop
+  278  service vsftpd status
+  279  service vsftpd start
+  280  cd ../agent/agent.py /home/rahman/Public/
+  281  cp ../agent/agent.py /home/rahman/Public/
+  282  ./web.py 
+  283  ssh root@controller
+  284  ping 10.0.0.16
+  285  ping 10.0.0.18
+  286  python
+  287  cd..
+  288  cd ..
+  289  cd..
+  290  python
+  291  top
+  292  kill 19112
+  293  top
+  294  ping compute1
+  295  controller
+  296  ping controller
+  297  controller
+  298  ping compute1
+  299  ping controller
+  300  ping compute1
+  301  ping compute2
+  302  ping googl.e.com
+  303  ping google.com
+  304  ping 4.2.2.4
+  305  top
+  306  kill 25391
+  307  top
+  308  kill 6193
+  309  top
+  310  kill 6458
+  311  top
+  312  kill 7670
+  313  top
+  314  ps au
+  315  ps aux
+  316  ps aux | team
+  317  ps aux | grep team
+  318  ps aux | grep team | grep 2
+  319  awk
+  320  ps aux | awk 5
+  321  ps aux | grep
+  322  cut
+  323  ps aux | grep team | cut %f
+  324  ps aux | grep team | cut %d
+  325  ps aux | grep team | cut ' '
+  326  cut ' '
+  327  cut --help
+  328  cut ' ' -f1
+  329  ps aux | grep team | awk ' print {$2} '
+  330  ps aux | grep team | grep  ' print {$2} '
+  331  ps aux | grep team | awk ' { print $2} '
+  332  ps aux | grep team | awk '{print $2}'
+  333  ps aux | grep team
+  334  kill | ps aux | grep team | awk '{print $2}'
+  335  ps aux | grep team | awk '{print $2}'
+  336  ps aux | grep team | awk '{print $2}' | kill
+  337  for i in ps aux | grep team | awk '{print $2}'; do kill $i; done
+  338  tasks=ps aux | grep team | awk '{print $2}';
+  339  tasks=ps aux | grep team | awk '{print $2}'
+  340  tasks= (ps aux | grep team | awk '{print $2}';)
+  341  tasks= (ps aux | grep team | awk '{print $2}')
+  342  ps aux | grep team | awk '{print $2}' =task
+  343  ps aux | grep team | awk '{print $2}' 
+  344  kill 1688 1755 6555 14064
+  345  ps aux | grep team | awk '{print $2}' 
+  346  ps aux | grep teamvie* | awk '{print $2}' 
+  347  ps aux | grep -ie amarok | awk '{print $2}' | xargs 
+  348  ps aux | grep -ie amarok | awk '{print $2}'
+  349  ps aux | grep teamvie* | awk '{print $2}' 
+  350  ps aux | grep teamvie* | awk '{print $2}' | xargs
+  351  ps aux | grep teamvie* | awk '{print $2}' | xargs kill -9
+  352  ps aux | grep teamvie* | awk '{print $2}' | xargs kill
+  353  ping 10.0.0.8
+  354  python
+  355  ping 10.0.0.9
+  356  apt-get install git subversion
+  357  git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+  358  gclient sync --nohooks
+  359  apt-get install gclient
+  360  ./src/build/install-build-deps.sh
+  361  ll
+  362  export PATH="$PATH":`pwd`/depot_tools
+  363  # Config chromium project
+  364  mkdir chromium && cd ~/chromium
+  365  gclient config https://src.chromium.org/chrome/trunk/src https://chromium-status.appspot.com/lkgr
+  366  mkdir chromium && cd chromium
+  367  cd chromium/
+  368  gclient config https://src.chromium.org/chrome/trunk/src https://chromium-status.appspot.com/lkgr
+  369  exit
+  370  ps aux | grep teamvie* | awk '{print $2}' | xargs kill -9
+  371  kill 8649
+  372  kill 8569
+  373  exit
+  374  apt-get install lynx
+  375  lynx http://www.my-ip-address.net/
+  376  ps aux | grep team
+  377  kill 28995
+  378  vi /etc/resolv.conf 
+  379  vim /etc/resolv.conf 
+  380  nano /etc/resolv.conf 
+  381  teamviewer --daemon start
+  382  apt-get install vsftpd
+  383  vi /etc/vsftpd.conf 
+  384  nano /etc/vsftpd.conf 
+  385  /etc/init.d/vsftpd restart
+  386  ifconfig
+  387  ssh root@controller
+  388  teamviewer --daemon start
+  389  mkdir android
+  390  chown rahman android
+  391  echo $HOME
+  392  exit
+  393  cd ..
+  394  chmod -R 777 DroidBox_4.1.1/
+  395  chmod -R 777 sdk
+  396  exit
+  397  sudo dpkg --add-architecture i386
+  398  sudo apt-get update
+  399  sudo apt-get install libncurses5:i386 libstdc++6:i386 zlib1g:i386
+  400  apt-get install ia32-libs
+  401  apt-get install sun-java6-jdk
+  402  sudo apt-get install oracle-java8-installer
+  403  sudo apt-get update
+  404  apt-cache search jdk
+  405  apt-cache search jdk | *oracle*
+  406  apt-cache search jdk | *openjdk*
+  407  apt-cache search jdk | grep *openjdk*
+  408  apt-cache search jdk | grep oracle
+  409  apt-cache search jdk | grep openjdk
+  410  sudo apt-get install openjdk-7-jdk
+  411  cd /usr/lib/
+  412  ll /usr/lib/ | grep java
+  413  ll /usr/lib/ | grep jdk
+  414  ll /usr/lib/ | grep jvm
+  415  cd jvm
+  416  ll
+  417  echo $JAVA_HOME
+  418  export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-i386/
+  419  export PATH=$PATH:$JAVA_HOME
+  420  cd /usr/local/lll
+  421  cd /usr/local/
+  422  ll
+  423  exit
+  424  teamviewer --daemon start
+  425  exit
+  426  cd /etc/network
+  427  ll
+  428  cd interfaces 
+  429  cd ..
+  430  cd..
+  431  cd ..
+  432  ll
+  433  ping 4.2.2.4
+  434  vi /etc/network/interfaces 
+  435  ifconfig
+  436  ping google.com
+  437  sudo ifdown eth0 & ifup eth0
+  438  ifconfig
+  439  service network status
+  440  service networking status
+  441  service networking start
+  442  sudo service networking start
+  443  sudo service networkManager status
+  444  sudo service network-Manager status
+  445  sudo service networkmanager status
+  446  sudo service network-manager status
+  447  sudo service network-manager stop
+  448  sudo service networking start
+  449  cd /etc/network
+  450  ll
+  451  vi interfaces 
+  452  ifocnfig
+  453  ifconfig
+  454  vi interfaces 
+  455  sudo service networking start
+  456  sudo service networking restart
+  457  ping 4.2.2.4
+  458  service network-manager start
+  459  ping 4.2.2.4
+  460  shutdown -h
+  461  shutdown --help
+  462  shutdown -r 0
+  463  cd /etc/network
+  464  vi interfaces 
+  465  service network-manager start
+  466  service network-manager restart
+  467  ping google.com
+  468  cd ..
+  469  vi resolv
+  470  vi resolv.conf 
+  471  service network-manager restart
+  472  ping 4.2.2.4
+  473  ping google.com
+  474  vi resolv.conf 
+  475  service network-manager restart
+  476  vi resolv.conf 
+  477  ping 4.2.2.4
+  478  service networking status
+  479  service networking start
+  480  ping 8.8.8.8
+  481  ping google.com
+  482  service networking start
+  483  cd network
+  484  cd run
+  485  ll
+  486  vi ifstate 
+  487  ./if
+  488  cd ..
+  489  ll
+  490  ./if-up.d/
+  491  cd /
+  492  ifup eth0
+  493  ifqueru eth0
+  494  ifquery eth0
+  495  ifdown eth0
+  496  ifup eth0
+  497  cd /etc
+  498  gedit resolv.conf 
+  499  ping google.com
+  500  nm-tool | tail -n 8
+  501  nm-tool
+  502  ping 4.2.2.4
+  503  ping google.com
+  504  teamviewer --daemon start
+  505  ping controller
+  506  ping compute1
+  507  ping compute2
+  508  ssh root@compute1
+  509  exit
+  510  ssh root@compute1
+  511  ssh-keygen
+  512  ssh-copy-id -i ~/.ssh/id_rsa.pub compute1
+  513  ssh root@compute1
+  514  ssh root@compute2
+  515  ssh-copy-id -i ~/.ssh/id_rsa.pub compute2
+  516  ssh root@compute2
+  517  ssh root@controller
+  518  ssh-copy-id -i ~/.ssh/id_rsa.pub controller
+  519  exit
+  520  ssh root@controller
+  521  exit
+  522  service firewalld status
+  523  service selinux status
+  524  service iptables status
+  525  service ufw status
+  526  service ufw stop
+  527  sudo ufw disable
+  528  exit
+  529  ssh root@controller
+  530  top
+  531  kill 1291
+  532  ssh root@controller
+  533  service network-manager restart
+  534  ping copntroller
+  535  ping controller
+  536  ssh root@compute1
+  537  exit
+  538  vi resolv.conf
+  539  nanp resolv.conf
+  540  nano resolv.conf
+  541  service network-manager restart
+  542  exit
+  543  service network-manager stop
+  544  service netowkring start
+  545  service netwokring start
+  546  service networking start
+  547  ping 4.2.2.4
+  548  ll
+  549  cd networks 
+  550  cd network
+  551  ll
+  552  cd if-down.d/
+  553  ll
+  554  cd ..
+  555  vi interfaces 
+  556  cd ..
+  557  vi networks 
+  558  service network-manager restart
+  559  nanp /etc/resolv.conf
+  560  nano /etc/resolv.conf
+  561  service network-manager restart
+  562  nano /etc/network/interfaces 
+  563  service network-manager stop
+  564  ifown eth0
+  565  ifdown eth0
+  566  ifip eth0
+  567  ifup eth0
+  568  ping 4.2.2.4
+  569  nano resolv
+  570  nano resolv.conf
+  571  ping 4.2.2.2
+  572  ping gmail.com
+  573  ping android-x86.org
+  574  ping 4.2.2.4
+  575  search android-x86.org
+  576  ping android-x86.org
+  577  exit
+  578  curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+  579  exit
+  580  scp root@compute1:/tmp/15bashrc .
+  581  ll
+  582  teamviewer --daemon start
+  583  sudo su
+  584  vi /etc/resolv
+  585  vi /etc/resolv.conf
+  586  nano /etc/resolv.conf
+  587  service network-manager restart
+  588  ssh root@controller
+  589  ping controller
+  590  ssh root@controller
+  591  ifconfig
+  592  ifdown eth0
+  593  ifconfig
+  594  ifup eth0
+  595  ifconfig
+  596  ping 172.18.72.254
+  597  ping 4.2.2.4
+  598  vi /etc/network/interfaces 
+  599  nano /etc/network/interfaces 
+  600  ifdown eth0
+  601  ifup eth0
+  602  ping 4.2.2.4
+  603  ifconfig
+  604  nano /etc/resolv.conf
+  605  ifdown eth0
+  606  ifup eth0
+  607  nano /etc/resolv.conf
+  608  ping controller
+  609  ping 4.2.2.4
+  610  ping 8.8.8.8
+  611  nano /etc/resolv.conf
+  612  ping yahoo.com
+  613  ping openstack.com
+  614  ping google.com
+  615  ifdown eth0
+  616  nano /etc/network/interfaces 
+  617  ifdown eth0
+  618  ifup eth0
+  619  nano /etc/resolv.conf
+  620  ping 8.8.8.8
+  621  ping 4.2.2.2
+  622  ping 8.8.8.8
+  623  ping 4.2.2.2
+  624  ping 8.8.8.8
+  625  ping 172.18.72.254
+  626  ssh root@172.18.72.254
+  627  tracert 8.8.8.8
+  628  tracert6 8.8.8.8
+  629  traceroute 8.8.8.8
+  630  ping 4.2.2.2
+  631  ping 8.8.8.8
+  632  ping 8.8.8.8\
+  633  nano /etc/network/interfaces 
+  634  ifdown eth0
+  635  ifup eth0
+  636  nano /etc/network/interfaces 
+  637  ifdown eth0
+  638  ifup eth0
+  639  ping 8.8.8.8
+  640  ifconfig
+  641  ip route
+  642  nano /etc/resolv.conf
+  643  ifconfig
+  644  nano /etc/network/interfaces 
+  645  ifdown eth0 && ifup eth0
+  646  ifup eth0
+  647  ifcondif
+  648  ifconfig
+  649  nano /etc/network/interfaces 
+  650  ifdown eth0 && ifup eth0
+  651  ping facebook.com
+  652  ping 8.8.8.8
+  653  nano /etc/resolv.conf
+  654  ping 172.16.240.250
+  655  ping 172.16.240.251
+  656  ping 172.16.230.250
+  657  nano /etc/network/interfaces 
+  658  nano /etc/resolv.conf
+  659  nano /etc/network/interfaces 
+  660  ifdown eth0 && ifup eth0
+  661  ping 172.16.240.240
+  662  nano /etc/resolv.conf
+  663  ping 172.16.240.250
+  664  ping 172.16.240.254
+  665  ping 172.16.240.1
+  666  nano /etc/network/interfaces 
+  667  ifdown eth0 && ifup eth0
+  668  nano /etc/resolv.conf
+  669  ll /etc/resolv.conf
+  670  ll /run/resolvconf/
+  671  chmod -w /run/resolvconf/resolv.conf 
+  672  ll /run/resolvconf/
+  673  nano /etc/resolv.conf
+  674  ifdown eth0 && ifup eth0
+  675  nano /etc/resolv.conf
+  676  export HTTP_PROXY=http://127.0.0.1:9154
+  677  ping google.com
+  678  export HTTP_PROXY="http://127.0.0.1:9154"
+  679  ping google.com
+  680  export HTTP_PROXY=""
+  681  vi /etc/environment 
+  682  ping google.com
+  683  nano /etc/resolv.conf
+  684  top
+  685  kill 18974
+  686  nano /etc/resolv.conf
+  687  ifdown eth0 && ifup eth0
+  688  ifconfig
+  689  ping google.com
+  690  nano /etc/network/interfaces 
+  691  ifdown eth0 && ifup eth0
+  692  service networking restart
+  693  ping 172.18.72.254
+  694  top
+  695  ifdown eth0 && ifup eth0
+  696  ping 172.18.72.254
+  697  ping 8.8.8.8
+  698  ping 172.18.72.254
+  699  nano /etc/resolv.conf
+  700  ping 172.18.40.240
+  701  ping 172.18.40.250
+  702  ping 8.8.8.8
+  703  teamviewer --daemon-start
+  704  teamviewer --daemon start
+  705  ping 8.8.8.8
+  706  touch Androidx864_null.qcow2
+  707  echo "123">Androidx864_null.qcow2 
+  708  ifconfig
+  709  python
+  710  ps aux | grep teamvie* | awk '{print $2}' | xargs kill -9
+  711  top
+  712  ps aux | grep teamvie* | awk '{print $2}' | xargs kill -9
+  713  top
+  714  nano /etc/resolv.conf
+  715  ping google.com
+  716  apt-get --only-upgrade install google-chrome-stabel
+  717  apt-get --only-upgrade install google-chrome-stabel --fix-missing
+  718  apt-get --only-upgrade install google-chrome-stabel
+  719  apt-get --only-upgrade google-chrome-stabel
+  720  apt-get --only-upgrade install google-chrome-stabel
+  721  free && sync && echo 3 > /proc/sys/vm/drop_caches && free
+  722  free -m
+  723  sudo add-apt-repository ppa:maarten-baert/simplescreenrecorder
+  724  apt-get update
+  725  apt-get install simplescreenrecorder
+  726  teamviewer --daemon -start
+  727  teamviewer --daemon start
+  728  less | history
+  729  less history
+  730  history
+  731  history > commandline_history.txt

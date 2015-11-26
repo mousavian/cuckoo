@@ -1,0 +1,1000 @@
+  105  ./web.py 
+  106  ./submit.py ~rahman/Downloads/MalwareTest/
+  107  sudo vi /etc/apt/sources.list
+  108  sudo nano /etc/apt/sources.list
+  109  sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 94558F59
+  110  sudo apt-get update
+  111  sudo apt-get install spotify-client
+  112  ./stats.py 
+  113  cd ..
+  114  ./cuckoo.py 
+  115  python
+  116  cd ~rahman
+  117  ll
+  118  python mlw.py 
+  119  python
+  120  python mlw.py 
+  121  python
+  122  python mlw.py 
+  123  python
+  124  python mlw.py 
+  125  df
+  126  df -h
+  127  ping controller
+  128  cd cuckoo/1.0/utils/
+  129  ./submit.py ~/Downloads/putty.exe 
+  130  ./clean.sh 
+  131  ./submit.py ~/Downloads/putty.exe 
+  132  wget http://172.19.71.214/ -O ~rahman/Downloads/putty.exe 
+  133  ll ~rahman/Downloads/
+  134  wget http://the.earth.li/~sgtatham/putty/latest/x86/putty.exe -O ~rahman/Downloads/putty.exe 
+  135  ll ~rahman/Downloads/
+  136  ll ~rahman/Downloads/ -h
+  137  ./submit.py ~/Downloads/putty.exe 
+  138  ifconfig
+  139  ./submit.py ~/Downloads/putty.exe 
+  140  ./web.py 
+  141  ./submit.py ~/Downloads/0a42422e68b751459c73a0e68b5527ef.exe 
+  142  ./clean.sh 
+  143  ping controller
+  144  python
+  145  cd ~rahman/test
+  146  ll
+  147  chmod 777 rename.py 
+  148  ren
+  149  ./rename.py 
+  150  python rename.py 
+  151  python
+  152  python rename.py 
+  153  cat ~rahman/Downloads/virus/name.txt
+  154  python rename.py 
+  155  python
+  156  python rename.py 
+  157  ifconfig
+  158  ping 10.0.0.7
+  159  ping 10.0.0.6
+  160  ping 10.0.0.7
+  161  ping 10.0.0.4
+  162  ping 10.0.0.8
+  163  cd ~rahman/cuckoo/1.0/
+  164  ./cuckoo.py 
+  165  telnet 10.0.0.8 8000
+  166  ./utils/clean.sh 
+  167  ./cuckoo.py 
+  168  ssh root@172.18.72.138
+  169  ping 10.0.0.2
+  170  ping 10.0.0.5
+  171  cd cuckoo/1.0/
+  172  ./cuckoo.py --debug
+  173  clear
+  174  ./cuckoo.py --debug
+  175  clear
+  176  ./cuckoo.py --debug
+  177  clear
+  178  ./cuckoo.py --debug
+  179  clear
+  180  ./cuckoo.py --debug
+  181  clear
+  182  ./cuckoo.py --debug
+  183  top
+  184  ./cuckoo.py --debug
+  185  telnet 172.18.72.139 16509
+  186  telnet 172.18.72.138 16509
+  187  ssh root@172.18.72.139
+  188  ssh root@172.18.72.139 -vvv
+  189  ssh root@172.18.72.139
+  190  ./cuckoo.py --debug
+  191  ./cuckoo.py
+  192  ./cuckoo.py --debug
+  193  clear
+  194  ./cuckoo.py --debug
+  195  clear
+  196  ./cuckoo.py --debug
+  197  python
+  198  ./cuckoo.py --debug
+  199  python
+  200  ./cuckoo.py --debug
+  201  python
+  202  ./cuckoo.py --debug
+  203  python
+  204  ./cuckoo.py --debug
+  205  ./utils/clean.sh 
+  206  ./cuckoo.py --debug
+  207  nano /etc/hosts
+  208  sudo nano /etc/hosts
+  209  ping compute2
+  210  ./cuckoo.py --debug
+  211  ssh root@compute2
+  212  ./cuckoo.py --debug
+  213  python
+  214  ./cuckoo.py 
+  215  python 
+  216  ./cuckoo.py 
+  217  ./utils/clean.sh 
+  218  ping 10.0.0.5
+  219  ping 10.0.0.1
+  220  ping 10.0.0.6
+  221  netstat -arn
+  222  shh controller
+  223  ssh controller
+  224  ssh root@controller
+  225  ping 10.0.0.1
+  226  ping 10.0.0.5
+  227  ping 10.0.0.6
+  228  ./cuckoo.py 
+  229  ssh root@controller
+  230  gcc
+  231  fcc
+  232  cd ~rahman/
+  233  ll
+  234  mkdir temp
+  235  cd temp/
+  236  touch 2048.c
+  237  nano 2048.c 
+  238  gcc 2048.c 
+  239  ll
+  240  ./a.out 
+  241  python
+  242  cd cuckoo/1.0/
+  243  ./cuckoo.py --debug
+  244  ipconfig
+  245  ifconfig
+  246  ./cuckoo.py --debug
+  247  ssh root@compute
+  248  ssh root@compute2
+  249  exit
+  250  python
+  251  cd /usr/lib/pymodules/python2.7/dpkt/
+  252  ll
+  253  cd ~rahman/cuckoo/1.0/
+  254  cd utils/
+  255  ./submit.py '/home/rahman/Downloads/virus/happy1-3pm..Scr
+  256  ' 
+  257  ./web.py 
+  258  cd ,,
+  259  cd ..
+  260  ll
+  261  cd storage/
+  262  ll
+  263  cd analyses/
+  264  ll
+  265  cd 33
+  266  ll
+  267  cd logs/
+  268  ll
+  269  cd ,,
+  270  cd ..
+  271  cd reports/
+  272  ll
+  273  cat report.
+  274  cat report.html 
+  275  ssh root@controller
+  276  exit
+  277  ping 10.0.0.7
+  278  ping 10.0.0.8
+  279  ping 10.0.0.9
+  280  ping 10.0.0.10
+  281  ping 10.0.0.9
+  282  ping 10.0.0.8
+  283  ping 10.0.0.9
+  284  ping 10.0.0.7
+  285  ping 10.0.0.8
+  286  ping 10.0.0.9
+  287  ping 10.0.0.10
+  288  ping 10.0.0.9
+  289  su
+  290  sudo su
+  291  ssh-copy-id -i ~/.ssh/id_rsa.pub compute1
+  292  ssh-copy-id -i ~/.ssh/id_rsa.pub root@compute1
+  293  ssh root@172.19.71.214
+  294  cd utils/
+  295  ./submit.py '/home/rahman/Downloads/virus/server.exe
+  296  ' 
+  297  python
+  298  ssh root@controler
+  299  ssh root@controller
+  300  cd..
+  301  cd ..
+  302  ./cuckoo.py --debug
+  303  ./utils/clean.sh 
+  304  ./cuckoo.py --debug
+  305  ./utils/clean.sh 
+  306  ./cuckoo.py --debug
+  307  ./utils/clean.sh 
+  308  ./cuckoo.py --debug
+  309  ./utils/clean.sh 
+  310  ./cuckoo.py --debug
+  311  ./utils/clean.sh 
+  312  ./cuckoo.py --debug
+  313  ./utils/clean.sh 
+  314  ./cuckoo.py --debug
+  315  ./utils/clean.sh 
+  316  ./cuckoo.py --debug
+  317  python
+  318  ./utils/clean.sh 
+  319  ./cuckoo.py --debug
+  320  ./utils/clean.sh 
+  321  ./cuckoo.py --debug
+  322  ssh root@compute2
+  323  ssh root@controller
+  324  ssh root@172.19.71.214
+  325  ping controller
+  326  ping 10.0.0.5
+  327  ping 10.0.0.6
+  328  ping 10.0.0.7
+  329  ping 10.0.0.8
+  330  ssh root@compute2
+  331  cd cuckoo/1.0/
+  332  cd utils/
+  333  ./submit.py ~rahman/Downloads/15/
+  334  cd utils/
+  335  cd ..
+  336  cd utils/
+  337  ./submit.py ~rahman/Downloads/15/
+  338  ssh root@controller
+  339  ssh vhr@172.19.71.214:445
+  340  ssh vhr@172.19.71.214 -p 445
+  341  cd ~rahman/test/
+  342  python rename.py 
+  343  python fix_name.py 
+  344  python
+  345  ssh root@172.19.71.214
+  346  ssh root@controller
+  347  cd cuckoo/1.0/
+  348  ./cuckoo.py 
+  349  ssh root@controller
+  350  ssh root@compute2
+  351  ssh root@compute3
+  352  ssh root@compute1
+  353  telnet 10.0.0.17 80
+  354  telnet 10.0.0.17 8000
+  355  cd ~rahman/cuckoo/1.0/utils/
+  356  ./web.py 
+  357  python
+  358  ./web.py 
+  359  cat /home/rahman/cuckoo/1.0/agent/agent.py
+  360  ./web.py 
+  361  ifconfig
+  362  ./web.py 
+  363  ls /home/rahman/Downloads
+  364  cd ~rahman/Public/
+  365  ll
+  366  chown nobody:nobody agent.py 
+  367  sudo chown nobody:nobody agent.py 
+  368  sudo chown nobody agent.py 
+  369  ll
+  370  sudخ سع
+  371  sudo su
+  372  nano /etc/resolv.conf 
+  373  nano /etc/resolv
+  374  nano /etc/resolv.conf 
+  375  sudo nano /etc/resolv.conf 
+  376  ping ubuntu.com
+  377  ping google.com
+  378  ping facebook.com
+  379  sudo nano /etc/resolv.conf 
+  380  ping facebook.com
+  381  ping google.com
+  382  ping compute2
+  383  ssh root@compute2
+  384  ssh root@compute2
+  385  cd ~rahman/cuckoo/1.0/utils/
+  386  ./web.py 
+  387  sudo apt-get install vsftpd
+  388  sudo usermod -d /home/rahman/ ftp
+  389  sudo /etc/init.d/vsftpd restart
+  390  sudo
+  391  sudo su
+  392  cd test/
+  393  python getitem.py 
+  394  ssh root@compute1
+  395  ssh root@compute2
+  396  sudo apt-get install devscripts
+  397  sudo apt-get install xvbf
+  398  sudo apt-get install xvfb
+  399  cd ~rahman/
+  400  ll
+  401  mkdir Chrome
+  402  cd Chrome/
+  403  sudo su
+  404  gclient config https://src.chromium.org/chrome/trunk/src https://chromium-status.appspot.com/lkgr
+  405  cd chromium/
+  406  gclient config https://src.chromium.org/chrome/trunk/src https://chromium-status.appspot.com/lkgr
+  407  cd 
+  408  cd ..
+  409  cd ~raham
+  410  cd ~rahman/
+  411  rm Chrome/
+  412  rm -R Chrome
+  413  rm -Rf Chrome
+  414  sudo rm -Rf Chrome
+  415  ping teamviewer.com
+  416  exit
+  417  ssh localhost
+  418  exit
+  419  touch to_db.py
+  420  sublime to_db.py 
+  421  python to_db.py 
+  422  top VirusShare_00000.md5 
+  423  head VirusShare_00000.md5 
+  424  python to_db.py 
+  425  mkdir pagekit
+  426  cd pagekit/
+  427  curl -s https://pagekite.net/pk/ |sudo bash
+  428  sudo apt-get install curl
+  429  curl -s https://pagekite.net/pk/ |sudo bash
+  430  pagekite.py
+  431  pagekite.py --help|less
+  432  pagekite.py ssh://vhr18.pagekite.me
+  433  pagekite.py
+  434  pagekite.py --help|less
+  435  l
+  436  curl -s https://pagekite.net/pk/
+  437  cd ..
+  438  rm pagekit/
+  439  rm -R pagekit
+  440  ll
+  441  ls
+  442  cd test
+  443  ll
+  444  mkdir malware_db
+  445  cd malware_db/
+  446  touch get_files.py
+  447  nano get_files.py 
+  448  python get_files.py
+  449  cp to_db.py to_db2.py 
+  450  python to_db2.py 
+  451  head VirusShare_00000.md5 
+  452  2d75cc1bf8e57872781f9cd04a529256
+  453  cp to_db2.py to_db3.py 
+  454  python to_db3.py 
+  455  lynx http://www.my-ip-address.net/
+  456  sudo su
+  457  ping 172.16.60.84
+  458  tracepath 172.16.60.84
+  459  ping www.hpdc.upm.edu.my
+  460  ping 172.16.61.158
+  461  ssh root@172.16.61.158
+  462  ping www.hpdc.upm.edu.my
+  463  ping www.hpcd.upm.edu.my
+  464  ping hpcd.upm.edu.my
+  465  ping www.upm.edu.my
+  466  ssh root@172.16.61.158
+  467  ifconfig
+  468  telnet 172.18.72.146
+  469  cd temp
+  470  ls
+  471  cd ..
+  472  cd test
+  473  ls
+  474  top
+  475  top
+  476  kill 8649
+  477  sudo su
+  478  cd /usr/bin
+  479  ls teamviewer *
+  480   
+  481  teamviewer --daemon enable
+  482  sudo teamviewer --daemon enable
+  483  top
+  484  ضضضqq
+  485  sudo apt-get install vnc4server 
+  486  top
+  487  sudo kill 11980
+  488  top
+  489  sudo apt-get install --yes --force-yes vnc4server
+  490  vncserver
+  491  vncserver -kill :1
+  492  cd ~rahman/.vnc/
+  493  nano xstartup 
+  494  vncserver -geometry 1024x600
+  495  topp
+  496  sudo kill 
+  497  sudo kill 505
+  498  sudo ps aux | grep teamvie* | awk '{print $2}' | xargs kill -9
+  499  cd /usr/bin
+  500  teamviewer --help
+  501  teamviewer  --daemon start
+  502  sudo teamviewer  --daemon start
+  503  teamviewver status
+  504  teamviewver --daemon status
+  505  sudo apt-get install gnome-core
+  506  top
+  507  sudo su
+  508  top
+  509  sudo kill 9020
+  510  sudo kill 9310
+  511  sudo kill 25012
+  512  top
+  513  sudo kill 11173
+  514  sudo ps aux | grep teamvie* | awk '{print $2}' | xargs kill -9
+  515  ps aux | grep teamvie* | awk '{print $2}' | xargs sudo kill -9
+  516  ps aux | grep teamvie* | awk '{print $2}' | sudo xargs kill -9
+  517  ssh root@compute1
+  518  sudo su
+  519  ssh root@controller
+  520  cp to_db3.py to_db4.py 
+  521  python to_db4.py 
+  522  head VirusShare_00080.md5 
+  523  python to_db4.py 
+  524  top
+  525  cd ~/Downloads/
+  526  ll
+  527  cd MalwareTest/
+  528  ll
+  529  python
+  530  ssh root@controller
+  531  mysql -u workbench -h controller -p malwares_history
+  532  cd ..
+  533  cdDe
+  534  ls
+  535  cd ..
+  536  cd Tes
+  537  cd te
+  538  cd test/
+  539  cd test_db_history/
+  540  python check.py rahman
+  541  python 
+  542  cd ~rahman/Downloads/500/
+  543  cd ~rahman/test/test_db_history/
+  544  python check.py ../../Downloads/100/
+  545  python check.py ../../Downloads/500/
+  546  sudo su
+  547  sudo apt-get install git
+  548  apt-get install giggle
+  549  sudo apt-get install giggle
+  550  cd
+  551  cd project/
+  552  git config --global user.name "Rahman"
+  553  git config --global user.email "mousavian.rahman@gmail.com"
+  554  git config --global credential.helper cache
+  555  git config --global credential.helper 'cache --timeout=3600'
+  556  git config --global credential.helper 'cache --timeout=36000'
+  557  git clone https://github.com/mousavian/cuckoo.git
+  558  cd cuckoo
+  559  git checkout 9dfe91a
+  560  git checkout master
+  561  git checkout 9dfe91a
+  562  git checkout
+  563  git checkout 9dfe91a
+  564  git clone https://github.com/mousavian/cuckoo.git
+  565  cd ..
+  566  git clone https://github.com/mousavian/cuckoo.git
+  567  cd cuckoo/
+  568  git reset --hard 9dfe91a73d63024f1bb324eb3e8308bd21f2b006
+  569  cls
+  570  git status
+  571  cd ..
+  572  git reset --hard 9dfe91a73d63024f1bb324eb3e8308bd21f2b006
+  573  git clone https://github.com/mousavian/cuckoo.git
+  574  cd cuckoo
+  575  git status
+  576  git commit 
+  577  git commit "back to version 1.0"
+  578  git commit -a "back to version 1.0"
+  579  git add "back to version 1.0"
+  580  git add * "back to version 1.0"
+  581  git add *
+  582  git commit "back to version 1.0"
+  583  git commit -m "back to version 1.0"
+  584  git push 
+  585  git status
+  586  git commit -m 'some changes. latest on the server.'
+  587  git add *
+  588  git commit -m 'some changes. latest on the server.'
+  589  git push 
+  590  ssh root@controller
+  591  qemu
+  592  qemu-img
+  593  qemu-kvm
+  594  qemu-doc
+  595  kvm
+  596  kvm --help
+  597  cd .. 
+  598  cd ..
+  599  ls
+  600  cd temp
+  601  ll
+  602  cat > ./test-qemu <<'END'exec /usr/bin/qemu "$@" -snapshot
+  603  END
+  604  ls
+  605  mote test-qemu 
+  606  more test-qemu 
+  607  /uer/bin/kvm --help
+  608  cd /usr/bin
+  609  ll
+  610  kvm --help
+  611  kvm --help | grep snapshot
+  612  cat >/usr/local/bin/qemu-snapshot <<'END'exec /usr/bin/kvm "$@" -snapshot
+  613  END
+  614  sudo cat >/usr/local/bin/qemu-snapshot <<'END'exec /usr/bin/kvm "$@" -snapshot
+  615  END
+  616  cd ..
+  617  cd local/
+  618  cd bin/
+  619  touch qemu-snapshot
+  620  sudo touch qemu-snapshot
+  621  ll
+  622  chmod +x qemu-snapshot 
+  623  sudo chmod +x qemu-snapshot 
+  624  ll
+  625  ssh root@compute1
+  626  ssh root@compute1
+  627  ping compute1
+  628  ssh root@compute1
+  629  ps aux
+  630  ps aux | grep sublime
+  631  sudo kill 24916
+  632  ps aux | grep sublime
+  633  ps aux | grep sublime | grep " "
+  634  ps aux | grep sublime | grep -c 2
+  635  ps aux | grep sublime | grep -w
+  636  ps aux | grep sublime | grep -w 2
+  637  ps aux | grep sublime | grep -word 
+  638  ps aux | grep sublime | grep -c
+  639  ps aux | grep sublime | grep -c 1
+  640  ps aux | grep sublime | grep -c 2
+  641  ps aux | grep sublime | grep -c 3
+  642  ps aux | grep sublime | grep --help
+  643  ps aux | grep sublime 
+  644  ps aux | grep sublime | grep -e "[0-9]"
+  645  ps aux | grep sublime | grep -e "[0-9]+"
+  646  ps aux | grep sublime | grep -e "[0-9]+" | echo $1
+  647  ps aux | grep sublime | grep -e "([0-9
+  648  ps aux | grep teamvie* | awk '{print $2}' | xargs kill -9
+  649  sudo ps aux | grep sublime* | awk '{print $2}' | xargs kill -9
+  650  sudo ps aux | grep sublime | awk '{print $2}' | xargs kill -9
+  651  sudo ps aux | grep sublime
+  652  sudo ps aux | grep sublime | awk '{print $2}'
+  653  sudo ps aux | grep sublime | awk '{print $2}'\
+  654  sudo ps aux | grep sublime | awk '{print $2}'
+  655  sudo ps aux | grep sublime | awk '{print $2}' | xargs kill -9
+  656  ps aux
+  657  ping controller 
+  658  ping compute1
+  659  ssh roo@controller
+  660  ssh root@controller
+  661  ssh root@compute2
+  662  ssh root@controller
+  663  sudo su
+  664  su -u
+  665  su
+  666  sodu su
+  667  sudo su
+  668  ssh root@controller
+  669  ssh root@controller
+  670  cd project/
+  671  cd cuckoo/
+  672  git status
+  673  cd conf/
+  674  git status
+  675  git add .
+  676  git commit "Force Cuckoo to use MySQL"
+  677  git commit -a -m "Force Cuckoo to use MySQL"
+  678  git push
+  679  cd ..
+  680  git status
+  681  git add lib/cuckoo/common/abstracts.py
+  682  git add lib/cuckoo/core/database.py
+  683  git add lib/cuckoo/core/scheduler.py
+  684  git commit -m "add new status to machines for house-cleaning"
+  685  git push
+  686  ping controller
+  687  ll
+  688  ssh root@controller
+  689  teamviewer --daemon start
+  690  sudo teamviewer --daemon start
+  691  sudo su
+  692  cd project/
+  693  cd cuckoo
+  694  git status
+  695  git commit
+  696  git commit -a
+  697  git push
+  698  ssh root@controller
+  699  l
+  700  ll
+  701  ssh root@controller
+  702  ore com
+  703  ssh root@controller
+  704  ping controller
+  705  ssh root@controller
+  706  ssh root@172.18.72.19
+  707  ssh root@172.18.72.139
+  708  ping controller
+  709  ssh root@controller
+  710  ping ocmpute1
+  711  ssh root@10.0.0.8
+  712  ssh root@10.0.0.1
+  713  ping 10.0.0.1
+  714  ping 10.0.0.8
+  715  ssh root@controller
+  716  ssh root@compute1
+  717  ping compue1`
+  718  ping compue1
+  719  ping compute1
+  720  ssh root@compute1
+  721  ping 4.2..24
+  722  ping 4.2.2.4
+  723  ping google.com
+  724  nslookup
+  725  sudo su
+  726  sudo su
+  727  ping 4.2.2.4
+  728  ifconfig
+  729  sudo su
+  730  exit
+  731  ping controller
+  732  exit
+  733  sudo su
+  734  sudo su
+  735  ssh root@compute1
+  736  sudo su
+  737  ssh root@compute1
+  738  teamviewer --daemon start
+  739  sudo teamviewer --daemon-start
+  740  sudo teamviewer --daemon start
+  741  ping controller
+  742  ufw sto
+  743  ufw disable
+  744  sudo ufw disable
+  745  sudo service iptables stop
+  746  sudo service iptable stop
+  747  cd /etc
+  748  cd /opt
+  749  ll
+  750  cd ~/.android/
+  751  ll
+  752  nano /etc/resolv.conf
+  753  sudo nano /etc/resolv.conf
+  754  ping teamviewer.com
+  755  sudo nano /etc/resolv.conf
+  756  service networking restart
+  757  service network-manager restart
+  758  ping 4.2.2.4
+  759  ping google.com
+  760  ping teamviewer.com
+  761  top
+  762  ping 4.2.2.4
+  763  ping google.com
+  764  ssh root@compute1
+  765  ping controller
+  766  ssh root@compute1
+  767  ssh root@cntroller
+  768  ssh root@controller
+  769  ssh root@compute1
+  770  ping controller
+  771  ssh root@compute1
+  772  ping conpute1
+  773  ping compute1
+  774  ssh root@compute1
+  775  ping 4.2.2.4
+  776  ping google.com
+  777  ssh root@compute1
+  778  ssh root@controller
+  779  ping controller
+  780  ssh root@controller
+  781  cd /etc/
+  782  nano resolv.conf
+  783  sudo nano resolv.conf
+  784  service networkManager status
+  785  service network-Manager status
+  786  service network-manager status
+  787  service network-manager restart
+  788  ping mail.google.com
+  789  service networking status
+  790  service networking restart
+  791  sudo su
+  792  ssh root@controller
+  793  cd /tmp
+  794  ll
+  795  python
+  796  ll
+  797  more test.log 
+  798  rm -f test.log 
+  799  python
+  800  cd ~/Desktop/
+  801  ll
+  802  scp android-x86-2.2-r2-eeepc.iso compute1:/tmp
+  803  scp android-x86-2.2-r2-eeepc.iso root@compute1:/tmp
+  804  pping 4.2.2.4
+  805  ping 4.2.2.4
+  806  ping google.com
+  807  cd /etc/
+  808  sudo su
+  809  ping 4.2.2.4
+  810  ping google.com
+  811  nslookup
+  812  service networking restart
+  813  sudo service networking restart
+  814  sudo service network restart
+  815  cat resolv.conf
+  816  sudo nano resolv.conf
+  817  cat resolv.conf
+  818  sudo service network-manager restart
+  819  cat resolv.conf
+  820  sudo nano resolv.conf
+  821  sudo su
+  822  cd ~/project/Droi
+  823  cd ~/project/android/DroidBox_4.1.1
+  824  ll
+  825  cd images/
+  826  ll
+  827  ذسیفشق
+  828  bsdtar
+  829  suto apt-get install bsdtar
+  830  sudo apt-get install bsdtar
+  831  cd ~/Downloads/
+  832  LL
+  833  ll
+  834  rm bootstrap-jalali-datepicker-master.zip *.deb ZedBazi\ -\ Nabayad\ Vaysim\ \[mp3clan.com\].mp3 N.Vol.I.2013.HDRip.FDM.rar -f
+  835  rm Tab.mp3  VirusShare_00125.zip.torrent VirusShare_00125.zip.torrent\:Zone.Identifier -f
+  836  ll
+  837  rm Moein\ -\ Be\ To\ Madyoonam.mp3 -f
+  838  mkdir android
+  839  mv android-x86-4.4-r1.iso android/
+  840  cd and
+  841  cd android/
+  842  ll
+  843  bsdtar -C android-image -xf android-x86-4.4-r1.iso 
+  844  mkdir android-image
+  845  bsdtar -C android-image -xf android-x86-4.4-r1.iso 
+  846  b
+  847  ll
+  848  mkdir system
+  849  bsdtar -C system -xf system.img 
+  850  ll
+  851  rm system -R
+  852  ll
+  853  mksquashfs system.img system.sfs
+  854  suto apt-get install squashfs-tools
+  855  sudo apt-get install squashfs-tools
+  856  mksquashfs system.img system.sfs
+  857  genisoimage
+  858  genisoimage -vJURT -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -input-charset utf-8 -V "Android-x86 LiveCD" -o android-image.iso  android-image/ramdisk.img android-image/initrd.img anndroid-image/initrd.img android-image/install.img android-image/system.sfs android-image/kernel 
+  859  genisoimage -vJURT -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -input-charset utf-8 -V "Android-x86 LiveCD" -o android-image.iso  android-image/ramdisk.img android-image/initrd.img android-image/initrd.img android-image/install.img android-image/system.sfs android-image/kernel 
+  860  cd ..
+  861  genisoimage -vJURT -b android-image/isolinux/isolinux.bin -c android-image/isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -input-charset utf-8 -V "Android-x86 LiveCD" -o android-image.iso  android-image/ramdisk.img android-image/initrd.img android-image/initrd.img android-image/install.img android-image/system.sfs android-image/kernel 
+  862  genisoimage -vJURT -b "android-image/isolinux/isolinux.bin" -c android-image/isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -input-charset utf-8 -V "Android-x86 LiveCD" -o android-image.iso  android-image/ramdisk.img android-image/initrd.img android-image/initrd.img android-image/install.img android-image/system.sfs android-image/kernel 
+  863  genisoimage -vJURT -b isolinux/isolinux.bin -c android-image/isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -input-charset utf-8 -V "Android-x86 LiveCD" -o android-image.iso  android-image/ramdisk.img android-image/initrd.img android-image/initrd.img android-image/install.img android-image/system.sfs android-image/kernel 
+  864  mkdir android-x86
+  865  mkdir android-x86-source
+  866  cd android-x86-source/
+  867  repo init -u http://git.android-x86.org/manifest -b $branch
+  868  repo
+  869  sudo su
+  870  mkdir ~/bin
+  871  PATH=~/bin:$PATH
+  872  echo $PATH
+  873  curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+  874  chmod a+x ~/bin/repo
+  875  repo init -u http://git.android-x86.org/manifest -b $branch
+  876  repo init -u http://git.android-x86.org/manifest -b kitkat-x86
+  877  android-x86
+  878  repo sync
+  879  rm -fR .repo
+  880  ssh root2controller
+  881  ssh root@controller
+  882  ssh root@controller
+  883  ssh root@compute1
+  884  ping compute1
+  885  ssh root@compute1
+  886  ping compute1
+  887  ssh root@compute1
+  888  ssh root@controller
+  889  ssh root@compute1
+  890  ping compute1
+  891  ssh root@compute1
+  892  ping compute1
+  893  ping controller
+  894  ping compute1
+  895  ssh root@compute1
+  896  ssh root@controller
+  897  ssh root@compute1
+  898  ping compute1
+  899  ssh root@compute1
+  900  cd ~/Downloads/android/
+  901  ll
+  902  cd android-x86-source/
+  903  ll
+  904  cd .repo/
+  905  ll
+  906  cd ..
+  907  du -h
+  908  du -ch
+  909  du -ch | grep total
+  910  cd ..
+  911  cd android-image/
+  912  ll
+  913  cd ..
+  914  genisoimage -vJURT -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -input-charset utf-8 -V "Android-x86 LiveCD" -o android-image.iso  android-image/ramdisk.img android-image/initrd.img android-image/initrd.img android-image/install.img android-image/system.sfs android-image/kernel 
+  915  cd android-image/
+  916  disk file, a tape drive, or it can correspond directly to the device name of the optical disc writer. If not specified, stdout is used. Note that the output can also be a block device for a regular disk partition
+  917  genisoimage -vJURT -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -input-charset utf-8 -V "Android-x86 LiveCD" -o android-image.iso  android-image/ramdisk.img android-image/initrd.img android-image/initrd.img android-image/install.img android-image/system.sfs android-image/kernel 
+  918  genisoimage -vJURT -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -input-charset utf-8 -V "Android-x86 LiveCD" -o android-image.iso  ramdisk.img initrd.img initrd.img install.img system.sfs kernel 
+  919  cd isolinux/
+  920  genisoimage -vJURT -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -input-charset utf-8 -V "Android-x86 LiveCD" -o android-image.iso  ramdisk.img initrd.img initrd.img install.img system.sfs kernel 
+  921  genisoimage -vJURT -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -input-charset utf-8 -V "Android-x86 LiveCD" -o android-image.iso  android-image/ramdisk.img android-image/initrd.img android-image/initrd.img android-image/install.img android-image/system.sfs android-image/kernel 
+  922  genisoimage -vJURT -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -input-charset utf-8 -V "Android-x86 LiveCD" -o ../android-image.iso  ../android-image/ramdisk.img ../android-image/initrd.img ../android-image/initrd.img ../android-image/install.img ../android-image/system.sfs ../android-image/kernel 
+  923  cd ..
+  924  genisoimage -vJURT -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -input-charset utf-8 -V "Android-x86 LiveCD" -o android-image.iso  android-image/ramdisk.img android-image/initrd.img android-image/initrd.img android-image/install.img android-image/system.sfs android-image/kernel android-image
+  925  genisoimage -vJURT -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -input-charset utf-8 -V "Android-x86 LiveCD" -o  android-image
+  926  genisoimage -vJURT -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -input-charset utf-8 -V "Android-x86 LiveCD" -o android-image/*
+  927  genisoimage -vJURT -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -input-charset utf-8 -V "Android-x86 LiveCD" -o android-image/* android-image/
+  928  ll
+  929  ping 4.2.2.4
+  930  ifconfig
+  931  ping 172.18.72.254
+  932  ifconfig
+  933  ping 4.2.2.4
+  934  ping google.com
+  935  service networking restart
+  936  fuck
+  937  sudo service networking restart
+  938  sudo su
+  939  pin 4.2.2.4
+  940  ping 4.2.2.4
+  941  ifconfig
+  942  ssh root@compute1
+  943  ping 4.2.2.2
+  944  ping 8.8.8.8
+  945  ssh root@controller
+  946  exit
+  947  ping google.com
+  948  ssh root@controller
+  949  ssh root@controller
+  950  ssh root@controller
+  951  ssh root@compute1
+  952  ping compute1
+  953  ssh root@compute1
+  954  ping compute1
+  955  ssh root@compute1
+  956  ssh vhr@compute1
+  957  ssh root@compute1
+  958  ping 8.8.88
+  959  ping 8.8.8.8
+  960  sudo service networking restart
+  961  sudo su
+  962  sudo apt-get install bash
+  963  exit
+  964  teamviewer --daemon start
+  965  sudo teamviewer --daemon start
+  966  ssh root@controller
+  967  ssh root@controller
+  968  ping controller
+  969  ssh root@controller
+  970  +
+  971  ssh root@controller
+  972  ssh root@controller
+  973  nslookup
+  974  nslookup -type=mx gmail.com
+  975  python
+  976  cd /tmp
+  977  ll
+  978  touch send.py
+  979  vim send.py 
+  980  nano send.py 
+  981  chmod +x send.py 
+  982  ./send.py "rahman.hi@gmail.com" "my topic" "my content"
+  983  ll
+  984  echo "203874298749827374928734">testfile.log
+  985  ./send.py "rahman.hi@gmail.com" "my topic" "my content" "testfile.log" 
+  986  ./send.py "hossein_masoomi@yahoo.com" "my topic" "my content" "testfile.log" 
+  987  python
+  988  nano send.py 
+  989  ./send.py "rahman.hi@gmail.com" "my topic" "my content" "testfile.log" 
+  990  nano send.py 
+  991  ssh root@compute1
+  992  ping compute1
+  993  ssh root@compute1
+  994  ping compute1
+  995  ssh root@compute1
+  996  ping compute1
+  997  ssh root@compute1
+  998  ping compute1
+  999  ssh root@compute1
+ 1000  ping compute1
+ 1001  ssh root@compute1
+ 1002  ping compute1
+ 1003  ssh root@compute1
+ 1004  ping compute1
+ 1005  ssh root@compute1
+ 1006  ping controller
+ 1007  ping compute1
+ 1008  ping controller
+ 1009  python
+ 1010  cd ~/project/
+ 1011  ll
+ 1012  cd cuckoo/
+ 1013  ls -a
+ 1014  git status
+ 1015  git git commit -a 
+ 1016  git commit -a 
+ 1017  git push
+ 1018  ping controller 
+ 1019  python
+ 1020  ssh root@compute
+ 1021  ssh root@compute1
+ 1022  ping compute1
+ 1023  ssh root@compute1
+ 1024  ping compute1
+ 1025  ssh root@compute1
+ 1026  ping compute1
+ 1027  ssh root@compute1
+ 1028  asd
+ 1029  ssh root@compute1
+ 1030  vi
+ 1031  ssh root@compute1
+ 1032  broken pipe
+ 1033  age mikhay bebini in rabti be server dare ya na, 
+ 1034  :)))))
+ 1035  :)
+ 1036  unjo barun mmiad? 
+ 1037  ssh root@compute1
+ 1038  ping controller 
+ 1039  ping compute1
+ 1040  ssh root@compute1
+ 1041  gir mikone hey
+ 1042  ssh root@compute1
+ 1043  ssh root@controller 
+ 1044  teamviewer --daemon start
+ 1045  sudo teamviewer --daemon start
+ 1046  top
+ 1047  q29921 rahman    20   0 81528 5588 3740 S    1  0.3   0:00.43 TeamViewer_Desk                                                                           
+ 1048  kill 29921
+ 1049  top
+ 1050  ps aux | grep teamvie* | awk '{print $2}' | xargs kill -9
+ 1051  sudo 
+ 1052  su
+ 1053  su root
+ 1054  sudo su
+ 1055  ssh root@controller 
+ 1056  ssh root@controller 
+ 1057  sudo teamviewer --daemon start
+ 1058  ps aux | grep teamvie* | awk '{print $2}' | xargs kill -9
+ 1059  sudo su
+ 1060  sudo apt-get --only-upgrade install google-chrome-stable
+ 1061  sudo apt-get --only-upgrade install google-chrome-stabel
+ 1062  sudo apt-get install google-chrome-stable
+ 1063  ping google.com
+ 1064  nano /etc/resolv.conf
+ 1065  sudo nano /etc/resolv.conf
+ 1066  ping google.com
+ 1067  ping dl.google.com
+ 1068  service networking restart
+ 1069  sudo service networking restart
+ 1070  ifconfig
+ 1071  ping dl.google.com
+ 1072  ping yahoo.com
+ 1073  sudo su
+ 1074  ssh root@controller 
+ 1075  cd Desktop/
+ 1076  cd cl/
+ 1077  ll
+ 1078  git clone git@github.com:mousavian/openstack-clean-database.git
+ 1079  git clone https://github.com/mousavian/openstack-clean-database.git
+ 1080  git status
+ 1081  cd openstack-clean-database/.
+ 1082  git status
+ 1083  git commit -a "First commit"
+ 1084  git commit "First commit"
+ 1085  git add cleaner.py
+ 1086  git commit "First commit"
+ 1087  git commit -a "First commit"
+ 1088  git commit -m "First commit"
+ 1089  git push
+ 1090  git pull
+ 1091  ll
+ 1092  nano README.md 
+ 1093  git status
+ 1094  git add README.md
+ 1095  git push
+ 1096  free -h
+ 1097  free -m
+ 1098  free && sync && echo 3 > /proc/sys/vm/drop_caches && free
+ 1099  su
+ 1100  su vhr
+ 1101  sudo
+ 1102  sudo su
+ 1103  history > commandline_history.txt
+ 1104  history > commandline_history_rahman.txt
