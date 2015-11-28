@@ -141,7 +141,7 @@ class GuestManager:
         try:
             if self.platform.lower() == 'android':
                 log.warning("====>Analysis on android machine (%s) starting...", self.ip);
-                self.droidbox = Droidbox(options["target"], self.ip)
+                self.droidbox = Droidbox(options["target"], self.ip, options['id'])
             else:
                 # Wait for the agent to respond. This is done to check the
                 # availability of the agent and verify that it's ready to receive

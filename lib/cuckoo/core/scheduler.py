@@ -8,6 +8,7 @@ import shutil
 import logging
 import Queue
 import mysql.connector
+from subprocess import call
 from threading import Thread, Lock
 from lib.cuckoo.common.colors import red, green, yellow, cyan
 
@@ -247,6 +248,7 @@ class AnalysisManager(Thread):
 
         # At this point we can tell the Resultserver about it.
         try:
+            log.debug("===AnalysisManager, launch_analysis===> task: {0}, machine: {1}".format(self.task, self.machine))
             Resultserver().add_task(self.task, self.machine)
         except Exception as e:
             machinery.release(self.machine.label)
@@ -269,17 +271,17 @@ class AnalysisManager(Thread):
         else:
             try:
                 # Initialize the guest manager.
-                log.warning("====>GuestManager calling...")
+                log.debug("====>GuestManager calling...")
                 guest = GuestManager(self.machine.name, self.machine.ip, self.machine.platform)
                 # Start the analysis.
-                log.warning("====>GuestManager.start_analysis calling...")
+                log.debug("====>GuestManager.start_analysis calling...")
                 guest.start_analysis(options)
             except CuckooGuestError as e:
                 log.error(str(e), extra={"task_id": self.task.id})
             else:
                 # Wait for analysis completion.
                 try:
-                    log.warning("====>GuestManager.wait_for_completion calling...")
+                    log.debug("====>GuestManager.wait_for_completion calling...")
                     guest.wait_for_completion()
                     succeeded = True
                 except CuckooGuestError as e:
@@ -288,7 +290,7 @@ class AnalysisManager(Thread):
 
         finally:
             # Stop Auxiliary modules.
-            log.warning("=====> Analysis is done! Auxiliary Stopping")
+            log.debug("=====> Analysis is done! Auxiliary Stopping")
             aux.stop()
 
             # Take a memory dump of the machine before shutting it off.
@@ -468,7 +470,7 @@ class Scheduler:
         self.running = False
         # Shutdown machine manager (used to kill machines that still alive).
         machinery.shutdown()
-
+    
     def start(self):
         """Start scheduler."""
         global total_analysis_count

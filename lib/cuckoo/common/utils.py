@@ -9,10 +9,13 @@ import ntpath
 import string
 import tempfile
 import xmlrpclib
+import logging
 from datetime import datetime
+
 
 from lib.cuckoo.common.exceptions import CuckooOperationalError
 
+log = logging.getLogger()
 try:
     import chardet
     HAVE_CHARDET = True
@@ -25,6 +28,7 @@ def create_folders(root=".", folders=[]):
     @param folders: folders list to be created.
     @raise CuckooOperationalError: if fails to create folder.
     """
+    log.debug("===util, create_folders===> root{0}, folders: {1}".format(root,folders))
     for folder in folders:
         if os.path.isdir(os.path.join(root, folder)):
             continue
@@ -37,8 +41,10 @@ def create_folder(root=".", folder=None):
     @param folder: folder name to be created.
     @raise CuckooOperationalError: if fails to create folder.
     """
+    log.debug("===util, create_folders===> root{0}, folder: {1}".format(root,folder))
     if not os.path.exists(os.path.join(root, folder)) and folder:
         folder_path = os.path.join(root, folder)
+        log.debug("===util, create_folders2===> folder_path: {0}".format(folder_path))
         if not os.path.isdir(folder_path):
             try:
                 os.makedirs(folder_path)

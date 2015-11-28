@@ -30,6 +30,7 @@ except ImportError:
 	HAVE_LIBVIRT = False
 
 log = logging.getLogger(__name__)
+logging.getLogger("paramiko").setLevel(logging.WARNING)
 
 class Auxiliary(object):
 	"""Base abstract class for auxiliary modules."""
@@ -120,6 +121,7 @@ class Machinery(object):
 				# If configured, use specific resultserver IP and port,
 				# else use the default value.
 				opt_resultserver = self.options_globals.resultserver
+				#log.debug("===Machinery, _initialize===>opt_resultserver: {0}".format(opt_resultserver))
 				ip = machine_opts.get("resultserver_ip", opt_resultserver.ip)
 				port = machine_opts.get("resultserver_port", opt_resultserver.port)
 
@@ -335,6 +337,11 @@ class Machinery(object):
 			#now we will wait to finish copying file... 
 			stdout.channel.settimeout(10800)
 			stdout.channel.recv_exit_status()
+			#memory cleaning
+			#(stdin, stdout, sterr) = ssh_client.exec_command('sync && echo 3 > /proc/sys/vm/drop_caches')
+			#now we will wait to finish copying file... 
+			#stdout.channel.settimeout(10800)
+			#stdout.channel.recv_exit_status()
 			ssh_client.close()
 			log.debug("`{0}` is ready!".format(label))
 		except NotImplementedError:

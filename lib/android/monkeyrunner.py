@@ -34,14 +34,18 @@ device = None
 log = logging.getLogger(__name__)
 while device == None:
 	try:
-		print("Waiting for the device...")
+		print("==>Waiting for the device...")
 		device = MonkeyRunner.waitForConnection(3)
 	except:
 		pass
 
-#Install the package
-print("Installing the application %s..." % apkName)
-device.installPackage(apkName)
+try:
+	#Install the package
+	print("Installing the application %s..." % apkName)
+	device.installPackage(apkName)
+except:
+	print("Exception to install %s " % apkName)
+	pass
 
 # sets the name of the component to start
 if "." in activity:
@@ -62,6 +66,7 @@ print "======>out, error =(%s, %s)" %(out, err)
 
 #Activity not started?
 if "Error type" in out:
+	print "===Android, monkeyrunner===> Error type"
 	sys.exit(1)
 else:
 	sys.exit(0)

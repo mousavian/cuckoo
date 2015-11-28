@@ -39,6 +39,8 @@ from xml.dom import minidom
 from subprocess import call, PIPE, Popen
 from lib.android.utils import AXMLPrinter
 import hashlib
+from lib.cuckoo.common.constants import CUCKOO_ROOT
+from lib.cuckoo.common.utils import create_folder
 # from pylab import *
 # import matplotlib
 # import matplotlib.pyplot as plt
@@ -244,12 +246,13 @@ def interruptHandler(signum, frame):
 
 
 class Droidbox():
-	def __init__ (self, apkName, ip, port="5555"):
+	def __init__ (self, apkName, ip, task_id, port="5555"):
 		self.ip = ip
-		self.port = port
-		self.duration = 20
+		self.port = str(port)
+		self.duration = 5
 		self.apkName = apkName
 		self.adb = None
+		self.task_id = task_id
 
 
 		print " ____                        __  ____   "
@@ -259,6 +262,8 @@ class Droidbox():
 		print "  \ \ \_\ \ \ \/\ \L\ \ \ \/\ \L\ \ \ \L\ \\ \L\ \/>  </"
 		print "   \ \____/\ \_\ \____/\ \_\ \___,_\ \____/ \____//\_/\_\\"
 		print "    \/___/  \/_/\/___/  \/_/\/__,_ /\/___/ \/___/ \//\/_/"
+		print "----------------------------------------------------------"
+		print "%s, %s, %s, %s" % (self.apkName, self.ip, self.task_id, self.port)
 
 
 		#APK existing?
@@ -267,8 +272,10 @@ class Droidbox():
 
 		application = Application(self.apkName)
 		ret = application.processAPK()
-		guest_check = os.system("ping -c 1 " + self.ip);
-		
+		log.warning("===> check ping for %s" % self.ip)
+		guest_check = os.system("ping -c 1 %s" % self.ip);
+		log.warning("===> ping ok %s" % self.ip)
+
 		#Error during the APK processing?
 		if (ret == 0):
 			raise Exception("Failed to analyze the APK. Terminate the analysis.")
@@ -285,9 +292,10 @@ class Droidbox():
 
 		#Get the hashes
 		self.hashes = application.getHashes()
-		log.warning("=====> connecting to adb (ip: {0})".format(self.ip))
-		call(['adb', 'connect', self.ip])
-		call(['adb', '-s', "{0}:{1}".format(self.ip, self.port), 'logcat', '-c'])
+		log.warning("===> connecting to adb (ip: {0})".format(self.ip))
+		ret = call(['adb', 'connect', "{0}:{1}".format(self.ip, self.port)])
+		ret = call(['adb', 'wait-for-device'])
+		ret = call(['adb', '-s', "{0}:{1}".format(self.ip, self.port), 'logcat', '-c'])
 
 	def wait_for_completion(self):
 		#No Main acitvity found? Return an error
@@ -356,47 +364,34 @@ class Droidbox():
 					print log.error("We have lost the connection with ADB.")
 					raise Exception("We have lost the connection with ADB.")
 				
+				logcatInput = logcatInput.strip()
 				all_output.append(logcatInput)
-				if( round(time.time() - timeStamp) > self.duration ):
-					print log.error("=========>Stop collectiong / timeout hits")
-					raise Exception("=========>Stop collectiong")
+				
+				if( ('broken pipe' in logcatInput.lower()) or (round(time.time() - timeStamp) > self.duration) ):
+					log.info("===>Stop collectiong / timeout hits")
+					raise Exception("===>Stop collectiong")
 				else:
-					time.sleep(1)
+				#	time.sleep(0.3)
+					timeStamp = time.time()
 
 			except:
-				log.warning("==>try: stopCounting, join <=========")
-				all_output = ",,,".join(all_output)
-				log.warning("+++++++++++++++++++>   %s", all_output)
+				log.info("==>try: stopCounting, join")
 				break;
-		    
-		#Kill ADB, otherwise it will never terminate
-		#os.kill(self.adb.pid, signal.SIGTERM)
 
-		#Done? Store the objects in a dictionary, transform it in a JSON object and return it
-		#output = dict()
-
-		#Sort the items by their key
-		# output["dexclass"] = dexclass
-		# output["servicestart"] = servicestart
-
-		# output["recvnet"] = recvnet
-		# output["opennet"] = opennet
-		# output["sendnet"] = sendnet
-		# output["closenet"] = closenet
-
-		# output["accessedfiles"] = accessedfiles
-		# output["dataleaks"] = dataleaks
-
-		# output["fdaccess"] = fdaccess
-		# output["sendsms"] = sendsms
-		# output["phonecalls"] = phonecalls
-		# output["cryptousage"] = cryptousage
-
-		# output["recvsaction"] = self.recvsaction
-		# output["enfperm"] = self.enfperm
-
-		# output["hashes"] = self.hashes
-		# output["apkName"] = self.apkName
 		
-		log.warning("=======================>end, dump and return droidbox")
+		log.info("Android Analysis completed")
+		self.dump_data_to_file( all_output )
 		return True
+
+	def create_storage(self):
+		storagepath = os.path.join(CUCKOO_ROOT, "storage",
+                                   "analyses", str(self.task_id))
+		return storagepath
+
+	def dump_data_to_file(self, list_data):
+		log.info("Android dumping data to file..")
+		filename = os.path.join(self.create_storage(),
+                               	"droidbox_output.log")
+		f = open(filename, 'w+')
+		for item in list_data:
+			f.write("%s" % item)

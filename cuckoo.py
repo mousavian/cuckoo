@@ -53,13 +53,13 @@ def main():
     elif args.debug:
         log.setLevel(logging.DEBUG)
 
-    #print yellow("init_modules->")
+    print yellow("init_modules->")
     init_modules()
     #print yellow("<-init_modules")
-    #print yellow("init_tasks->")
+    print yellow("init_tasks->")
     init_tasks()
     #print yellow("<-init_tasks")
-    #print yellow("REsultServer->")
+    print yellow("REsultServer->")
     Resultserver()
     #print yellow("<-REsultServer")
 
