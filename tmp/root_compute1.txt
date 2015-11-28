@@ -1,0 +1,997 @@
+    1  virsh
+    2  ping 10.0.0.20
+    3  cp instance-000001e4.qcow2.org instance-000001e4.qcow2
+    4  yes | cp instance-000001e4.qcow2.org instance-000001e4.qcow2
+    5  ll
+    6  ping 10.0.0.12
+    7  virsh
+    8  ll
+    9  cp instance-000001e4.qcow2 instance-000001e4.qcow2.org 
+   10  ll
+   11  yes | cp instance-000001e4.qcow2.org instance-000001e4.qcow2
+   12  ll
+   13  rm instance-000001e4.qcow2
+   14  qemu-img create -f qcow2 instance-000001e4.qcow2 2G
+   15  ll 
+   16  virsh
+   17  ll
+   18  rm instance-000001e4.qcow2
+   19  qemu-img create -f qcow2 instance-000001e4.qcow2 2G
+   20  virsh
+   21  os
+   22  openstack-status
+   23  virsh
+   24  cd /qcow2/
+   25  ll
+   26  rm instance-000001e4.qcow2 -f
+   27  qemu-img create -f qcow2 instance-000001e4.qcow2 2G
+   28  ll
+   29  ll -h
+   30  rm instance-000001e4.qcow2 -f
+   31  qemu-img create -f qcow2 instance-000001e4.qcow2 2G
+   32  ll
+   33  rm instance-000001e4.qcow2 -f
+   34  qemu-img create -f qcow2 instance-000001e4.qcow2 2G
+   35  rm instance-000001e4.qcow2 -f
+   36  qemu-img create -f qcow2 instance-000001e4.qcow2 2G
+   37  reboot
+   38  exit
+   39  ssh root@10.0.0.1
+   40  ssh root@10.0.0.5
+   41  ping 10.0.0.2
+   42  ping 10.0.0.3
+   43  ping 10.0.0.4
+   44  ping 10.0.0.5
+   45  ping 10.0.0.6
+   46  ping 10.0.0.7
+   47  ping 10.0.0.
+   48  ping 10.0.0.8
+   49  ssh root@10.0.0.8
+   50  ping 10.0.0.9
+   51  ping 10.0.0.1
+   52  ssh root@10.0.0.1
+   53  ssh-keygen -R 10.0.0.1
+   54  ssh root@10.0.0.1
+   55  ssh-keygen -R 10.0.0.1
+   56  ifconfig
+   57  cd /etc/sysconfig/network-scripts/
+   58  ll
+   59  vi ifcfg-br100 
+   60  ifdown ifcfg-br100 
+   61  ifdown br100
+   62  ifup br100
+   63  ifconfig
+   64  ssh root@10.0.0.1
+   65  cd /qcow2/
+   66  su vhr
+   67  openstack-status 
+   68  cd ~vhr/
+   69  ll
+   70  ll -h
+   71  cd /
+   72  ll -h
+   73  cd home
+   74  ll
+   75  cd /usr
+   76  ll
+   77  cd /etc
+   78  ll
+   79  cd /
+   80  find -h
+   81  find ?
+   82  find -h
+   83  cd /boot
+   84  ll
+   85  cd /
+   86  ll
+   87  cd bin
+   88  ll
+   89  cd /
+   90  ll
+   91  openstack-status
+   92  service openstack-nova-api restart && openstack-nova-cert && service openstack-nova-compute restart && service openstack-nova-network restart && service openstack-nova-scheduler restart &&  service openstack-nova-conductor restart &&
+   93  service openstack-nova-api restart && openstack-nova-cert && service openstack-nova-compute restart && service openstack-nova-network restart && service openstack-nova-scheduler restart &&  service openstack-nova-conductor restart
+   94  service openstack-nova-api restart && service openstack-nova-cert restart && service openstack-nova-compute restart && service openstack-nova-network restart && service openstack-nova-scheduler restart &&  service openstack-nova-conductor restart
+   95  openstack-status
+   96  service openstack-nova-api start
+   97  openstack-status
+   98  service openstack-nova-api start
+   99  openstack-status
+  100  cd /var/log/nova
+  101  ll
+  102  rm -f *.gz
+  103  ll
+  104  >api.log 
+  105  >network.log 
+  106  >conductor.log 
+  107  >compute.log 
+  108  >cert.log 
+  109  ll
+  110  >scheduler.log 
+  111  service openstack-nova-api start
+  112  ll
+  113  tail api.log 
+  114  more api.log 
+  115  service openstack-nova-api start
+  116  more api.log 
+  117  ifconfig
+  118  ifdown br100
+  119  ifup br100
+  120  ifconfig
+  121  service openstack-nova-api start
+  122  openstack-status
+  123  tail api.log 
+  124  ps aux | grep nova-api
+  125  reboot
+  126  openstack-status 
+  127  service openstack-nova-api restart && service openstack-nova-cert restart && service openstack-nova-compute restart && service openstack-nova-network restart && service openstack-nova-scheduler restart &&  service openstack-nova-conductor restart
+  128  openstack-status 
+  129  cd /var/log
+  130  ll
+  131  rm -f *.gz
+  132  ll
+  133  cd nova
+  134  ll
+  135  tail compute.log 
+  136  tail api.log 
+  137  reboot
+  138  ssh root@10.0.0.1
+  139  service openstack-nova-api restart
+  140  service openstack-nova-cert restart && service openstack-nova-compute restart && service openstack-nova-network restart && service openstack-nova-scheduler restart &&  service openstack-nova-conductor restar
+  141  openstack-status
+  142  ~/openstack.sh 
+  143  openstack-status 
+  144  nova-manage service list
+  145  openstack-status 
+  146  cd /qcow2/
+  147  ll
+  148  سعیخ راق
+  149  su vhr
+  150  ping 10.0.0.12
+  151  ll
+  152  rm instance-000001e4.qcow2 -f
+  153  qemu-img create -f qcow2 instance-000001e4.qcow2 2G
+  154  ping 10.0.0.12
+  155  rm instance-000001e4.qcow2 -f
+  156  qemu-img create -f qcow2 instance-000001e4.qcow2 2G
+  157  مم
+  158  ll
+  159  service openstack-nova-api restart 
+  160  openstack-status 
+  161  qemu-img create -f qcow2 tmp2.qcow2 2G
+  162  ll
+  163  virsh
+  164  ll
+  165  ll -h
+  166  virsh
+  167  l
+  168  ll
+  169  cp tmp2.qcow2 instance-000001e4.qcow2
+  170  virsh
+  171  openstack-status
+  172  ls /etc/init.d/
+  173  ls /etc/init.d/ | grep openstack
+  174  /sbin/chkconfig --list
+  175  /sbin/chkconfig --list | grep open
+  176  openstack-status
+  177  chkconfig openstack-nova-api on
+  178  chkconfig openstack-nova-cert on
+  179  chkconfig openstack-nova-compute on
+  180  chkconfig openstack-nova-network on
+  181  chkconfig openstack-nova-scheduler on
+  182  chkconfig openstack-nova-conductor on
+  183  reboot
+  184  openstack-status
+  185  cd /var/log/nova
+  186  ll
+  187  >scheduler.log
+  188  >network.log 
+  189  >conductor.log 
+  190  >compute.log 
+  191  >cert.log 
+  192  >api.log 
+  193  ll
+  194  openstack-status
+  195  ll
+  196  service openstack-nova-api restart
+  197  ll
+  198  more api.log 
+  199  less /etc/nova/nova.conf
+  200  netstat
+  201  netstat --listen
+  202  netstat -an | egrep 'Proto|LISTEN'
+  203  netstat -lntu
+  204  netstat -tulpn
+  205  ls -l /proc/1138/exe
+  206  ls -l /proc/2256/
+  207  ls -l /proc/2256/exe 
+  208  kill 2256
+  209  service openstack-nova-api restart
+  210  openstack-status
+  211  su vhr
+  212  ll
+  213  >api.log 
+  214  ll
+  215  ~/openstack.sh 
+  216  ll
+  217  tail api.log 
+  218  ll
+  219  source ~/keystonerc 
+  220  ~/openstack.sh 
+  221  openstack-status
+  222  ll
+  223  tail compute.log 
+  224  less compute.log 
+  225  virsh
+  226  cd /qcow2/
+  227  ll
+  228  cp tmp2.qcow2 instance-000001e4.qcow2
+  229  virsh
+  230  cd /var/log/nov
+  231  cd /var/log/nova
+  232  ll
+  233  >compute.log 
+  234  >api.log 
+  235  ll
+  236  service openstack-nova-api stop && service openstack-nova-cert stop && service openstack-nova-compute stop && service openstack-nova-network stop && service openstack-nova-scheduler stop &&  service openstack-nova-conductor stop
+  237  ll
+  238  cd /qcow2/
+  239  ll
+  240  rm instance-000001e4.qcow2 -f
+  241  qemu-img create -f qcow2 instance-000001e4.qcow2 2G
+  242  qemu-img create -f qcow2 tmp2.qcow2 2G
+  243  ll
+  244  virsh
+  245  openstack-status 
+  246  reboot
+  247  ssh root@10.0.0.1
+  248  openstack-staus
+  249  openstack-status
+  250  cd /var/log/nova
+  251  tail api.log 
+  252  vi temp
+  253  netstat -tulpn
+  254  vncserver 
+  255  su vhr
+  256  ll
+  257  openstack-status 
+  258  ~/openstack.sh 
+  259  openstack-status 
+  260  virsh
+  261  ~/openstack.sh 
+  262  openstack-status 
+  263  virsh
+  264  ~/openstack.sh 
+  265  openstack-status 
+  266  reboot
+  267  openstack-status 
+  268  su vhr
+  269  cd /qcow2/
+  270  l
+  271  ll
+  272  rm instance-000001e4.qcow2 -f
+  273  qemu-img create -f qcow2 instance-000001e4.qcow2 2G
+  274  ping controller
+  275  ssh root@controller
+  276  ssh root@10.0.0.1
+  277  ifdown br100
+  278  ifup br100
+  279  ssh root@10.0.0.1
+  280  ping controller
+  281  ping 10.0.0.12
+  282  ssh root@10.0.0.1
+  283  ping 10.0.0.12
+  284  virsh
+  285  ll
+  286  virsh
+  287  ll
+  288  cp instance-000001e4.qcow2 instance-000001e4.qcow2.org 
+  289  ll
+  290  ssh root@10.0.0.1
+  291  virsh
+  292  ping 10.0.0.12
+  293  ll
+  294  ssh root@10.0.0.1
+  295  ping controller
+  296  ssh root@10.0.0.1
+  297  ping controller
+  298  ping 10.0.0.1
+  299  ssh root@10.0.0.1
+  300  ll
+  301  cp instance-000001e4.qcow2.org instance-000001e4.qcow2
+  302  ll
+  303  virsh
+  304  ll
+  305  top
+  306  ll
+  307  cd /qcow2/
+  308  ll
+  309  cd /qcow2/
+  310  virsh
+  311  ll
+  312  cp instance-000001e4.qcow2.org instance-000001e4.qcow2
+  313  virsh snapshot-revert instance-000001e snap1
+  314  virsh snapshot-revert instance-000001e4 snap1
+  315  cp instance-000001e4.qcow2.org instance-000001e4.qcow2
+  316  cd /q
+  317  cd /qcow2/
+  318  ll -h
+  319  rm instance-000001e4.qcow2
+  320  qemu-img create -f qcow2 instance-000001e4.qcow2 2G
+  321  reboot
+  322  ssh root@10.0.0.1
+  323  vncserver 
+  324  su vhr
+  325  #qemu-img create -f qcow2 tmp.qcow2 2G
+  326  ls
+  327  cd /qcow2/
+  328  ll
+  329  ll -h
+  330  cd /qcow2/
+  331  qemu-img create -f qcow2 instance-000001e5.qcow2 2G
+  332  l
+  333  ll
+  334  cd /qcow2/
+  335  qemu-img create -f qcow2 instance-000001e6.qcow2 2G
+  336  ~/openstack.sh 
+  337  openstack-status
+  338  cd /var/log/nova/
+  339  ll
+  340  rm *.gz -f
+  341  ll
+  342  vi clean.sh
+  343  touch clean.sh
+  344  echo ">api.log" >> clean.sh 
+  345  echo ">cert.log" >> clean.sh 
+  346  more clean.sh 
+  347  echo "compute>.log" >> clean.sh 
+  348  echo ">compute.log" >> clean.sh 
+  349  echo ">conductor.log" >> clean.sh 
+  350  echo ">metadata-api.log" >> clean.sh 
+  351  echo ">network.log" >> clean.sh 
+  352  echo ">scheduler.log" >> clean.sh 
+  353  vi clean.sh 
+  354  ./cl
+  355  chmod +x clean.sh 
+  356  ./clean.sh 
+  357  ll
+  358  openstack-status
+  359  service openstack-nova-api restart
+  360  openstack-status
+  361  ll
+  362  tail api.log 
+  363  ~/openstack.sh 
+  364  ll
+  365  tial compute.log 
+  366  tail compute.log 
+  367  more api.log 
+  368  cd /var/log/nova
+  369  ll
+  370  ./clean.sh 
+  371  cd /qcow2/
+  372  qemu-img create -f qcow2 instance-000001e7.qcow2 2G
+  373  ll
+  374  cd /qcow2/
+  375  ll
+  376  rm instance-000001e5.qcow2 -f
+  377  rm instance-000001e6.qcow2 -f
+  378  rm instance-000001e7.qcow2 -f
+  379  qemu-img create -f qcow2 instance-000001e7.qcow2 2G
+  380  cd /var/log/nova
+  381  ll
+  382  reboot
+  383  ssh root@10.00.0.1
+  384  ifconfig
+  385  ssh-keygen -R 10.0.0.1
+  386  ssh root@10.00.0.1
+  387  xit
+  388  eit
+  389  exit
+  390  openstack-status 
+  391  cd /var/log/nova
+  392  ll
+  393  tail scheduler.log 
+  394  tail network.log 
+  395  ll
+  396  tail compute.log 
+  397  tail api.log 
+  398  ./clean.sh 
+  399  ll
+  400  ~/openstack.sh 
+  401  openstack-status 
+  402  cd /qcow2/
+  403  ll
+  404  cd /var/log/nova
+  405  ll
+  406  tail compute.log 
+  407  tail api.log 
+  408  ~/openstack.sh 
+  409  openstack-status `
+  410  `
+  411  openstack-status `
+  412  `
+  413  openstack-status
+  414  su vhr
+  415  tail /var/log/nova/compute.log 
+  416  tail /var/log/nova/compute.log -n 50 
+  417  vi 
+  418  cd /var/log/nova
+  419  ./clean.sh 
+  420  ll
+  421  ~/openstack.sh 
+  422  ll
+  423  tail compute.log 
+  424  in chichiye 
+  425  ~/openstack.sh 
+  426  cd /var/log/nova/
+  427  ./clean.sh 
+  428  ~/openstack.sh 
+  429  ll
+  430  tail compute.log 
+  431  openstack-status
+  432  virsh
+  433  ll
+  434  ./clean.sh 
+  435  lll
+  436  ll
+  437  ~/openstack.sh 
+  438  openstack-status
+  439  cd /var/log/nova
+  440  ll
+  441  openstack-status
+  442  tail
+  443  ll
+  444  tail compute.log 
+  445  cd /var/log/nova/
+  446  ./clean.sh 
+  447  ll
+  448  ~/openstack.sh 
+  449  ll
+  450  service openstack-nova-compute status
+  451  service openstack-nova-conductor status
+  452  service openstack-nova-compute status
+  453  cd /var/log/nova
+  454  ll
+  455  ./clean.sh 
+  456  ll
+  457  ll /qcow2/
+  458  cd /qcow2/
+  459  qemu-img create -f qcow2 instance-000001ed.qcow2 2G
+  460  qemu-img create -f qcow2 instance-000001ef.qcow2 2G
+  461  qemu-img create -f qcow2 instance-000001ee.qcow2 2G
+  462  cd /var/log/nova
+  463  ll
+  464  openstack-status 
+  465  ~/openstack.sh 
+  466  ll
+  467  cd /var/log/nova
+  468  ll
+  469  more compute.log 
+  470  service openstack-nova-status
+  471  service openstack-nova-compute status
+  472  ll
+  473  tail api.log 
+  474  less compute.log 
+  475  tail /var/log/messages
+  476  cd /var/log/nova
+  477  ll
+  478  service openstack-nova-compute status
+  479  tial compute.log 
+  480  tail compute.log 
+  481  ./clean.sh 
+  482  ~/openstack.sh 
+  483  tail api.log 
+  484  netstat -tilpn
+  485  netstat -tUlpn
+  486  netstat -tulpn
+  487  netstat -tulpn | grep "python"
+  488  kill 2212
+  489  ~/openstack.sh 
+  490  ll
+  491  tial compute.log 
+  492  tail compute.log 
+  493  more compute.log 
+  494  ./clean.sh 
+  495  ~/openstack.sh 
+  496  ll
+  497  tail api.log 
+  498  ll
+  499  tail compute.log 
+  500  more compute.log 
+  501  ll
+  502  ./clean.sh 
+  503  l
+  504  ll
+  505  ./clean.sh 
+  506  ~/openstack.sh 
+  507  openstack-status
+  508  ll
+  509  more api.log 
+  510  openstack-status
+  511  ll
+  512  more compute.log 
+  513  ll
+  514  >compute.log 
+  515  >api.log 
+  516  ./clean.sh 
+  517  cd /qcow2/
+  518  ll
+  519  cp instance-000001e7.qcow2 instance-000001eB.qcow2 
+  520  ~/openstack.sh 
+  521  cd /var/log/nova
+  522  ll
+  523  ./clean.sh 
+  524  ll
+  525  openstack-status 
+  526  ~/openstack.sh 
+  527  ll
+  528  more scheduler.log 
+  529  ./clean.sh 
+  530  ~/openstack.sh 
+  531  ll
+  532  more compute.log 
+  533  ~/openstack.sh 
+  534  ./clean.sh 
+  535  ~/openstack.sh 
+  536  ll
+  537  mv /qcow2/instance-000001eB.qcow2 /qcow2/instance-000001ec.qcow2
+  538  ll /qcow2/
+  539  ll
+  540  tail compute.log 
+  541  reboot
+  542  cd /var/log/nova
+  543  ll
+  544  tail network.log 
+  545  more network.log 
+  546  more scheduler.log 
+  547  more cert.log 
+  548  more api.log 
+  549  ./clean.sh 
+  550  ll
+  551  ssh root@10.0.0.1
+  552  cd /var/log/nova/
+  553  ll
+  554  more compute.log 
+  555  cd /qcow2/
+  556  ll
+  557  rm instance-000001ec.qcow2 instance-000001ed.qcow2
+  558  cd /var/log/nova
+  559  ll
+  560  tail compute.log 
+  561  more compute.log 
+  562  ll
+  563  ./clean.sh 
+  564  ll
+  565  openstack-status
+  566  ~/openstack.sh 
+  567  openstack-status
+  568  ll
+  569  more api.log 
+  570  ll
+  571  more compute.log 
+  572  time
+  573  date
+  574  hwclock --show
+  575  hwclock --show --utc
+  576  date -s "13 OCT 2014 00:26:00"
+  577  date
+  578  hwclock
+  579  hwclock -w
+  580  date
+  581  hwclock
+  582  date
+  583  ll
+  584  ./clean.sh 
+  585  ~/openstack.sh 
+  586  ll
+  587  ll /qcow2/
+  588  ll
+  589  more compute.log 
+  590  ll
+  591  more compute.log 
+  592  ./clean.sh 
+  593  ll
+  594  reboot
+  595  su vhr
+  596  date
+  597  ssh root@10.0.0.1
+  598  cd /var/log/nova
+  599  ll
+  600  more compute.log 
+  601  ./clean.sh 
+  602  openstack-status 
+  603  ll /qcow2/
+  604  cp /qcow2/instance-000001ef.qcow2 /qcow2/instance-000001f0.qcow2 
+  605  cp /qcow2/instance-000001ef.qcow2 /qcow2/instance-000001f1.qcow2 
+  606  cp /qcow2/instance-000001ef.qcow2 /qcow2/instance-000001f2.qcow2 
+  607  clock
+  608  ll
+  609  more compute.log 
+  610  ./clean.sh 
+  611  ~/openstack.sh 
+  612  ll
+  613  more compute.log 
+  614  ll
+  615  ./clean.sh 
+  616  ll /qcow2/
+  617  ll
+  618  openstack-status
+  619  ~/openstack.sh 
+  620  ll
+  621  cd /qcow2/
+  622  ll
+  623  mv instance-000001e7.qcow2 instance-000001f3.qcow2
+  624  mv instance-000001ee.qcow2 instance-000001f4.qcow2
+  625  mv instance-000001ef.qcow2 instance-000001f5.qcow2
+  626  mv instance-000001f1.qcow2 instance-000001f6.qcow2
+  627  ll
+  628  cd /var/log/nova
+  629  ll
+  630  tail compute.log 
+  631  openstack-status
+  632  ~/openstack.sh 
+  633  openstack-status
+  634  ll
+  635  more compute.log 
+  636   nova service-list
+  637  source ~/keystonerc 
+  638   nova service-list
+  639  more /root/bashrc
+  640  more ~/.bashrc 
+  641  nano ~/.bashrc 
+  642  vim ~/.bashrc 
+  643  ~/openstack.sh 
+  644  openstack-status
+  645  ll /qcow2/
+  646  ll
+  647  ./clean.sh 
+  648  ll
+  649  openstack-status
+  650  ll
+  651  ~/openstack.sh 
+  652  ll
+  653  openstack-status
+  654  ll
+  655  openstack-status
+  656  ll
+  657  tail compute.log 
+  658  more compute.log 
+  659  reboot
+  660  ifdown br0
+  661  ssh root@10.0.0.1
+  662  ll
+  663  cd /var/log/nova
+  664  ll
+  665  rm -f *.gz
+  666  ll
+  667  >compute.log 
+  668  >api.log 
+  669  ll
+  670  ./clean.sh 
+  671  openstack-status 
+  672  df
+  673  df -h
+  674  rabbitmq
+  675  rabbitmqctl status
+  676  cd /var/log/messages
+  677  cd ..
+  678  ll
+  679  rm *.gz
+  680  ll
+  681  more messages 
+  682  more lastlog 
+  683  l
+  684  ll
+  685  nova-manager
+  686  nova-manage service list
+  687  date
+  688  yum install ntp
+  689  [root@compute1 log]# date
+  690  Sun Oct 19 12:05:16 MYT 2014
+  691  [root@compute1 log]# yum install ntp
+  692  Loading mirror speeds from cached hostfile
+  693  epel/metalink                                                                                                                   | 5.5 kB     00:00     
+  694   * base: mirrors.hostemo.com
+  695   * epel: epel.mirror.srv.co.ge
+  696   * extras: mirrors.hostemo.com
+  697   * updates: mirrors.hostemo.com
+  698  base                                                                                                                            | 3.7 kB     00:00     
+  699  epel                                                                                                                            | 4.4 kB     00:00     
+  700  epel/primary_db                                              94% [================================================   ]  12 kB/s | 6.0 MB     00:28 ETA 
+  701  service ntpd start
+  702  chkconfig ntpd on
+  703  service ntpd staus
+  704  service ntpd status
+  705  vi /etc/ntp.conf 
+  706  ifconfig
+  707  vi /etc/ntp.conf 
+  708  service ntpd restart
+  709  date
+  710  ntpd
+  711  ntp
+  712  ntpd --help
+  713  ntpdate
+  714  ntpdate controller
+  715  service ntpd stop
+  716  ntpdate controller
+  717  vi /etc/ntp.conf 
+  718  host controller
+  719  host poo.ntp.org
+  720  seq 0 3 |xargs --replace ntpdate -p 1 -d {}.pool.ntp.org |grep receive
+  721  nmap -p123 -sU -P0 localhost
+  722  ntpdate -b controller
+  723  ping controller
+  724  ntpdate -b -u controller
+  725  ntpdate -ntpq -p b -u controller
+  726  vi /etc/ntp.conf 
+  727  service ntpd restart
+  728  ntpq -p
+  729  tim
+  730  date
+  731  service ntpd stop
+  732  ntpdate –u 172.18.72.137
+  733  ntpdate –u controller
+  734  host -u controller
+  735  host controller
+  736  host google.com
+  737  ntpdate –u 0.centos.pool.ntp.org
+  738  host 0.centos.pool.ntp.org
+  739  ntpdate –u 0.centos.pool.ntp.org
+  740  ntpdate 0.centos.pool.ntp.org
+  741  ntpdc -c sysinfo
+  742  service ntpd restart
+  743  ntpdc -c sysinfo
+  744  ntpdate -db 0.north-america.pool.ntp.org
+  745  ntpdate -db controller
+  746  vi /etc/ntp.conf 
+  747  service ntpd restart
+  748  ===============================================================================
+  749  ntpdc -c monlist
+  750  ntpq -p 
+  751  date
+  752  asdasdasdaqwe
+  753  ll
+  754  ./openstack.sh 
+  755  openstack-status
+  756  cd /var/log/nova
+  757  ll
+  758  more compute.log 
+  759  l
+  760  ll
+  761  cp compute.log compute.log.2
+  762  >compute.log
+  763  more api.log 
+  764  ./clean.sh 
+  765  ll
+  766  ~/openstack.sh 
+  767  ll
+  768  openstack-staus
+  769  openstack-status 
+  770  ll
+  771  iptables
+  772  service iptables status
+  773  ll
+  774  ./clean.sh 
+  775  reboot
+  776  ssh root@10.0.0.1
+  777  xit
+  778  exit
+  779  service sshd statu
+  780  service sshd status
+  781  service sshd restart
+  782  exit
+  783  su vhr
+  784  openstack-status
+  785  cd /var/log/nova
+  786  ll
+  787  more compute.log
+  788  date
+  789  ssh root@172.8.72.139
+  790  ssh root@10.0.0.1
+  791  ifconfig
+  792  ifdown br100
+  793  ifup br100
+  794  ssh root@10.0.0.1
+  795  ll
+  796  more compute.log
+  797  مم
+  798  ll
+  799  ./clean.sh 
+  800  ll
+  801  rm compute.log.2
+  802  cd /qcow2/
+  803  ll
+  804  cp instance-000001f2.qcow2 instance-000001f1.qcow2
+  805  ll
+  806  rm instance-000001f1.qcow2 
+  807  ll
+  808  cp instance-000001f6.qcow2 tmp.qcow2
+  809  l
+  810  ll
+  811  cp tmp.qcow2 instance-000001f2.qcow2 
+  812  top
+  813  df
+  814  free -m
+  815  virsh
+  816  ll
+  817  cp tmp.qcow2 instance-000001f0.qcow2 
+  818  cp instance-000001f2.qcow2 instance-000001f2.qcow2.org
+  819  virsh
+  820  ll
+  821  rm tmp2.qcow2 
+  822  mv tmp.qcow2 android-4.4-installed.qcow2
+  823  ll
+  824  rm androidx86.qcow2
+  825  rm androidx86.qcow2.org 
+  826  l
+  827  ll
+  828  cd android
+  829  cd android_test/
+  830  ll
+  831  cd ..
+  832  ll
+  833  cp instance-000001f0.qcow2 instance-000001f0.qcow2.org
+  834  ll
+  835  virsh
+  836  virsh 
+  837  ping 10.0.00.17
+  838  adb connect 10.0.0.17
+  839  adb disconnect
+  840  ll
+  841  rm instance-000001e4.qcow2* -f
+  842  ll
+  843  cp instance-000001f0.qcow2.org instance-000001f0.qcow2
+  844  virsh
+  845  cp instance-000001f0.qcow2.org instance-000001f0.qcow2
+  846  ll
+  847  cp instance-000001f0.qcow2.org instance-000001f0.qcow2
+  848  ll
+  849  cp instance-000001f0.qcow2.org instance-000001f0.qcow2
+  850  yes | cp instance-000001f0.qcow2.org instance-000001f0.qcow2
+  851  yes
+  852  ll
+  853  cp instance-000001f0.qcow2.org instance-000001f0.qcow2
+  854  ll
+  855  cd /qcow2/
+  856  ll
+  857  ll -h
+  858  exit
+  859  cd /qcow2/
+  860  ll
+  861  cp instance-000001f0.qcow2.org instance-000001f0.qcow2 
+  862  cd /qcow2/
+  863  ll
+  864  ping 8.8.4.4
+  865  virsh
+  866  ll
+  867  rm instance-000001f4.qcow2 
+  868  rm instance-000001f5.qcow2 
+  869  rm instance-000001f6.qcow2 
+  870  ll
+  871  qemu-img create -f qcow2 -b winxp.qcow2 instance-000001f4.qcow2
+  872  qemu-img create -f qcow2 -b winxp.qcow2 instance-000001f5.qcow2
+  873  qemu-img create -f qcow2 -b winxp.qcow2 instance-000001f6.qcow2
+  874  cd /var/log/nova/
+  875  ll
+  876  rm *.gz -f
+  877  ll
+  878  more compute.log 
+  879  tail compute.log 
+  880  ./clean.sh 
+  881  openstack-status
+  882  nr
+  883  cd ~
+  884  ll
+  885  ./openstack.sh 
+  886  cd /var/log/nova
+  887  l
+  888  ll
+  889  ./clean.sh 
+  890  ll
+  891  cd /`co
+  892  cd /qcow2/`
+  893  `
+  894  cd /qcow2/
+  895  ll
+  896  virsh
+  897  ll
+  898  cp instance-000001f4.qcow2 instance-000001f4.qcow2.org
+  899  ll
+  900  rm instance-000001dc.qcow2* -f
+  901  rm instance-000001dd.qcow2* -f
+  902  ll
+  903  مم
+  904  ll
+  905  qemu-img create -f qcow2 -b winxp.qcow2 instance-000001f7.qcow2
+  906  qemu-img create -f qcow2 -b winxp.qcow2 instance-000001f8.qcow2
+  907  ping 10.0.0.13
+  908  ping 10.0.0.12
+  909  virsh
+  910  ll
+  911  cp instance-000001f5.qcow2 instance-000001f5.qcow2.org
+  912  cp instance-000001f6.qcow2 instance-000001f6.qcow2.org
+  913  ll
+  914  free
+  915  free -h
+  916  free -m
+  917  top
+  918  cat /proc/meminfo
+  919  egrep --color 'Mem|Cache|Swap' /proc/meminfo
+  920  atop
+  921  free && sync && echo 3 > /proc/sys/vm/drop_caches && free
+  922  free -m
+  923  مم
+  924  ll
+  925  qemu-img create -f qcow2 -b winxp.qcow2 instance-000001f9.qcow2
+  926  rm instance-000001f3.qcow2 -f
+  927  ll
+  928  free -m
+  929  virsh
+  930  ll
+  931  cp instance-000001f7.qcow2 instance-000001f7.qcow2.org
+  932  cp instance-000001f8.qcow2 instance-000001f8.qcow2.org
+  933  cp instance-000001f9.qcow2 instance-000001f9.qcow2.org
+  934  free -m
+  935  free && sync && echo 3 > /proc/sys/vm/drop_caches && free
+  936  ll
+  937  free -m
+  938  virsh
+  939  ll
+  940  free -m
+  941  ll
+  942  cp instance-000001f8.qcow2.org instance-000001fa.qcow2
+  943  ll
+  944  ll -h
+  945  free -m
+  946  free && sync && echo 3 > /proc/sys/vm/drop_caches && free
+  947  virsh
+  948  ll
+  949  rm instance-000001f7.qcow2* -f
+  950  ll
+  951  free -m && sync && echo 3 > /proc/sys/vm/drop_caches && free -m
+  952  free -m
+  953  free -m && sync && echo 3 > /proc/sys/vm/drop_caches && free -m
+  954  ll
+  955  virsh
+  956  ll
+  957  rm instance-000001f4.qcow2* -f
+  958  rm instance-000001f5.qcow2* -f
+  959  rm instance-000001f6.qcow2* -f
+  960  rm instance-000001f8.qcow2* -f
+  961  rm instance-000001f9.qcow2* -f
+  962  ll
+  963  qemu-img create -f qcow2 -b winxp.qcow2 instance-000001fa.qcow2
+  964  qemu-img create -f qcow2 -b winxp.qcow2 instance-000001fb.qcow2
+  965  qemu-img create -f qcow2 -b winxp.qcow2 instance-000001fc.qcow2
+  966  qemu-img create -f qcow2 -b winxp.qcow2 instance-000001fd.qcow2
+  967  ll
+  968  virsh
+  969  ll
+  970  cp instance-000001fa.qcow2 instance-000001fa.qcow2.org 
+  971  cp instance-000001fb.qcow2 instance-000001fb.qcow2.org && cp instance-000001fc.qcow2 instance-000001fc.qcow2.org && cp instance-000001fd.qcow2 instance-000001fd.qcow2.org
+  972  ll
+  973  cp instance-000001fd.qcow2.org instance-000001fd.qcow2
+  974  cp instance-000001fb.qcow2.org instance-000001fb.qcow2
+  975  yes | cp instance-000001fb.qcow2.org instance-000001fb.qcow2
+  976  yes | cp instance-000001fd.qcow2.org instance-000001fd.qcow2
+  977  ll
+  978  cp instance-000001fa.qcow2.org instance-000001fa.qcow2
+  979  ll
+  980  cp instance-000001fb.qcow2.org instance-000001fb.qcow2
+  981  cp instance-000001fd.qcow2.org instance-000001fd.qcow2
+  982  مم
+  983  ll
+  984  cp instance-000001fd.qcow2.org instance-000001fd.qcow2
+  985  cp instance-000001fc.qcow2.org instance-000001fc.qcow2
+  986  ll
+  987  sas.
+  988  ls /qcow2/
+  989  ll /qcow2/
+  990  ll /qcow2/ -ah
+  991  ll /qcow2/
+  992  history > /root/root_compute1.txt
+  993  cat /root/root_compute1.txt 
+  994  cd /qcow2/
+  995  ll
+  996  exit
+  997   history> /home/vhr/root_compute1.txt

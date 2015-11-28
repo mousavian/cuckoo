@@ -1,0 +1,107 @@
+    1  ifconfig
+    2  su
+    3  su -
+    4  vncpasswd
+    5  exit
+    6  su -s
+    7  su -
+    8  pid
+    9  prid
+   10  top
+   11  procis
+   12  nova 
+   13  reboot
+   14  openstack-status 
+   15  service openstack-nova-compute stop
+   16  su -
+   17  ftp 172.18.72.135
+   18  cd Desktop/test/
+   19  ll
+   20  ftp 172.18.72.135
+   21  top
+   22  su 
+   23  cd Desktop/
+   24  cd test/
+   25  ftp 172.18.72.135
+   26  qemu-img create -f qcow2 winxp64.qcow2 7G
+   27  ll
+   28  df
+   29  vi ~/.vnc/xstartup 
+   30  su 
+   31  asd 
+   32  ad
+   33  cd Desktop/test/
+   34  ll
+   35  rm winxp64.qcow2 
+   36  ll
+   37  kvm-img create –f raw windowsxp.img 8G
+   38  kvm 
+   39  kvm
+   40  virt-install 
+   41  virt-image create
+   42  virt-image create -f raw windowsxp.img 7G
+   43  ftp 172.18.72.135
+   44  su
+   45  ping compute3
+   46  su
+   47  su
+   48  ifconfig
+   49  vncserver
+   50  virsh list --all
+   51  vncserver
+   52  su
+   53  exit
+   54  vncserver
+   55  reboot
+   56  sudo reboot
+   57  su 
+   58  su
+   59  su
+   60  vncserver
+   61  su
+   62  vncserver
+   63  ll
+   64  tail metadata-api.log
+   65  ll
+   66  su 
+   67  vncserver 
+   68  su
+   69  su
+   70  mkdir /qcow2
+   71  su 
+   72  su
+   73  vncserver
+   74  su 
+   75  su
+   76  sudo su
+   77  su
+   78  ftp 172.19.71.214
+   79  su
+   80  sudo 
+   81  su 
+   82  su
+   83  su
+   84  ping 172.18.72.138
+   85  ping 172.18.72.131
+   86  ping 172.18.72.137
+   87  ssh root@172.18.72.131
+   88  ping 172.18.72.137
+   89  ping 172.18.72.131
+   90  ping 172.18.72.137
+   91  ssh root@172.18.72.137
+   92  ssh root@172.18.72.137 
+   93  vncserver
+   94  su
+   95  su
+   96  su
+   97  ping 10.0.0.8
+   98  su
+   99  su
+  100  cd /qcow2/
+  101  ll
+  102  rm temp.qcow2 
+  103  rm dudulo 
+  104  ll
+  105  vncserver 
+  106  su 
+  107   history > /home/vhr/vhr_compute2.txt

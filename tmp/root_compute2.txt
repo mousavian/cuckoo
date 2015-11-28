@@ -1,0 +1,997 @@
+    1  cd /var/log/nova/
+    2  ll
+    3  cd bae40c9e-0527-433d-b3ea-a9fe119e4f64
+    4  cd /var/lib/nova
+    5  cd tmp/
+    6  ll
+    7  cd ..
+    8  ll
+    9  cd instances/
+   10  ll
+   11  cd ..
+   12  ll
+   13  cd /etc/nova/volumes
+   14  ll
+   15  cd /var/log/messages
+   16  cd /var/log/
+   17  more messages
+   18  service openstack-nova-compute start
+   19  service openstack-nova-compute status
+   20  ll
+   21  ls
+   22  more messages
+   23  vi /usr/bin/nova-compute
+   24  /usr/bin/nova-compute
+   25  cd /
+   26  find / -name *nova*.*log*
+   27  cd /var/log/nova/
+   28  ll
+   29  dmesg 
+   30  more ../messages
+   31  service openstack-nova-compute start
+   32  service openstack-nova-compute status
+   33  ll
+   34  more ../messages
+   35  yum remove openstack-nova-compute
+   36  yum install openstack-nova-compute
+   37  y
+   38  yum install openstack-nova-compute
+   39  cd /etc/nova/
+   40  ll
+   41  vim nova.conf 
+   42  vim /etc/nova/api-paste.ini
+   43   service libvirtd start
+   44   service messagebus start
+   45  service libvirtd status
+   46  service messagebus status
+   47   chkconfig libvirtd on
+   48   chkconfig messagebus on
+   49   service openstack-nova-compute start
+   50   chkconfig openstack-nova-compute on
+   51   service openstack-nova-compute status
+   52  ll
+   53  cd /var/log/nova/
+   54  ll
+   55  yum remove openstack-nova-network
+   56  yum install openstack-nova-network
+   57  yum remove openstack-nova-api
+   58  yum install openstack-nova-api
+   59  service openstack-nova-metadata-api start
+   60  service openstack-nova-metadata-api status
+   61  yum remove openstack-utils
+   62  yum install openstack-utils
+   63  openstack-status 
+   64  yum install openstack-selinux
+   65  ll
+   66  more ../messages
+   67  cd /usr/lib/python2.6/site-packages/
+   68  ll
+   69  cd nova
+   70  ll
+   71  chwon nova:nova -R 
+   72  chown nova:nova -R *
+   73  chown nova:nova -R *.*
+   74  ll
+   75  service openstack-nova-compute start
+   76  service openstack-nova-compute status
+   77  service nova-compute stop
+   78  yum install openstac-nova-compute
+   79  yum install openstack-nova-compute
+   80  service nova-compute status
+   81  openstack-status 
+   82  service openstack-nova-compute
+   83  service openstack-nova-compute stop
+   84  service openstack-nova-compute start
+   85  service openstack-nova-compute status
+   86  yum install yum-plugin-remove-with-leaves
+   87  yum remove openstack-nova-compute --rempve-leaves
+   88  yum remove openstack-nova-compute --remove-leaves
+   89  yum remove *nova* --remove-leaves
+   90  openstack-status 
+   91  yum remove *openstack* --remove-leaves
+   92  cd /etc/nova/
+   93  ll
+   94  rm *
+   95  cd /
+   96  find / -name *nova*
+   97  rm /var/log/nova -R
+   98  rm /var/log/nova -Rf
+   99  ll
+  100  rm /var/log/
+  101  find / -name *nova*
+  102  rm find / -name *nova*
+  103  rm | find / -name *nova*
+  104   find / -name *nova*
+  105  rm -Rf /var/lib/nova/
+  106   find / -name *nova*
+  107  rm -f /root/.novaclient
+  108  rm -fR /root/.novaclient
+  109  rm -fR /etc/libvirt/nwfilter/nova-vpn.xml
+  110  rm -fR /etc/libvirt/nwfilter/nova-allow-dhcp-server.xml
+  111  find / -name *nova* -exec rm -fR {} \;
+  112   find / -name *nova*
+  113   find / -name *openstack*
+  114   find / -name *openstack* -exec rm -Rf {}\;
+  115   find / -name *openstack* -exec rm -Rf {} \;
+  116  /etc/libvirt/nwfilter/nova-allow-dhcp-server.xml
+  117  yum install mysql MySQL-python
+  118  /etc/libvirt/nwfilter/nova-a
+  119  yum install openstack-utils -y
+  120  yum install openstack-nova-compute -y
+  121   openstack-config --set /etc/nova/nova.conf database connection mysql://nova:k4hvd@controller/nova
+  122   openstack-config --set /etc/nova/nova.conf DEFAULT auth_strategy keystone
+  123   openstack-config --set /etc/nova/nova.conf keystone_authtoken auth_host controller
+  124   openstack-config --set /etc/nova/nova.conf keystone_authtoken auth_protocol http
+  125   openstack-config --set /etc/nova/nova.conf keystone_authtoken auth_port 35357
+  126   openstack-config --set /etc/nova/nova.conf keystone_authtoken admin_user nova
+  127   openstack-config --set /etc/nova/nova.conf keystone_authtoken admin_tenant_name service
+  128   openstack-config --set /etc/nova/nova.conf keystone_authtoken admin_password k4hvd
+  129   openstack-config --set /etc/nova/nova.conf   DEFAULT rpc_backend nova.openstack.common.rpc.impl_qpid
+  130   openstack-config --set /etc/nova/nova.conf DEFAULT qpid_hostname controller
+  131  openstack-config --set /etc/nova/nova.conf DEFAULT my_ip 172.18.72.138
+  132   openstack-config --set /etc/nova/nova.conf DEFAULT vnc_enabled True
+  133   openstack-config --set /etc/nova/nova.conf DEFAULT vncserver_listen 0.0.0.0
+  134   openstack-config --set /etc/nova/nova.conf DEFAULT vncserver_proxyclient_address 172.18.72.138
+  135   openstack-config --set /etc/nova/nova.conf   DEFAULT novncproxy_base_url http://controller:6080/vnc_auto.html
+  136  openstack-config --set /etc/nova/nova.conf DEFAULT glance_host controller
+  137  vi 
+  138  vi /etc/nova/api-paste.ini
+  139   service libvirtd start
+  140   service messagebus start
+  141   chkconfig libvirtd on
+  142   chkconfig messagebus on
+  143   service openstack-nova-compute start
+  144   chkconfig openstack-nova-compute on
+  145   service openstack-nova-compute status
+  146   service messagebus start
+  147  openstack-status 
+  148  service openstack-nova-network start
+  149  yum install openstack-nova-network 
+  150  service openstack-nova-network start
+  151  service openstack-nova-network status
+  152  service openstack-nova-network stop
+  153  openstack-config --set /etc/nova/nova.conf DEFAULT   network_manager nova.network.manager.FlatDHCPManager
+  154   openstack-config --set /etc/nova/nova.conf DEFAULT   firewall_driver nova.virt.libvirt.firewall.IptablesFirewallDriver
+  155   openstack-config --set /etc/nova/nova.conf DEFAULT network_size 254
+  156   openstack-config --set /etc/nova/nova.conf DEFAULT allow_same_net_traffic False
+  157   openstack-config --set /etc/nova/nova.conf DEFAULT multi_host True
+  158   openstack-config --set /etc/nova/nova.conf DEFAULT send_arp_for_ha True
+  159   openstack-config --set /etc/nova/nova.conf DEFAULT share_dhcp_address True
+  160   openstack-config --set /etc/nova/nova.conf DEFAULT force_dhcp_release True
+  161   openstack-config --set /etc/nova/nova.conf DEFAULT flat_interface eth1
+  162   openstack-config --set /etc/nova/nova.conf DEFAULT flat_network_bridge br100
+  163   openstack-config --set /etc/nova/nova.conf DEFAULT public_interface eth1
+  164  yum install openstack-nova-api
+  165   service openstack-nova-metadata-api start
+  166   chkconfig openstack-nova-metadata-api on
+  167  service openstack-nova-network start
+  168  chkconfig openstack-nova-network on
+  169  service openstack-nova-network status
+  170  service openstack-nova-network stop
+  171  service openstack-nova-network start
+  172  service openstack-nova-network status
+  173  nova network-create vmnet --fixed-range-v4=10.0.0.0/24   --bridge=br100 --multi-host=T
+  174  source /root/keystonerc 
+  175  nova network-create vmnet --fixed-range-v4=10.0.0.0/24   --bridge=br100 --multi-host=T
+  176  cd /var/log/nova/
+  177  ll
+  178  tail network.log 
+  179  ifconfig
+  180  vi /etc/sysconfig/network-scripts/ifcfg-br100 
+  181  tail network.log 
+  182  nova
+  183  nova nova-delete
+  184  nova network-list
+  185  nova network-delete vmnet
+  186  nova network-delete 50e3abbf-e339-4394-a8a5-b22b549649cc
+  187  nova
+  188  nova network-delete 50e3abbf-e339-4394-a8a5-b22b549649cc
+  189  nova network-delete 
+  190  nova network-delete
+  191  nova network-disassociate 50e3abbf-e339-4394-a8a5-b22b549649cc
+  192  nova network-show 
+  193  nova network-list 
+  194  nova network-show 50e3abbf-e339-4394-a8a5-b22b549649cc
+  195  nova-manage network delete
+  196  nova-manage network delete 50e3abbf-e339-4394-a8a5-b22b549649cc
+  197  nova-manage network list
+  198  nova-manage network delete 1
+  199  nova-manage network delete 50e3abbf-e339-4394-a8a5-b22b549649cc
+  200  nova-manage project list
+  201  nova-manage project scrub
+  202  nova-manage project scrub list
+  203  nova-manage project scrub --list
+  204  nova network-show 50e3abbf-e339-4394-a8a5-b22b549649cc
+  205  nova-manage network delete 10.0.0.0/24
+  206  reboot
+  207  exit
+  208  service openstack-nova-compute stop
+  209  service openstack-nova-compute start
+  210  service openstack-nova-compute status
+  211  cd /usr/lib/python2.6/site-packages/nova/virt/libvirt/
+  212  ll -tr
+  213  cd ..
+  214  ll -trR
+  215  ll -trR | more
+  216  cd ..
+  217  pwd
+  218  ll -trR | grep --color Mar
+  219  cd /
+  220  ll -trR | grep --color Mar
+  221  cd /etc/nova/
+  222  ll
+  223  cd ..
+  224  ll
+  225  cd nova/
+  226  mv nova.conf nova.conf.old
+  227  service openstack-nova-compute start
+  228  service openstack-nova-compute status
+  229  service openstack-nova-compute start
+  230  service openstack-nova-compute status
+  231  cd /var/log
+  232  cd noa
+  233  cd nova/
+  234  ll
+  235  tail ../messages
+  236  cd 
+  237  cd no
+  238  ll
+  239  cd /var/log/nova/
+  240  ll
+  241  chown root:root *
+  242  mv /etc/nova/nova.conf.old /etc/nova/nova.conf
+  243  ll
+  244  service openstack-nova-compute start
+  245  service openstack-nova-compute status
+  246  ll
+  247  chown nova:nova *
+  248  service openstack-nova-compute start
+  249  service openstack-nova-compute status
+  250  ll
+  251  rpm -qa
+  252  rpm -qa | grep nova
+  253  rpm -qd openstack-nova-compute-2013.2.2-1.el6.noarch
+  254  rpm -qd openstack-nova-compute-2013
+  255  rpm -qf openstack-nova-compute-2013.2.2-1.el6.noarch
+  256  rpm -qa | more
+  257  rpm -ql
+  258  rpm -ql nova
+  259  rpm -ql libical-0.43-6.el6.x86_64
+  260  rpm -qa | grep nova
+  261  rpm -ql openstack-nova-compute-2013.2.2-1.el6.noarch
+  262  vi /usr/bin/nova-compute 
+  263  service openstack-nova-compute start
+  264  service openstack-nova-compute status
+  265  tail /var/log/messages
+  266  cd /
+  267  find / -name *nova*
+  268  find / -name *nova* | more
+  269  cd 
+  270  cd /var/lib/nova/instances/locks/
+  271  kk
+  272  ll
+  273  ls
+  274  rm *
+  275  rm * -y
+  276  rm * --y
+  277  rm * -yes
+  278  rm
+  279  rm *.
+  280  man rm
+  281  rm * -f
+  282  ll
+  283  service openstack-nova-compute start
+  284  service openstack-nova-compute status
+  285  tail /var/log/messages
+  286  which nova-compute
+  287  whereis nova-compute
+  288  man nova-compute
+  289  !
+  290  yum remove nova-compute --remove-leaves
+  291  yum erase nova-compute
+  292  yum remove --remove-leaves nova-compute
+  293  yum erase --remove-leaves nova-compute
+  294  yum erase nova-compute --remove-leaves
+  295  yum remove group
+  296  yum removegroup
+  297  yum removegroup nova*
+  298  yum remove nova*
+  299  yum remove "nova*"
+  300  yum groupremove nova*
+  301  exit
+  302  ifconfig | more
+  303  ifup eth1
+  304  ifup eth0
+  305  ping 172.18.72.139
+  306  exit
+  307  service openstack-nova-compute staus
+  308  service openstack-nova-compute status
+  309  service openstack-nova-network status
+  310  openstack-status 
+  311  virsh list
+  312  service openstack-nova-network statu
+  313  service openstack-nova-compute status
+  314  service openstack-nova-compute stop
+  315  service openstack-nova-compute start
+  316  service openstack-nova-compute status
+  317  virsh
+  318  ifconfig
+  319  service iptables status
+  320  nova network 
+  321  nova network list
+  322  nova network-list
+  323  source /root/keystonerc 
+  324  nova network-list
+  325  nova network-show 10.0.0.0/24
+  326  nova network-show 4931178a-dfae-4aa9-abab-d92ada781c93
+  327  ping 10.0.0.10
+  328  ping 10.0.0.11
+  329  ifconfig | more
+  330  service openstack-nova-compute stop
+  331  service openstack-nova-network stop
+  332  service openstack-nova-compute start
+  333  service openstack-nova-compute stop
+  334  service openstack-nova-compute start
+  335  service openstack-nova-network start
+  336  ifconfig | more
+  337  ifdown eth0
+  338  su vhr
+  339  cd /var/log/
+  340  cd nova/
+  341  iptables -A  nova-compute-FORWARD -s 0.0.0.0/0 -d 0.0.0.0/0  -j ACCEPT
+  342  iptables -A  nova-compute-INPUT -s 0.0.0.0/0 -d 0.0.0.0/0  -j ACCEPT
+  343  iptables -A  nova-compute-OUTPUT -s 0.0.0.0/0 -d 0.0.0.0/0  -j ACCEPT
+  344  iptables -A  nova-compute-local -s 0.0.0.0/0 -d 0.0.0.0/0  -j ACCEPT
+  345  iptables -A  nova-compute-provider -s 0.0.0.0/0 -d 0.0.0.0/0  -j ACCEPT
+  346  iptables -A  nova-compute-sg-fallback -s 0.0.0.0/0 -d 0.0.0.0/0  -j ACCEPT
+  347  iptables -A  nova-filter-top -s 0.0.0.0/0 -d 0.0.0.0/0  -j ACCEPT
+  348  service iptables save
+  349  openstack-status 
+  350  ifconfig
+  351  cat /proc/sys/net/ipv4/ip_forward 
+  352  virsh
+  353  grep listen_ /etc/libvirt/libvirtd.conf
+  354  vi /etc/libvirt/libvirt.conf 
+  355  service libvirtd restart
+  356  netstat -lntp | grep libvirtd
+  357  ps aux | grep libvirtd
+  358  vi /etc/sysconfig/libvirtd
+  359  service libvirtd restart
+  360  tail /var/log/messages
+  361  service iptables stop
+  362  servic
+  363  vi /etc/sysconfig/libvirtd
+  364  service libvirtd start
+  365  ps aux | grep libvirtd
+  366  netstat -lntp | grep libvirtd
+  367  vi /etc/libvirt/libvirt.conf 
+  368  vi /etc/sysconfig/libvirtd
+  369  service libvirtd restart
+  370  vi /etc/libvirt/libvirt.conf 
+  371  service libvirtd restart
+  372  vi /etc/libvirt/libvirt.conf 
+  373  service libvirtd restart
+  374  vi /etc/libvirt/libvirt.conf 
+  375  service libvirtd restart
+  376  vi /etc/libvirt/libvirt.conf 
+  377  service libvirtd restart
+  378  vi /etc/libvirt/libvirt.conf 
+  379  service libvirtd restart
+  380  vi /etc/libvirt/libvirt.conf 
+  381  vi /etc/sysconfig/libvirtd
+  382  vi /etc/libvirt/qemu
+  383  vi /etc/libvirt/qemu.conf 
+  384  ll /etc/libvirt/
+  385  vi /etc/libvirt/libvirtd.conf 
+  386  vi /etc/sysconfig/libvirtd
+  387  service libvirtd restart
+  388  service libvirtd start
+  389  service libvirtd restart
+  390  vi /etc/sysconfig/libvirtd
+  391  service libvirtd restart
+  392  grep listen_ /etc/libvirt/libvirtd.conf
+  393  vi /etc/libvirt/libvirtd.conf 
+  394  service libvirtd restart
+  395  grep listen_ /etc/libvirt/libvirtd.conf
+  396  netstat -lntp | grep libvirtd
+  397  vi /etc/sysconfig/libvirtd
+  398  service libvirtd restart
+  399  grep listen_ /etc/libvirt/libvirtd.conf
+  400  vi /etc/libvirt/libvirtd.conf 
+  401  service libvirtd restart
+  402  tail /var/log/mess
+  403  tail /var/log/messages
+  404  >/var/log/messages
+  405  service libvirtd restart
+  406  tail /var/log/messages
+  407  vi /etc/libvirt/libvirtd.conf 
+  408  service libvirtd restart
+  409  tail /var/log/messages
+  410  vi /etc/libvirt/libvirtd.conf 
+  411  service libvirtd restart
+  412  tail /var/log/messages
+  413  tail /var/log/libvirt/qemu/
+  414  vi /etc/libvirt/libvirtd.conf 
+  415  vi /etc/sysconfig/libvirtd
+  416  service libvirtd restart
+  417  netstat -lntp | grep libvirtd
+  418  ll
+  419  openstack-status 
+  420  ifconfig
+  421  ifdown eth0
+  422  ifup eth0
+  423  exit
+  424  virsh
+  425  virsh 
+  426  qemu-img create -b /dev/disk/by-path/ip-172.18.72.139:3260-iscsi-iqn.2010-10.org.openstack:volume-33f38b0a-ca73-434f-a56e-4cef29ff0178-lun-1 -f qcow2 /home/vhr/Desktop/temp.qcow2
+  427  ll
+  428  qemu-img info /home/vhr/Desktop/temp.qcow2 
+  429  virsh
+  430  service iptables start
+  431  iptables -A  nova-compute-FORWARD -s 0.0.0.0/0 -d 0.0.0.0/0  -j ACCEPT
+  432  iptables -A  nova-compute-INPUT -s 0.0.0.0/0 -d 0.0.0.0/0  -j ACCEPT
+  433  iptables -A  nova-compute-OUTPUT -s 0.0.0.0/0 -d 0.0.0.0/0  -j ACCEPT
+  434  iptables -A  nova-compute-local -s 0.0.0.0/0 -d 0.0.0.0/0  -j ACCEPT
+  435  iptables -A  nova-compute-provider -s 0.0.0.0/0 -d 0.0.0.0/0  -j ACCEPT
+  436  iptables -A  nova-compute-sg-fallback -s 0.0.0.0/0 -d 0.0.0.0/0  -j ACCEPT
+  437  iptables -A  nova-filter-top -s 0.0.0.0/0 -d 0.0.0.0/0  -j ACCEPT
+  438  modprobe libvitd
+  439  modprobe libvit
+  440  modprobe virsh
+  441  modprobe 
+  442  man modprobe
+  443  man less
+  444  less /var/log/nova/compute.log 
+  445  car /proc/modules 
+  446  cat /proc/modules 
+  447  less /proc/modules 
+  448  man less
+  449  less /proc/modules 
+  450  cat /proc/modules 
+  451  more /proc/modules 
+  452  less /proc/modules 
+  453  modprobe ipv6
+  454  modprobe ipt_REJECT
+  455  lsmod
+  456  modinfo ipv6
+  457  virsh
+  458  vmstat 3
+  459  vmstat -m
+  460  w vhr
+  461  iostat
+  462  watch Device:            tps   Blk_read/s   Blk_wrtn/s   Blk_read   Blk_wrtn
+  463  watch iostat
+  464  virsh 
+  465  virsh
+  466  service openstack-nova-compute start
+  467  service openstack-nova-compute status
+  468  openstack-status 
+  469  virsh
+  470  vi /etc/ssh/sshd_config 
+  471  service sshd restart
+  472  iptables -A  nova-compute-FORWARD -s 0.0.0.0/0 -d 0.0.0.0/0  -j ACCEPT
+  473  iptables -A  nova-compute-INPUT -s 0.0.0.0/0 -d 0.0.0.0/0  -j ACCEPT
+  474  iptables -A  nova-compute-OUTPUT -s 0.0.0.0/0 -d 0.0.0.0/0  -j ACCEPT
+  475  iptables -A  nova-compute-local -s 0.0.0.0/0 -d 0.0.0.0/0  -j ACCEPT
+  476  iptables -A  nova-compute-provider -s 0.0.0.0/0 -d 0.0.0.0/0  -j ACCEPT
+  477  iptables -A  nova-compute-sg-fallback -s 0.0.0.0/0 -d 0.0.0.0/0  -j ACCEPT
+  478  iptables -A  nova-filter-top -s 0.0.0.0/0 -d 0.0.0.0/0  -j ACCEPT
+  479  virsh
+  480  service openstack-nova-network restart
+  481  df
+  482  df -h
+  483  ping 172.18.72.139
+  484  df -h
+  485  cd /home/vhr/Desktop/
+  486  ll
+  487  mv winxp_sp2_downloaded_with_python_ready_to_copy.qcow2 /root/
+  488  ll
+  489  cd /root/
+  490  ll
+  491  rm winxp_sp2_downloaded_with_python_ready_to_copy.qcow2 xp.qcow2
+  492  ll
+  493  mv winxp_sp2_downloaded_with_python_ready_to_copy.qcow2 winxp.qcows2
+  494  ll
+  495  qemu-img create -f qcow2 -b winxp.qcows2 1.qcow2
+  496  qemu-img create -f qcow2 -b winxp.qcows2 2.qcow2
+  497  ll
+  498  ll -h
+  499  mkdir /qcow2
+  500  chown vhr:vhr /qcow2/
+  501  mv /root/winxp.qcows2 /qcow2/
+  502  mv /root/1.qcow2 /qcow2/
+  503  mv /root/2.qcow2 /qcow2/
+  504  cd /qcow2/
+  505  ll
+  506  chown vhr:vhr *.*
+  507  ll
+  508  qemu-img winxp.qcows2 
+  509  qemu-img info winxp.qcows2 
+  510  qemu-img info 1.qcow2 
+  511  openstack-status 
+  512  reboot
+  513  exit
+  514  ssh-useradd
+  515  ssh-add
+  516  exit
+  517  quit
+  518  exit
+  519  service openstack-nova-compute restart
+  520  ll
+  521  rm 78116e3b-f4fb-40b6-b7fb-2bad31d86bcc.qcow2 
+  522  ll
+  523  مم
+  524  ll
+  525  service openstack-nova-compute restart
+  526  ll
+  527  tail /var/log/nova/compute.log 
+  528  ll
+  529  cd ..
+  530  ll
+  531  cd qcow2/
+  532  ll
+  533  cd ..
+  534  chown nobody:nogroup qcow2/ -R
+  535  ll
+  536  cd qcow2/
+  537  ll
+  538  cat /etc/passwd
+  539  cd ..
+  540  chown nobody:nobody -R qcow2/
+  541  ll
+  542  service openstack-nova-compute restart
+  543  ll
+  544  cd qcow2/
+  545  ll
+  546  ll -h
+  547  service openstack-nova-compute restart
+  548  service openstack-nova-compute stop
+  549  service openstack-nova-compute restart
+  550  tail /var/log/nova/compute.log 
+  551  service openstack-nova-compute restart
+  552  ping 10.0.0.6
+  553  service openstack-nova-compute restart
+  554  tail /var/log/nova/compute.log 
+  555  service openstack-nova-compute restart
+  556  tail /var/log/nova/compute.log 
+  557  service openstack-nova-compute restart
+  558  tail /var/log/nova/compute.log 
+  559  ll
+  560  cd ..
+  561  ll
+  562  cd qcow2/
+  563  chmod 777 *.*
+  564  service openstack-nova-compute restart
+  565  ping 10.0.0.7
+  566  tail /var/log/nova/compute.log 
+  567  service openstack-nova-compute restart
+  568  ll
+  569  rm 78116e3b-f4fb-40b6-b7fb-2bad31d86bcc.qcow2 
+  570  ll
+  571  cd ..
+  572  ll
+  573  cd qcow2/
+  574  ll
+  575  chmod 777 *.*
+  576  tail /var/log/nova/compute.log 
+  577  service openstack-nova-compute restart
+  578  ssh root@10.0.0.1
+  579  exit
+  580  openstack-status 
+  581  cd /var/log/
+  582  cd o
+  583  cd nova/
+  584  ll
+  585  tail compute.log
+  586  tail compute.log -40
+  587  tail compute.log n-40
+  588  tail compute.log -n 40
+  589  service openstack-nova-compute stop
+  590  service openstack-nova-compute start
+  591  service openstack-nova-compute status
+  592  ll
+  593  rm *.gz -f
+  594  ll
+  595  > compute.log 
+  596  > network.log 
+  597  > nova-manage.log 
+  598  ll
+  599  tail compute.log 
+  600  virsh
+  601  ll
+  602  > compute.log 
+  603  ll
+  604  tail compute.log 
+  605  ll
+  606  tail compute.log 
+  607  tail compute.log -n 40
+  608  virsh
+  609  ls
+  610  ll
+  611  cd /qcow2/
+  612  ll
+  613  ls
+  614  ll
+  615  qemu-img info 1.qcow2 
+  616  service openstack-nova-compute restart
+  617  ll
+  618  virsh
+  619  service openstack-nova-compute restart
+  620  tail /var/log/nova/compute.log 
+  621  service openstack-nova-compute restart
+  622  tail /var/log/nova/compute.log 
+  623  service openstack-nova-compute restart
+  624  tail /var/log/nova/compute.log 
+  625  service openstack-nova-compute restart
+  626  tail /var/log/nova/compute.log 
+  627  service openstack-nova-compute restart
+  628  tail /var/log/nova/compute.log 
+  629  service openstack-nova-compute restart
+  630  tail /var/log/nova/compute.log 
+  631  ll
+  632  rm 1.qcow2 
+  633  rm 2.qcow2 
+  634  ll
+  635  mv winxp.qcows2 winxp.qcow2 
+  636  ll
+  637  qemu-img create -f qcow2 -b winxp.qcow2 name.qcow2
+  638  service openstack-nova-compute restart
+  639  ll
+  640  tail /var/log/nova/compute.log 
+  641  service openstack-nova-compute restart
+  642  service openstack-nova-compute status
+  643  service openstack-nova-compute start
+  644  service openstack-nova-compute status
+  645  tail /var/log/nova/compute.log 
+  646  service openstack-nova-compute start
+  647  service openstack-nova-compute status
+  648  service openstack-nova-compute stop
+  649  service openstack-nova-compute start
+  650  service openstack-nova-compute status
+  651  service openstack-nova-compute stop
+  652  service openstack-nova-compute start
+  653  service openstack-nova-compute status
+  654  tail /var/log/nova/compute.log 
+  655  service openstack-nova-compute stop
+  656  service openstack-nova-compute restart
+  657  service openstack-nova-compute status
+  658  ll
+  659  tail /var/log/nova/compute.log 
+  660  ll
+  661  cd ..
+  662  ll
+  663  cd qcow2
+  664  ll
+  665  cd ..
+  666  chmod 777 /qcow2 -R
+  667  ll
+  668  cd qcow2/
+  669  ll
+  670  service openstack-nova-compute restart
+  671  ll
+  672  service openstack-nova-compute restart
+  673  su vhr
+  674  virsh
+  675  tail /var/log/nova/compute.log 
+  676  virsh
+  677  ll
+  678  ll -l
+  679  ll -h
+  680  ll -l
+  681  virsh
+  682  ll -l
+  683  virsh
+  684  ll
+  685  virsh
+  686  qxi
+  687  exit
+  688  nmap 172.19.71.214
+  689  yum install nmap
+  690  nmap 172.19.71.214
+  691  mysql
+  692  mysql --help
+  693  service openstack-nova-network stop
+  694  service iptables stop
+  695  virsh
+  696  cd /qcow2/
+  697  ll 
+  698  qemu-img create -f qcow2 -b winxp.qcow2 temp.qcow
+  699  ll
+  700  virsh
+  701  service openstack-nova-network start
+  702  service openstack-nova-compute start
+  703  openstack-status 
+  704  virsh
+  705  nmap 172.19.71.214
+  706  virsh list --all
+  707  cd /home/vhr/
+  708  cd test
+  709  mkdir test
+  710  cd test/
+  711  toush snapshot.sh
+  712  touch snapshot.sh
+  713  chmod 777 snapshot.sh 
+  714  nano snapshot.sh 
+  715  ./snapshot.sh 
+  716  nano snapshot.sh 
+  717  ./snapshot.sh 
+  718  nano snapshot.sh 
+  719  ./snapshot.sh 
+  720  nano snapshot.sh 
+  721  ./snapshot.sh 
+  722  nano snapshot.sh 
+  723  ./snapshot.sh 
+  724  nano snapshot.sh 
+  725  ./snapshot.sh 
+  726  virsh-snapshot-create-as
+  727  nano snapshot.sh 
+  728  exit
+  729  netmap 172.19.71.241
+  730  nmap 172.19.71.241
+  731  nmap -sV 172.19.71.241
+  732  ping 172.19.71.214
+  733  nmap 172.19.71.214
+  734  nmap -sV 172.19.71.241
+  735  ping 172.19.71.214
+  736  nmap -sV 172.19.71.241
+  737  nmap 172.19.71.214
+  738  ssh root@172.19.71.214
+  739  virsh snapshot-create instance-000000fb
+  740  virsh snapshot-create instance-000000fd
+  741  virsh snapshot-list instance-000000fd
+  742  virsh snapshot-delete  instance-000000fd 1396757504
+  743  virsh snapshot-list instance-000000f6
+  744  virsh snapshot-list instance-000000fa
+  745  virsh snapshot-list instance-000000fb
+  746  virsh snapshot-list instance-000000fc
+  747  virsh snapshot-list instance-000000fd
+  748  virsh snapshot-list instance-000000fC
+  749  virsh snapshot-list instance-000000f6
+  750  virsh snapshot-list instance-000000fd
+  751  virsh snapshot-create instance-000000fd
+  752  virsh snapshot-create instance-000000fe
+  753  virsh snapshot-create instance-000000ff
+  754  virsh snapshot-create instance-00000101
+  755  service openstack-nova-compute stop
+  756  nmap -sV 172.19.71.214
+  757  ll
+  758  ls
+  759  rm 70d9fc39-513e-4253-85c1-a7e0ac913bd1.qcow2 
+  760  ll
+  761  rm 8f1287fd-7762-4534-b6ab-7b715a09eea9.qcow2 
+  762  ll
+  763  rm b147c856-c453-4430-b48c-a45a4c160706.qcow2 
+  764  ll
+  765  cd ..
+  766  chown nobody:nogroup qcow2/
+  767  chown nobody:nogroup qcow2
+  768  less /etc/passwd
+  769  chown nobody: qcow2
+  770  ll
+  771  cd qcow2/
+  772  ll
+  773  tail /var/log/nova/compute.log
+  774  ll
+  775  ll -h
+  776  qemu-img info b1ba6d7e-d193-4a7b-80f8-5b9cf5dc5320.qcow2 
+  777  ll -h
+  778  free -m
+  779  cat /proc/scsi/scsi 
+  780  virsh
+  781  virsh snapshot-create instance-000000fa
+  782  virsh snapshot-create instance-00000100
+  783  virsh snapshot-create instance-00000103
+  784  virsh
+  785  virsh 
+  786  cd ~vhr/test/
+  787  python snapshot.py 
+  788  apt-get install python-mysql-connection
+  789  yum install python-mysql-connection
+  790  sudo yum install mysql-connector-python
+  791  python snapshot.py 
+  792  virsh list --all
+  793  python
+  794  python snapshot.py 
+  795  virsh
+  796  python snapshot.py 
+  797  openstack-status
+  798  tail /var/log/nova/compute.log
+  799  python snapshot.py 
+  800  python
+  801  service openstack-nova-compute restart
+  802  top
+  803  df -g
+  804  df -G
+  805  df -h
+  806  free -G
+  807  free -g
+  808  top
+  809  ping 10.0.0.15\
+  810  telnet 10.0.0.15 8000
+  811  top
+  812  python snapshot.py 
+  813  exiy
+  814  exit
+  815  virsh
+  816  python snapshot.py 
+  817  cd ~vhr/test/
+  818  python snapshot-create.py 
+  819  exit
+  820  cd /etc/sysconfig/network-scripts/
+  821  ll
+  822  ls
+  823  vi ifcfg-eth0 
+  824  vi ifcfg-eth1
+  825  vi ifcfg-br100 
+  826  su vhr
+  827  vice openstack-nova-compute start
+  828  service openstack-nova-compute stop
+  829  python ~vhr/test/snapshot-delete.py 
+  830  cd /qcow2/
+  831  ll
+  832  rm b1ba6d7e-d193-4a7b-80f8-5b9cf5dc5320.qcow2 ebdtywiv.qcow2 qbtxktah.qcow2 gqqvvtiy.qcow2 xemzlynf.qcow2 
+  833  ll
+  834  rm ktjbqobc.qcow2 jexnotxu.qcow2 idzukttz.qcow2 hehjxilp.qcow2 vydcewzv.qcow2 vzhuvebi.qcow2 zwpvudrl.qcow2 -y
+  835  rm ktjbqobc.qcow2 jexnotxu.qcow2 idzukttz.qcow2 hehjxilp.qcow2 vydcewzv.qcow2 vzhuvebi.qcow2 zwpvudrl.qcow2
+  836  ll
+  837  vm pmrjmboh.qcow2 sttbslwe.qcow2 
+  838  rm pmrjmboh.qcow2 sttbslwe.qcow2 
+  839  ll
+  840  reboot
+  841  less /var/log/libvirt/qemu/instance-00000106.log 
+  842  >/var/log/libvirt/qemu/instance-00000106.log 
+  843  less /var/log/libvirt/qemu/instance-00000106.log 
+  844  less /var/log/libvirt/libvirtd.log 
+  845  >/var/log/libvirt/libvirtd.log 
+  846  less /var/log/libvirt/libvirtd.log 
+  847  LIBVIRT_DEBUG=error LIBVIRT_LOG_FILTERS="1:remote" virsh list
+  848  LIBVIRT_DEBUG=error LIBVIRT_LOG_FILTERS="1:remote" virsh list --all
+  849  LIBVIRT_DEBUG=error LIBVIRT_LOG_FILTERS="1:remote" virsh snapshot-rever instance-00000106 --current
+  850  LIBVIRT_DEBUG=error LIBVIRT_LOG_FILTERS="1:remote" virsh snapshot-revert instance-00000106 --current
+  851  less /var/log/libvirt/libvirtd.log 
+  852  python ~vhr/test/snapshot-delete.py 
+  853  cd /qcow2/
+  854  ll
+  855  rm *
+  856  service openstack-nova-compute staus
+  857  service openstack-nova-compute status
+  858  service openstack-nova-compute start
+  859  python snapshot-create.py 
+  860  python ~vhr/test/snapshot-create.py 
+  861  service openstack-nova-compute stop
+  862  python ~vhr/test/snapshot-delete.py 
+  863  service openstack-nova-compute start
+  864  python ~vhr/test/snapshot-create.py 
+  865  virsh
+  866  exit
+  867  python ~vhr/test/snapshot-create.py 
+  868  ping 10.0.0.9
+  869  python ~vhr/test/snapshot-create.py 
+  870  exit
+  871  python ~vhr/test/snapshot-delete.py 
+  872  python ~vhr/test/snapshot-create.py 
+  873  exit
+  874  virsh
+  875  chown vhr:vhr /qcow2/ *
+  876  cd /qcow2/
+  877  ll
+  878  chwon vhr:vhr *.*
+  879  chown vhr:vhr *.*
+  880  ll
+  881  chmod 777 *.*
+  882  ll
+  883  virsh
+  884  ll
+  885  cp ~vhr/Desktop/new_winxp.qcow2 /qcow2/winxp.qcow2
+  886  cd ..
+  887  ll
+  888  chown nobody:nobody qcow2/ -R
+  889  ll
+  890  cd qcow2/
+  891  ll
+  892  cp winxp.qcow2 ~vhr/Desktop/winxp.qcow2
+  893  df
+  894  df -h
+  895  ll
+  896  python ~vhr/test/snapshot-delete.py 
+  897  python ~vhr/test/snapshot-create.py 
+  898  exit
+  899  service openstack-nova-compute restart
+  900  virsh
+  901  vncserver 
+  902  su vhr
+  903  service openstack-nova-compute stop
+  904  service openstack-nova-compute sto
+  905  service openstack-nova-compute stop
+  906  service openstack-nova-compute start
+  907  vi /etc/hosts
+  908  cat /root/keystonerc 
+  909  service iptables stop
+  910  iptables -A  nova-compute-FORWARD -s 0.0.0.0/0 -d 0.0.0.0/0  -j ACCEPT
+  911  iptables -A  nova-compute-INPUT -s 0.0.0.0/0 -d 0.0.0.0/0  -j ACCEPT
+  912  iptables -A  nova-compute-OUTPUT -s 0.0.0.0/0 -d 0.0.0.0/0  -j ACCEPT
+  913  iptables -A  nova-compute-local -s 0.0.0.0/0 -d 0.0.0.0/0  -j ACCEPT
+  914  iptables -A  nova-compute-provider -s 0.0.0.0/0 -d 0.0.0.0/0  -j ACCEPT
+  915  iptables -A  nova-compute-sg-fallback -s 0.0.0.0/0 -d 0.0.0.0/0  -j ACCEPT
+  916  iptables -A  nova-filter-top -s 0.0.0.0/0 -d 0.0.0.0/0  -j ACCEPT
+  917  service iptables start
+  918  iptables -A  nova-compute-FORWARD -s 0.0.0.0/0 -d 0.0.0.0/0  -j ACCEPT
+  919  iptables -A  nova-compute-INPUT -s 0.0.0.0/0 -d 0.0.0.0/0  -j ACCEPT
+  920  iptables -A  nova-compute-OUTPUT -s 0.0.0.0/0 -d 0.0.0.0/0  -j ACCEPT
+  921  iptables -A  nova-compute-local -s 0.0.0.0/0 -d 0.0.0.0/0  -j ACCEPT
+  922  iptables -A  nova-compute-provider -s 0.0.0.0/0 -d 0.0.0.0/0  -j ACCEPT
+  923  iptables -A  nova-compute-sg-fallback -s 0.0.0.0/0 -d 0.0.0.0/0  -j ACCEPT
+  924  iptables -A  nova-filter-top -s 0.0.0.0/0 -d 0.0.0.0/0  -j ACCEPT
+  925  virsh
+  926  ssh root@172.18.72.137
+  927  virsh
+  928  exit
+  929  virsh
+  930  exit
+  931  cd /qcow2/
+  932  ll
+  933  rm instance-0000011*
+  934  qemu-img create -f qcow2 -b /qcow2/winxp.qcow2 instance-0000014f.qcow2
+  935  qemu-img create -f qcow2 -b /qcow2/winxp.qcow2 instance-00000150.qcow2
+  936  qemu-img create -f qcow2 -b /qcow2/winxp.qcow2 instance-00000151.qcow2
+  937  qemu-img create -f qcow2 -b /qcow2/winxp.qcow2 instance-00000152.qcow2
+  938  qemu-img create -f qcow2 -b /qcow2/winxp.qcow2 instance-00000153.qcow2
+  939  qemu-img create -f qcow2 -b /qcow2/winxp.qcow2 instance-00000154.qcow2
+  940  virsh
+  941  ll
+  942  rm instance-0000014f.qcow2 
+  943  ll
+  944  virsh
+  945  exit
+  946  virsh
+  947  cd /qcow2/
+  948  ll
+  949  ll -h
+  950  ll
+  951  ll -h
+  952  ll
+  953  ll -h
+  954  for i in instance*; do cp $i "$i.org"; done
+  955  ll
+  956  ll -h
+  957  python
+  958  cd /qcow2/
+  959  ll
+  960  rm instance-000001*.qcow2
+  961  y
+  962  ls
+  963  rm instance-000001*.qcow2*
+  964  ll
+  965  ll -h
+  966  free -m
+  967  free g
+  968  free -m
+  969  fdisk -m
+  970  fdisk -l
+  971  exit
+  972  qemu
+  973  qemu-img
+  974  qemu-kvm
+  975  virsh h
+  976  quit
+  977  exit
+  978  cd /qcow2/
+  979  ll
+  980  exity
+  981  exit
+  982  nmap upm.edu.my
+  983  nmap -Pn upm.edu.my
+  984  nmap -PO upm.edu.my
+  985  nmap -PnO upm.edu.my
+  986  nmap sqooge.com
+  987  nmap sqooge.com -O
+  988  nmap spadana.net
+  989  nmap spadana.net -Pn
+  990  nmap spadana.net -PnO
+  991  nmap 188.136.163.134 
+  992  nmap 188.136.163.134 -O
+  993  nmap 188.136.163.132 -O
+  994  nmap --script smb-os-discovery -p 445 172.18.72.0/24
+  995  nmap --script smb-os-discovery -p 445 188.136.163.129/25
+  996  nmap -O -v 188.136.163.254
+  997   history > /home/vhr/root_compute2.txt

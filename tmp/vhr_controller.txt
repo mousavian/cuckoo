@@ -1,0 +1,176 @@
+    1  su
+    2  ifconfig
+    3  ping 4.2.2.4
+    4  service network start
+    5  ping 4.2.2.4
+    6  su
+    7  vncpasswd 
+    8  su root
+    9  su
+   10  ll
+   11  cd Desktop/
+   12  ll
+   13  ftp 172.18.72.141
+   14  yum install ftp -y
+   15  su 
+   16  vncviewer ::1:5900
+   17  vncviewer localhost:1
+   18  vncviewer localhost:1:5900
+   19  /
+   20  /usr/libexec/qemu-kvm
+   21  ll
+   22  ls
+   23  ftp 172.18.72.135
+   24  ll
+   25  sudo chown vhr:vhr *
+   26  ll
+   27  su
+   28  ll
+   29  sudo /usr/libexec/qemu-kvm -m 2048 -cdrom X17-24281.iso -drive file=win7sp1_x64_vlk.qcow2,if=virtio -drive file=virtio-win-0.1-52.iso,index=3,media=cdrom -net nic,model=virtio -net user -nographic -vnc :9 -usbdevice tablet
+   30  /usr/libexec/qemu-kvm -m 2048 -cdrom X17-24281.iso -drive file=win7sp1_x64_vlk.qcow2,if=virtio -drive file=virtio-win-0.1-52.iso,index=3,media=cdrom -net nic,model=virtio -net user -nographic -vnc :9 -usbdevice tablet
+   31  ll
+   32  rm win7sp1_x64_vlk.qcow2
+   33  ll
+   34  qemu-img create -f qcow2 win7sp1_x64_vlk.qcow2 10G
+   35  /usr/libexec/qemu-kvm -m 2048 -cdrom X17-24281.iso -drive file=win7sp1_x64_vlk.qcow2,if=virtio -drive file=virtio-win-0.1-52.iso,index=3,media=cdrom -net nic,model=virtio -net user -nographic -vnc :9 -usbdevice tablet
+   36  SU
+   37  su
+   38  printenv
+   39  sudo export PATH:$PATH:/usr/libexec/qemu-kvm
+   40  su 
+   41  vncpasswd 
+   42  vi ~/.vnc/
+   43  vi ~/.vnc
+   44  vi ~/.vnc/xstartup 
+   45  service vncserver start
+   46  su
+   47  ll
+   48  cd ..
+   49  ll
+   50  ssh vhr@172.18.73.53
+   51  exit
+   52  ssh vhr@172.18.73.53
+   53  exit
+   54  cd /var/lib/glance/images/
+   55  ll
+   56  ll -h
+   57  tail | ll -h
+   58  ll -h
+   59  vncviewer localhost:9
+   60  top
+   61  kill 8694
+   62  vncviewer localhost:9
+   63  glance add name=win7sp1_x64_vlk_20130301 is_public=true container_format=bare disk_format=qcow2 < win7sp1_x64_vlk.qcow2
+   64  su 
+   65  ping 4.2.2.4
+   66  vncserver
+   67  df
+   68  su
+   69  vncserver
+   70  su
+   71  vncserver
+   72  cd /var/www/html/
+   73  ll
+   74  chown vhr:vhr *
+   75  sudo su
+   76  su
+   77  exit
+   78  vi .ssh/authorized_key 
+   79  sudo vi /etc/hosts
+   80  su
+   81  exit
+   82  ssh-add
+   83  exit
+   84  sudosu
+   85  su
+   86  vncserver
+   87  exit
+   88  su
+   89  exit
+   90  glance image-create --name="xp_full" --is-public=true --container-format=ovf --disk-format=qcow2 < /home/vhr/Desktop/winxp_sp2_downloaded_with_python_ready_to_copy.qcow2 
+   91  vncserver
+   92  virsh list --all
+   93  virsh
+   94  exit
+   95  whoami
+   96  su
+   97  df
+   98  free
+   99  free -h
+  100  free -m
+  101  vncserver
+  102  ll
+  103  sudo su
+  104  ll
+  105  qemu-img info volume-6699fd7d-282c-403e-8e63-aabdcb64247f
+  106  su
+  107  vncserver
+  108  su
+  109  quit
+  110  virsh
+  111  su
+  112  sudo
+  113  su
+  114  vncserver
+  115  su
+  116  su 
+  117  su 
+  118  su -
+  119  ftp
+  120  su -
+  121  ifconfig
+  122  ping 172.18.72.140
+  123  su -
+  124  vncserver
+  125  su -
+  126  vncserver
+  127  nr
+  128  ns
+  129  alias nr='service openstack-nova-compute restart'
+  130  nr
+  131  su -
+  132  nr
+  133  sudo su
+  134  virt-manager 
+  135  vncserver
+  136  cd /qcow2/
+  137  exit
+  138  vncserver
+  139  exit
+  140  ifconfig
+  141  ifconfig | more
+  142  ping 172.18.72.254
+  143  sudo su-
+  144  si -
+  145  su -
+  146  ifconfig
+  147  su -
+  148  sudo -
+  149  su -
+  150  siu -
+  151  su -
+  152  exit
+  153  vncserver 
+  154  conf t
+  155  su -
+  156  df -h
+  157  ssh root@sqooge.com
+  158  ls -Z
+  159  cd /qcow2/
+  160  ls -Z
+  161  ll
+  162  df -h
+  163  fdisk
+  164  fdisk -l
+  165  fdisk -l 
+  166  su -
+  167  ll /qcow2/haas/centos_hi.qcow2
+  168  ll
+  169  cp centos_hi.qcow2 /var/lib/libvirt/images/
+  170  sudo cp centos_hi.qcow2 /var/lib/libvirt/images/
+  171  su -
+  172  su -
+  173  ping 119.40.125.3
+  174  ifconfig
+  175  ping 4.2.2.4
+  176   history> /home/vhr/vhr_controller.txt

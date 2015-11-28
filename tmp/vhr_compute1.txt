@@ -1,0 +1,149 @@
+    1  vncserver
+    2  sudo 
+    3  su
+    4  vncserver
+    5  rpm -qa qemu
+    6  sudo
+    7  su -
+    8  su
+    9  su -
+   10  vncserver
+   11  su -
+   12  su
+   13  /usr/libexec/qemu-kvm -snapshot -hda /qcow2/instance-0000015b.qcow2
+   14  su nautilus
+   15  sudo nautilus
+   16  su -
+   17  sudo -
+   18  su -
+   19  su -
+   20  uname -m
+   21  ll
+   22  cd Downloads/
+   23  ll
+   24  wget http://dl.google.com/android/android-sdk_r23.0.2-linux.tgz
+   25  ll
+   26  tar -xvzf ad
+   27  tar -xvzf android-sdk_r23.0.2-linux.tgz 
+   28  ll
+   29  wget http://droidbox.googlecode.com/files/DroidBox411RC.tar.gz
+   30  wget http://droidbox.googlecode.com/files/DroidBoxTests.apk
+   31  ll
+   32  tar -xvfz DroidBox411RC.tar.gz 
+   33  tar -xvf DroidBox411RC.tar.gz 
+   34  ll
+   35  sudo root
+   36  sudo su
+   37  mv android-sdk-linux /opt/
+   38  sudo mv android-sdk-linux /opt/
+   39  echo $PATH
+   40  export PATH=$PATH:~/Downloads/android-sdk-linux/tools/:~/Downloads/android-sdk-linux/platforms/
+   41  echo $PATH
+   42  yum search java | grep java
+   43  yum search java | grep openjava
+   44  yum search java | grep openjdk
+   45  yum search java | grep open-jdk
+   46  yum install java-1.7.0-openjdk.x86_64
+   47  sudo yum install java-1.7.0-openjdk.x86_64
+   48  sudo vi /etc/sudoers
+   49  sudo root
+   50  sudo -u root
+   51  su root
+   52  top
+   53  adb devices
+   54  top
+   55  adb devices
+   56  top
+   57  kill 10419
+   58  top
+   59  kill 10885
+   60  vncserver
+   61  cd /qcow2/
+   62  ll
+   63  qemu-img create -f qcow2 -b /qcow2/winxp.qcow2 instance-000001be.qcow2
+   64  ll
+   65  sudo su
+   66  exit
+   67  emulator -help
+   68  su root
+   69  export PATH=$PATH:~/Downloads/android-sdk-linux/tools/:~/Downloads/android-sdk-linux/platform-tools/:~/Downloads/android-sdk-linux/platforms/
+   70  elmulator -help
+   71  android list targets
+   72  cd temp/
+   73  android list targets>targets.txt
+   74  touch targets.txt
+   75  sudo android list targets>targets.txt
+   76  android
+   77  cd ../Downloads/DroidBox_4.1.1/
+   78  ll
+   79  ./startemu.sh droidavd 
+   80  cd ~/.android/avd/
+   81  ll
+   82  android list targets
+   83  android update sdk --no-ui --all --filter "android-19"
+   84  sudo su
+   85  su root
+   86  vncserver 
+   87  cd var/lib/libvirt/images/
+   88  ll
+   89  cd var/lib/libvirt/images/
+   90  exi
+   91  exit
+   92  free
+   93  free -h
+   94  free -m
+   95  vncserver start
+   96  vncserver start 0
+   97  vncserver
+   98  cd /home/vhr/.vnc/
+   99  ll
+  100  more compute1\:2.log 
+  101  /sbin/service vncserver status
+  102  exit
+  103  vncserver
+  104  exit
+  105  vncserver start
+  106  vncserver 4
+  107  vncserver
+  108  exit
+  109  vncserver
+  110  exit
+  111  vncserver help
+  112  vncserver -list
+  113  vncserver -kill :2
+  114  vncserver -kill :4
+  115  vncserver -kill :1
+  116  vncserver
+  117  exit
+  118  vncserver start
+  119  vncserver
+  120  exit
+  121  sudo su
+  122  vncserver
+  123  exit
+  124  vncserver
+  125  exit
+  126  vncserver
+  127  ll
+  128  tail apt
+  129  tail api.log 
+  130  ll
+  131  less api.log 
+  132  ll
+  133  >api.log 
+  134  exit
+  135  vncserver 
+  136  exit
+  137  vncserver 
+  138  exit
+  139  vncserver 
+  140  exit
+  141  vncserver 
+  142  su root
+  143  exit
+  144  ping 172.18.72.139
+  145  vncserver 
+  146  cd /qcow2/
+  147  ll
+  148  cp instance-000001f0.qcow2.org instance-000001f0.qcow2
+  149   history > /home/vhr/vhr_compute1.txt
